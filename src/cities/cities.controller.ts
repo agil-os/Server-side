@@ -1,11 +1,9 @@
 import { Controller, Get, Post, Delete, Patch } from '@nestjs/common';
-import { updateConditionalTypeNode } from 'typescript';
-
 
 @Controller('cities')
 export class CitiesController {
   @Get()
-  findAll(): string {
+  findCity(): string {
     return `This gets all the cities`;
   }
 

@@ -1,5 +1,6 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { createConditionalTypeNode } from 'typescript';
+import { Controller, Get, Post, Delete, Patch } from '@nestjs/common';
+import { updateConditionalTypeNode } from 'typescript';
+
 
 @Controller('cities')
 export class CitiesController {
@@ -11,5 +12,15 @@ export class CitiesController {
   @Post()
   createCity(): string {
     return `This posts a city`;
+  }
+
+  @Delete()
+  deleteCity(): string {
+    return `This deletes a city`;
+  }
+
+  @Patch()
+  updateCity(): string {
+    return `This updates a city`;
   }
 }

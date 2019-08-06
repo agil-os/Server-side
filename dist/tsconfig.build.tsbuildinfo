@@ -2349,12 +2349,20 @@
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts": {
+        "version": "3b6b9692465c97118311129238a4f27e4aec0a3114fb80d5f2507e2da039401c",
+        "signature": "84df2edbb32d7cf0c24a1a1c7be820a9d791d2c20d71b05cdf4fac5a110c888d"
+      },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts": {
-        "version": "af99bd2e05805584a3d43f14ca32a2d9d809c276549a30cfd20602f1b746338c",
-        "signature": "9eb90919ebef5f44ce77d2ce98566f232203df629bf9925bd2c71df0edaa7a80"
+        "version": "e8d42ba3095da3061886182e4253cf56a5626bbc7d23eebd12689aaef922db81",
+        "signature": "01c58dd8b2cc7d1000895cf59c15e4550f591ea81d3b22a775a553b4f25b95e7"
+      },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.module.ts": {
+        "version": "36a008f4cc73aab0891bcfb103cbc00ffc75f3767e831c19c421496554f135a5",
+        "signature": "7ff3515c19fd897a05544082345d57f6ce592e3166094018a3b556f3c28c2963"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts": {
-        "version": "01e73e8d905ff591002ab51af909502f24c66ea2f43b62381453a819456bf8e5",
+        "version": "8d0f0cecf1dfb5bcd1b916024a1da675ff6970ca80bba7e8bde4d2798a4f201c",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts": {
@@ -6239,8 +6247,21 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.module.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -6250,7 +6271,7 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.controller.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.service.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/path.d.ts",
-        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.module.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -10141,6 +10162,9 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts"
+      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@babel/types/lib/index.d.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
@@ -10852,6 +10876,10 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/graphql/dist/tokens.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/graphql/dist/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/graphql/index.d.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.module.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/main.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@babel/types/lib/index.d.ts",
@@ -10877,9 +10905,7 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/stack-utils/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/superagent/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/supertest/index.d.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts"
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts"
     ]
   },
   "version": "3.4.3"

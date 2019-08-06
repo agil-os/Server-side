@@ -10,7 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
+const cities_service_1 = require("./cities.service");
 let CitiesController = class CitiesController {
+    constructor(CitiesService) {
+        this.CitiesService = CitiesService;
+    }
     findCity() {
         return `This gets all the cities`;
     }
@@ -49,7 +53,8 @@ __decorate([
     __metadata("design:returntype", String)
 ], CitiesController.prototype, "updateCity", null);
 CitiesController = __decorate([
-    common_1.Controller('cities')
+    common_1.Controller('cities'),
+    __metadata("design:paramtypes", [cities_service_1.CitiesService])
 ], CitiesController);
 exports.CitiesController = CitiesController;
 //# sourceMappingURL=cities.controller.js.map

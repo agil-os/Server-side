@@ -3349,8 +3349,20 @@
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.service.ts": {
+        "version": "4e2890a1ac062624a20dfa9cc4b0e9209ce91caeb0b41e40d11fb3e5494686f4",
+        "signature": "84df2edbb32d7cf0c24a1a1c7be820a9d791d2c20d71b05cdf4fac5a110c888d"
+      },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.controller.ts": {
+        "version": "e8d42ba3095da3061886182e4253cf56a5626bbc7d23eebd12689aaef922db81",
+        "signature": "01c58dd8b2cc7d1000895cf59c15e4550f591ea81d3b22a775a553b4f25b95e7"
+      },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.module.ts": {
+        "version": "36a008f4cc73aab0891bcfb103cbc00ffc75f3767e831c19c421496554f135a5",
+        "signature": "7ff3515c19fd897a05544082345d57f6ce592e3166094018a3b556f3c28c2963"
+      },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.module.ts": {
-        "version": "556f20e32922427282d7456f2ae5ec1f5c642c7b6a99bc887d7e8e3ec7848d94",
+        "version": "5ad7062153e758a3c2b3749e51693d7589e1cc71f58fe474cbf4208277452e40",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/graphql.ts": {
@@ -8942,6 +8954,24 @@
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.service.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.controller.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.service.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.module.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.controller.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.service.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.module.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/typeorm/index.d.ts",
@@ -8949,6 +8979,7 @@
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.controller.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.service.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/path.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.module.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -14546,6 +14577,9 @@
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.controller.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.service.ts"
+      ],
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@babel/types/lib/index.d.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
@@ -15507,6 +15541,9 @@
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/graphql/dist/tokens.d.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/graphql/dist/index.d.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/graphql/index.d.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.service.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.controller.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.module.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.module.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/graphql.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/main.ts",

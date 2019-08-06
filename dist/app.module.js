@@ -12,6 +12,7 @@ const graphql_1 = require("@nestjs/graphql");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const path_1 = require("path");
+const cities_module_1 = require("./cities/cities.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -23,7 +24,8 @@ AppModule = __decorate([
                     path: path_1.join(process.cwd(), 'src/graphql.ts'),
                 },
             }),
-            typeorm_1.TypeOrmModule.forRoot()
+            typeorm_1.TypeOrmModule.forRoot(),
+            cities_module_1.CitiesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

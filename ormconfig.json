@@ -1,0 +1,12 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": "5432",
+    "username": "postgres",
+    "password": "agilos",
+    "database": "agilos",
+    "synchronize": "true",
+    "logging": "true",
+    "entities": ["./src/**/*.entity.ts", "./dist/**/*.entity.js"]
+
+}

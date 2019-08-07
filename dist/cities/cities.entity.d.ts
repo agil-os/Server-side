@@ -1,5 +1,7 @@
 export declare class CitiesEntity {
-    id: string;
-    idea: string;
-    desciption: string;
+    code: string;
+    name: string;
+    lat: number;
+    lon: number;
+    imgURL: string;
 }

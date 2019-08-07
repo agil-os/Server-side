@@ -2,9 +2,13 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity('cities')
 export class CitiesEntity {
-    @PrimaryGeneratedColumn() id: string; 
+    @PrimaryGeneratedColumn('uuid') code: string; 
 
-    @Column('text') idea: string;
+    @Column('text') name: string;
 
-    @Column('text') desciption: string;
+    @Column() lat: number;
+
+    @Column() lon: number;
+
+    @Column('text') imgURL: string;
 }

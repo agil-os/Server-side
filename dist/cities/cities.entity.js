@@ -13,17 +13,25 @@ const typeorm_1 = require("typeorm");
 let CitiesEntity = class CitiesEntity {
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
+    typeorm_1.PrimaryGeneratedColumn('uuid'),
     __metadata("design:type", String)
-], CitiesEntity.prototype, "id", void 0);
+], CitiesEntity.prototype, "code", void 0);
 __decorate([
     typeorm_1.Column('text'),
     __metadata("design:type", String)
-], CitiesEntity.prototype, "idea", void 0);
+], CitiesEntity.prototype, "name", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], CitiesEntity.prototype, "lat", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], CitiesEntity.prototype, "lon", void 0);
 __decorate([
     typeorm_1.Column('text'),
     __metadata("design:type", String)
-], CitiesEntity.prototype, "desciption", void 0);
+], CitiesEntity.prototype, "imgURL", void 0);
 CitiesEntity = __decorate([
     typeorm_1.Entity('cities')
 ], CitiesEntity);

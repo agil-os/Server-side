@@ -8,6 +8,7 @@ import { TripsModule } from './trips/trips.module';
 import { PricesModule } from './prices/prices.module';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
+import { GasModule } from './gas/gas.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CarsModule } from './cars/cars.module';
     PricesModule,
     UsersModule,
     CarsModule,
+    GasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

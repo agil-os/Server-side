@@ -2402,15 +2402,27 @@
         "signature": "19a4a8140f141490e11872ef022d9d83e3c6ebc1dc2b9db167313472f3674410"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.controller.ts": {
-        "version": "4180ebf55c1ed4ffa79910dce611ea9176e9e9ec9ebefe80b448a03c93661416",
-        "signature": "f6583fb6eb8dafaa0837dc739c5a400b2d8ecf3df26df78f79300d026e26f658"
+        "version": "d46379e4fc73532e49c844f89f8ee1aaf60aa6caffd9eef98d918908c0954378",
+        "signature": "b8e27d0767e430433fe8766059d168387c286c874761c7f276f4714b01d4ce3e"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.module.ts": {
-        "version": "5a91cc5c466150d918c079ba8843ad62687895686d3dfe85e66d71857e9615f9",
+        "version": "c146b61f91bcb03544c6ca737c994fc9b04c8abe7d522a8bbbc7acc30d82844f",
         "signature": "5c2c21a04e3b5bbb16fd0930b549364208489e17a2feb399b87e941818bf4430"
       },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.service.ts": {
+        "version": "429dad45ef4efba4aea28a29ad2fa00b260111777df5b7d0a7adfd7586ca8e18",
+        "signature": "55d4b94d9c8ea1720d720267509b9ff6875c122d4b1944c4696c008db2731d28"
+      },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.controller.ts": {
+        "version": "19a0e4b3d628d512290235185c647f5516d8967beb2601b2938b1577f531d7d6",
+        "signature": "c455c42ba8e8a0ef74349b2c86500435cc00c91e1cdb30e96a57dc5497ea2b86"
+      },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.module.ts": {
+        "version": "142cf17da06e810b4f102bed8a760aa1507faa5bca95658fcbe47f22645c561d",
+        "signature": "4ddfe6567d99ab4acdd4bef869978a5426721623744c7f5b6706303d0995b5e8"
+      },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts": {
-        "version": "827718c17f10c2528240ba7cb0ade1b255d1ae5e27950f9fece9f1f736af1e72",
+        "version": "49245a1630853f197422412963eea38e26aa1e2861e0bdcb46933b715719efad",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts": {
@@ -6385,6 +6397,24 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.service.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.controller.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.service.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.module.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.controller.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.service.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/graphql/index.d.ts",
@@ -6396,6 +6426,7 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.module.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/users/users.module.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.module.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.module.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -10289,9 +10320,6 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.controller.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.service.ts"
       ],
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.controller.ts": [
-        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.service.ts"
-      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@babel/types/lib/index.d.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
@@ -11015,8 +11043,12 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/users/users.service.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/users/users.controller.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/users/users.module.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.service.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.controller.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.module.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.service.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.controller.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.module.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/main.ts",
@@ -11043,8 +11075,7 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/stack-utils/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/superagent/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/supertest/index.d.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cars/cars.service.ts"
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts"
     ]
   },
   "version": "3.4.3"

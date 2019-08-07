@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-let CarsController = class CarsController {
-    getCars() {
-        return `This returns the cars`;
+let GasController = class GasController {
+    getGas() {
+        return `This gets the gas`;
     }
-    createCars() {
-        return `This creates a car`;
+    createGas() {
+        return `This creates gas`;
     }
-    deleteCar() {
-        return `This deletes a car`;
+    updateGas() {
+        return `This updates the gas`;
     }
-    updateCar() {
-        return `This updates a car`;
+    deleteGas() {
+        return `This deletes the gas`;
     }
 };
 __decorate([
@@ -29,27 +29,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
-], CarsController.prototype, "getCars", null);
+], GasController.prototype, "getGas", null);
 __decorate([
     common_1.Post(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
-], CarsController.prototype, "createCars", null);
-__decorate([
-    common_1.Delete(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], CarsController.prototype, "deleteCar", null);
+], GasController.prototype, "createGas", null);
 __decorate([
     common_1.Patch(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
-], CarsController.prototype, "updateCar", null);
-CarsController = __decorate([
-    common_1.Controller('cars')
-], CarsController);
-exports.CarsController = CarsController;
-//# sourceMappingURL=cars.controller.js.map
+], GasController.prototype, "updateGas", null);
+__decorate([
+    common_1.Delete(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], GasController.prototype, "deleteGas", null);
+GasController = __decorate([
+    common_1.Controller('gas')
+], GasController);
+exports.GasController = GasController;
+//# sourceMappingURL=gas.controller.js.map

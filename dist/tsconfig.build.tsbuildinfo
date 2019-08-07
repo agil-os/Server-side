@@ -2422,7 +2422,7 @@
         "signature": "4ddfe6567d99ab4acdd4bef869978a5426721623744c7f5b6706303d0995b5e8"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts": {
-        "version": "49245a1630853f197422412963eea38e26aa1e2861e0bdcb46933b715719efad",
+        "version": "95b38254a396c1ce1678c084a6698471c26a837a415f80e3c5aaa0c1ba2cc60b",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts": {
@@ -2432,6 +2432,10 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/main.ts": {
         "version": "e25d9bd8f80b6ffbcc8826ed1b407e747e4fbe346c5bab62cbe5837da4eeb189",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.entity.ts": {
+        "version": "fe8e73bf681abd9b47ca91bc6f11111c0a74a99aa3991863c919a9e34e409f4f",
+        "signature": "1d90dcafce3e35c3eeff496e19e81b8cc5b00d3bf2f4124039db5258fb0cc8e5"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@babel/types/lib/index.d.ts": {
         "version": "bc12492fa90cd2ad3f73c10efa597503dbf59ebac0e3c9728cc10adaad6b0b87",
@@ -6437,6 +6441,10 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/main.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/core/index.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.entity.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -11049,9 +11057,34 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.service.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.controller.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/gas/gas.module.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
+      [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
+        [
+          {
+            "file": "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
+            "start": 71,
+            "length": 17,
+            "messageText": "Cannot find module '@nestjs/typeorm'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/main.ts",
+      [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.entity.ts",
+        [
+          {
+            "file": "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.entity.ts",
+            "start": 55,
+            "length": 9,
+            "messageText": "Cannot find module 'typeorm'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@babel/types/lib/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/babel__generator/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/babel__traverse/index.d.ts",

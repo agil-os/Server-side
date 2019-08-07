@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { CitiesModule } from './cities/cities.module';
-import { TripsController } from './trips/trips.controller';
+import { TripsModule } from './trips/trips.module';
 
 @Module({
   imports: [
@@ -15,8 +15,9 @@ import { TripsController } from './trips/trips.controller';
       },
     }),
     CitiesModule,
+    TripsModule,
   ],
-  controllers: [AppController, TripsController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

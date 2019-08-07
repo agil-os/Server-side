@@ -12,7 +12,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const path_1 = require("path");
 const cities_module_1 = require("./cities/cities.module");
-const trips_controller_1 = require("./trips/trips.controller");
+const trips_module_1 = require("./trips/trips.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -25,8 +25,9 @@ AppModule = __decorate([
                 },
             }),
             cities_module_1.CitiesModule,
+            trips_module_1.TripsModule,
         ],
-        controllers: [app_controller_1.AppController, trips_controller_1.TripsController],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { join } from 'path';
 import { CitiesModule } from './cities/cities.module';
 import { TripsModule } from './trips/trips.module';
+import { PricesModule } from './prices/prices.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TripsModule } from './trips/trips.module';
     }),
     CitiesModule,
     TripsModule,
+    PricesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

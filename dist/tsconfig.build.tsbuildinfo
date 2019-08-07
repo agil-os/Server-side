@@ -2373,8 +2373,20 @@
         "version": "2225a5aa3762d2852e56e71c7f4f14531f1b62a7ae75e1fc1d53de2701aa87af",
         "signature": "7e9605f852866f650f239b873fcd8518b15be72c7b308d63a4fbc7ad3f3533e1"
       },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.service.ts": {
+        "version": "09d9df7db35b584aab41aca0b136585cd9e7ddf0684427e3f6b8e0a55c8130fe",
+        "signature": "db6b9e8b7c991065a98d0e05e963604d9164bb96e5d6c85b7bd26775d426df29"
+      },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.controller.ts": {
+        "version": "77bd941fb5c6e8bc6fca9687028502505a6a20e6eb6a1e4c66ed7df59e76fa51",
+        "signature": "9be7f82d46ba72f32d14b1a30d85c34ddc3f39a0a55a1311f8b22aacbcf08880"
+      },
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.module.ts": {
+        "version": "8adbc979cd5b705d64ba1398106b032eb0e5425a29589688387e276e2c9638a1",
+        "signature": "d0c51e1811a10a805c3ba8e6ab78d265eebc540b1f48b1ce43dd1e0cad7e4142"
+      },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts": {
-        "version": "684c17ce46353f5634a6240a03614aef982caa2c32c818e063fdef2edb2e178d",
+        "version": "4b191a93ee1a568ac403fe3aa3bd0ded2c8915499cf94a6cf0ccd25b8e93b314",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts": {
@@ -6295,6 +6307,24 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.service.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.controller.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.service.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.module.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.controller.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.service.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/common/index.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@nestjs/graphql/index.d.ts",
@@ -6303,6 +6333,7 @@
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/path.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/cities/cities.module.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/trips/trips.module.ts",
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.module.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -10320,6 +10351,9 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts": [
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/util.d.ts",
         "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.controller.ts": [
+        "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.service.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -10916,6 +10950,7 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/trips/trips.service.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/trips/trips.controller.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/trips/trips.module.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.service.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/app.module.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/graphql.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/main.ts",
@@ -10942,7 +10977,9 @@
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/stack-utils/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/superagent/index.d.ts",
       "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/supertest/index.d.ts",
-      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts"
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/node_modules/@types/yargs/index.d.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.controller.ts",
+      "/mnt/c/Users/Public/immersion/thesis/server/Server-side/src/prices/prices.module.ts"
     ]
   },
   "version": "3.4.3"

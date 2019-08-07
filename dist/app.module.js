@@ -13,6 +13,7 @@ const app_service_1 = require("./app.service");
 const path_1 = require("path");
 const cities_module_1 = require("./cities/cities.module");
 const trips_module_1 = require("./trips/trips.module");
+const prices_module_1 = require("./prices/prices.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,6 +27,7 @@ AppModule = __decorate([
             }),
             cities_module_1.CitiesModule,
             trips_module_1.TripsModule,
+            prices_module_1.PricesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

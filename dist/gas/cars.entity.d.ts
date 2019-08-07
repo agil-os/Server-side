@@ -1,5 +1,5 @@
 export declare class CitiesEntity {
-    id: number;
+    code: string;
     name: string;
     lat: number;
     lon: number;

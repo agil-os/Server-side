@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity('cities')
-export class CitiesEntity {
-    @PrimaryGeneratedColumn() id: number; 
+@Entity('trips')
+export class PricesEntity {
+    @PrimaryGeneratedColumn('uuid') code: string; 
 
     @Column('text') name: string;
 

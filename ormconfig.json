@@ -5,9 +5,9 @@
     "username": "postgres",
     "password": "agilos",
     "database": "agilos",
-    "synchronize": "true",
-    "logging": "true",
-    "entities": ["./src/**/*.entity.ts", "./dist/**/*.entity.js"]
+    "synchronize": true,
+    "logging": true,
+    "entities": ["./dist/**/*.entity.js"]
 
 
 }

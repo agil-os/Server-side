@@ -7,7 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
 const graphql_1 = require("@nestjs/graphql");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
@@ -16,8 +15,6 @@ const cities_module_1 = require("./cities/cities.module");
 const trips_module_1 = require("./trips/trips.module");
 const prices_module_1 = require("./prices/prices.module");
 const users_module_1 = require("./users/users.module");
-const cars_module_1 = require("./cars/cars.module");
-const gas_module_1 = require("./gas/gas.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -29,13 +26,10 @@ AppModule = __decorate([
                     path: path_1.join(process.cwd(), 'src/graphql.ts'),
                 },
             }),
-            typeorm_1.TypeOrmModule.forRoot(),
             cities_module_1.CitiesModule,
             trips_module_1.TripsModule,
             prices_module_1.PricesModule,
             users_module_1.UsersModule,
-            cars_module_1.CarsModule,
-            gas_module_1.GasModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -3,7 +3,7 @@ import { PricesService } from './prices.service';
 
 @Controller('prices')
 export class PricesController {
-  constructor(private readonly PricesService: PricesService) {}
+  // constructor(private readonly PricesService: PricesService) {}
 
   @Get()
   getPrices(): string {

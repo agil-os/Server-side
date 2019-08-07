@@ -2,22 +2,23 @@
 // Basic Path: https://api.skypicker.com/flights?
 /*
   Params: {
-    fly_from: MSY,
-    fly_to: LAS,
-    date_from: 12/08/2019,
-    date_to: 12/08/2019,
-    flight_type: oneway,
-    locale: en,
-    partner: picky,
-    partner_market: us,
-    xml: 0,
-    curr: USD,
-    vehicle_type: aircraft,
-    limit: 20,
-    asc: 0,
+    "fly_from": "MSY",
+    "fly_to": "LAS",
+    "date_from": "12/08/2019",
+    "date_to": "12/08/2019",
+    "flight_type": "oneway",
+    "locale": "en",
+    "partner": "picky",
+    "partner_market": "us",
+    "xml": 0,
+    "curr": "USD",
+    "vehicle_type": "aircraft",
+    "limit": 20,
+    "asc": 0,
     adults: 1
   }
 */
+
 
 window.flightData = [{
   "search_id": "abbb4887-b5da-44d4-a4ba-d4e025d13b12",

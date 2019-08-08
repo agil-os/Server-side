@@ -3385,16 +3385,20 @@
         "version": "8adbc979cd5b705d64ba1398106b032eb0e5425a29589688387e276e2c9638a1",
         "signature": "d0c51e1811a10a805c3ba8e6ab78d265eebc540b1f48b1ce43dd1e0cad7e4142"
       },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts": {
+        "version": "8f884dfd457f950c223b230badd6fa0326922d9cce688c79986910b0370c3bc2",
+        "signature": "8650c578125cf0d81f16d7a4b8c92775d849cafe5a07ebb4d7918ad47b65a4f8"
+      },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts": {
-        "version": "3f6d21261d6d5cdd339359631ce7f5394c5667f32ce97bb0db22ed639e5f50ef",
-        "signature": "8cdd155c767887e2ea28b73381ee379ca574d78c46add45566934ade31aac07a"
+        "version": "ecb63c59fb618c5b2eee397ddaec1d1962cd3265ab80a408ac9978a1038980ec",
+        "signature": "f29bb86c97974cf6ce6ee4759dd29db5928c5f01bcbd3c6024c4437750bb047a"
       },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.controller.ts": {
-        "version": "dc6e72bcc9d1527a4848081dc2a42780ffc5960928fdc5bf4f04a1da0285b95f",
-        "signature": "d6186b2e0890d8fff5003e10c51fa3d61b6c29b08e377590d67562d0142c22d3"
+        "version": "2184ccf4cd998b18cb98044bc42e4a436d369955d2dd7b6670e43acfadce12d9",
+        "signature": "5296726dc6fab4310582361ac6d392916e28aff6089ac17fc0f8dd75fa06c3e1"
       },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.module.ts": {
-        "version": "fc63f9f4f0ec5ff87795e809acc4a443c36359e40b793a60628cb47da7e7b5e2",
+        "version": "ea8b7ef4fa66a622f36ac6e1b1fcd135c2d3b5ecbaa449272fde364fb5a281ff",
         "signature": "aa1725e38b5a0b4009f6a74f296f173e7926c119a60454dbd2e523861735df69"
       },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cars/cars.service.ts": {
@@ -3433,9 +3437,25 @@
         "version": "e25d9bd8f80b6ffbcc8826ed1b407e747e4fbe346c5bab62cbe5837da4eeb189",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cars/cars.entity.ts": {
+        "version": "56f69e7f85cd2b13db8f9673f1933b66ae3011645ec8e5822a1de6a8c22e0e54",
+        "signature": "2e82a2bb154d3d198d2ebd868a6763bd6d43252ad224c64f44bae0c46566f100"
+      },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.entity.ts": {
-        "version": "fe8e73bf681abd9b47ca91bc6f11111c0a74a99aa3991863c919a9e34e409f4f",
-        "signature": "1d90dcafce3e35c3eeff496e19e81b8cc5b00d3bf2f4124039db5258fb0cc8e5"
+        "version": "83cc768069648bb24921a0407937936768899546fab68955de14449ba585eb14",
+        "signature": "6c36eef4ac0975205e99f659b33813702751edab9acfcddf3fa41a2f55b35741"
+      },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/gas/gas.entity.ts": {
+        "version": "552a333c2746b22c9bfdd0949c4342062db01adc0ae77bac6368336a80faa762",
+        "signature": "2c346d1c1c114d9702a82e2cdb42df6806ae92dfa6af1b0a2fd8efce8433f79c"
+      },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/prices/prices.entity.ts": {
+        "version": "2c1a4803e531a919ac08051e660f112d9e7abe333c1872fd629a6d5e907096b1",
+        "signature": "6c36eef4ac0975205e99f659b33813702751edab9acfcddf3fa41a2f55b35741"
+      },
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/trips/trips.entity.ts": {
+        "version": "183400ee58c9e958b1152dbfaa25af4de0291db1cebc307037b633d4b55d9ccb",
+        "signature": "d557e10ec95d9e10fdd697886374e1c643cb72035443ceb8f0cf3c7f631a4bd4"
       },
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@babel/types/lib/index.d.ts": {
         "version": "bc12492fa90cd2ad3f73c10efa597503dbf59ebac0e3c9728cc10adaad6b0b87",
@@ -9072,21 +9092,32 @@
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.controller.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.module.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/common/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@nestjs/typeorm/index.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.controller.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -9152,7 +9183,27 @@
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cars/cars.entity.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.entity.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/gas/gas.entity.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/prices/prices.entity.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/trips/trips.entity.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
@@ -14865,6 +14916,14 @@
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/yargs/index.d.ts": [
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/util.d.ts",
         "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.controller.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts"
+      ],
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts": [
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/typeorm/index.d.ts",
+        "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -15720,7 +15779,6 @@
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/gas/gas.service.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/gas/gas.controller.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/gas/gas.module.ts",
-      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.module.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/graphql.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/main.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@babel/types/lib/index.d.ts",
@@ -15747,10 +15805,16 @@
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/superagent/index.d.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/supertest/index.d.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/node_modules/@types/yargs/index.d.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.entity.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.service.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.controller.ts",
       "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/users/users.module.ts",
-      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.entity.ts"
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/app.module.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cars/cars.entity.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/cities/cities.entity.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/gas/gas.entity.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/prices/prices.entity.ts",
+      "/users/mgibboni/documents/operationspark/immerjunior/agiloserver/src/trips/trips.entity.ts"
     ]
   },
   "version": "3.4.3"

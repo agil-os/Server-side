@@ -1,7 +1,6 @@
+.env
 dist/
 # Logs
-
-.env
 
 logs
 *.log

@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body } from '@nestjs/common';
 import { CitiesService } from './cities.service';
+import { CitiesEntity } from './cities.entity';
 
 @Controller('cities')
 export class CitiesController {
@@ -10,10 +11,10 @@ export class CitiesController {
     return `This gets all the cities`;
   }
 
-  @Post()
-  createCity(): string {
-    return `This posts a city`;
-  }
+  @Post('create')
+    async create(@Body() citiesData: CitiesEntity): Promise < any > {
+      return this.CitiesService.create(citiesData);
+    }
 
   @Delete()
   deleteCity(): string {

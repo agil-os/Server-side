@@ -24,13 +24,14 @@ import { GasModule } from './gas/gas.module';
       type: 'postgres',
       host: process.env.DB_HOST,
       port: 5432,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
+      username: 'postgres',
+      password: 'agilos',
       database: 'agilos',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }
-
+// process.env.DB_USERNAME
+// process.env.DB_PASSWORD
     ),
     CitiesModule,
     TripsModule,

@@ -3426,7 +3426,7 @@
         "signature": "4ddfe6567d99ab4acdd4bef869978a5426721623744c7f5b6706303d0995b5e8"
       },
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts": {
-        "version": "95b38254a396c1ce1678c084a6698471c26a837a415f80e3c5aaa0c1ba2cc60b",
+        "version": "8a53ea3622319f38b929db5807de1e051040b73392065773414389f3a4d34a70",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/graphql.ts": {
@@ -15782,7 +15782,6 @@
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/gas/gas.service.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/gas/gas.controller.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/gas/gas.module.ts",
-      "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/graphql.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/main.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/cars/cars.entity.ts",
@@ -15813,7 +15812,20 @@
       "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/stack-utils/index.d.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/superagent/index.d.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/supertest/index.d.ts",
-      "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/yargs/index.d.ts"
+      "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/yargs/index.d.ts",
+      [
+        "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
+        [
+          {
+            "file": "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
+            "start": 600,
+            "length": 27,
+            "messageText": "Cannot find module './ENVConfig/config.module'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ]
     ]
   },
   "version": "3.4.3"

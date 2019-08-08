@@ -10,11 +10,10 @@ import { PricesModule } from './prices/prices.module';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
 import { GasModule } from './gas/gas.module';
-import { ConfigModule } from './ENVConfig/config.module';
+
 
 @Module({
   imports: [
-    ConfigModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       definitions: {

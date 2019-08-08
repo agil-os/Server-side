@@ -15782,6 +15782,19 @@
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/gas/gas.service.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/gas/gas.controller.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/gas/gas.module.ts",
+      [
+        "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
+        [
+          {
+            "file": "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
+            "start": 600,
+            "length": 27,
+            "messageText": "Cannot find module './ENVConfig/config.module'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ],
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/graphql.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/main.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/src/cars/cars.entity.ts",
@@ -15812,20 +15825,7 @@
       "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/stack-utils/index.d.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/superagent/index.d.ts",
       "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/supertest/index.d.ts",
-      "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/yargs/index.d.ts",
-      [
-        "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
-        [
-          {
-            "file": "/users/alex_otero/documents/immersion/projects/plnnr-server/src/app.module.ts",
-            "start": 600,
-            "length": 27,
-            "messageText": "Cannot find module './ENVConfig/config.module'.",
-            "category": 1,
-            "code": 2307
-          }
-        ]
-      ]
+      "/users/alex_otero/documents/immersion/projects/plnnr-server/node_modules/@types/yargs/index.d.ts"
     ]
   },
   "version": "3.4.3"

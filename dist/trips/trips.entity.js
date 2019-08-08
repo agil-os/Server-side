@@ -10,30 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let CitiesEntity = class CitiesEntity {
+let PricesEntity = class PricesEntity {
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], CitiesEntity.prototype, "id", void 0);
+    typeorm_1.PrimaryGeneratedColumn('uuid'),
+    __metadata("design:type", String)
+], PricesEntity.prototype, "code", void 0);
 __decorate([
     typeorm_1.Column('text'),
     __metadata("design:type", String)
-], CitiesEntity.prototype, "name", void 0);
+], PricesEntity.prototype, "name", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], CitiesEntity.prototype, "lat", void 0);
+], PricesEntity.prototype, "lat", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], CitiesEntity.prototype, "lon", void 0);
+], PricesEntity.prototype, "lon", void 0);
 __decorate([
     typeorm_1.Column('text'),
     __metadata("design:type", String)
-], CitiesEntity.prototype, "imgURL", void 0);
-CitiesEntity = __decorate([
-    typeorm_1.Entity('cities')
-], CitiesEntity);
-exports.CitiesEntity = CitiesEntity;
-//# sourceMappingURL=cities.entity.js.map
+], PricesEntity.prototype, "imgURL", void 0);
+PricesEntity = __decorate([
+    typeorm_1.Entity('trips')
+], PricesEntity);
+exports.PricesEntity = PricesEntity;
+//# sourceMappingURL=trips.entity.js.map

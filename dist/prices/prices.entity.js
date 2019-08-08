@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:type", String)
 ], CitiesEntity.prototype, "imgURL", void 0);
 CitiesEntity = __decorate([
-    typeorm_1.Entity('cities')
+    typeorm_1.Entity('prices')
 ], CitiesEntity);
 exports.CitiesEntity = CitiesEntity;
-//# sourceMappingURL=cities.entity.js.map
+//# sourceMappingURL=prices.entity.js.map

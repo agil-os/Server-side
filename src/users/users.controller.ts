@@ -1,23 +1,31 @@
-import { Controller, Get, Post, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { UsersEntity } from './users.entity';
 
 @Controller('users')
 export class UsersController {
-  // constructor(private readonly UsersService: UsersService) {}
+  constructor(private readonly UsersService: UsersService) {}
 
   @Get()
-  getUsers(): string {
-    return `This gets the users`;
+  getUsers(): Promise<UsersEntity[]> {
+    return this.UsersService.findAll();
   }
 
-  @Post()
-  createUser(): string {
-    return `This creates a user`;
+  @Post('create')
+  async create(@Body() usersData: UsersEntity): Promise<any> {
+    return this.UsersService.create(usersData);
   }
 
-  @Delete()
-  deleteUser(): string {
-    return `This deletes a user`;
+  @Put(':id/update')
+  async update(@Param('id') id, @Body() contactData: UsersEntity): Promise<any> {
+    contactData.id = Number(id);
+    console.log('Update #' + contactData.id)
+    return this.UsersService.update(contactData);
+  }
+
+  @Delete(':id/delete')
+  async delete(@Param('id') id): Promise<any> {
+    return this.UsersService.delete(id);
   }
 
   @Patch()

@@ -13,7 +13,7 @@ import { GasModule } from './gas/gas.module';
 import { CategoriesModule } from './categories/categories.module';
 import { QualityController } from './quality/quality.controller';
 import { QualityModule } from './quality/quality.module';
-
+import { Connection } from 'typeorm';
 
 @Module({
   imports: [

@@ -10,7 +10,9 @@ import { PricesModule } from './prices/prices.module';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
 import { GasModule } from './gas/gas.module';
-import { Connection } from 'typeorm';
+import { CategoriesModule } from './categories/categories.module';
+import { QualityController } from './quality/quality.controller';
+import { QualityModule } from './quality/quality.module';
 
 
 @Module({
@@ -30,13 +32,19 @@ import { Connection } from 'typeorm';
       database: 'agilos',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
-    }),
+      logging: true,
+    }
+// process.env.DB_USERNAME
+// process.env.DB_PASSWORD
+    ),
     CitiesModule,
     TripsModule,
     PricesModule,
     UsersModule,
     CarsModule,
     GasModule,
+    CategoriesModule,
+    QualityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

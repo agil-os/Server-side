@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
 
 @Entity('gas')
 export class GasEntity {
@@ -6,7 +6,7 @@ export class GasEntity {
 
     @Column() pricePerGal: number;
 
-    @Column() lastSearched: Date;
+    @CreateDateColumn() lastSearched: Date; 
 
 
 }

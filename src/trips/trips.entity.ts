@@ -1,14 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity('trips')
-export class PricesEntity {
-    @PrimaryGeneratedColumn('uuid') code: string; 
+export class TripsEntity {
+    @PrimaryGeneratedColumn() id: number; 
 
-    @Column('text') name: string;
+    @Column() departureDate: number;
 
-    @Column() lat: number;
-
-    @Column() lon: number;
-
-    @Column('text') imgURL: string;
+    @Column() arrivalDate: number;
 }

@@ -1,5 +1,6 @@
 .env
 dist/
+.env
 # Logs
 
 logs
@@ -62,3 +63,6 @@ typings/
 
 # next.js build output
 .next
+
+ormconfig.json
+

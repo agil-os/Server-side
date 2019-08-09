@@ -2,7 +2,7 @@
     "type": "postgres",
     "host": "localhost",
     "port": "5432",
-    "username": "postgres",
+    "username": "Admin",
     "password": "newPassword",
     "database": "agilos",
     "synchronize": true,

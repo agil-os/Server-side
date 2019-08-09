@@ -1,23 +1,31 @@
-import { Controller, Get, Post, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
 import { CarsService } from './cars.service';
+import { CarsEntity } from './cars.entity';
 
 @Controller('cars')
 export class CarsController {
-  // constructor(private readonly CarsService: CarsService) {}
+  constructor(private readonly CarsService: CarsService) { }
 
   @Get()
-  getCars(): string {
-    return `This returns the cars`;
+  async findAll(): Promise<CarsEntity[]> {
+    return this.CarsService.findAll();
   }
 
-  @Post()
-  createCars(): string {
-    return `This creates a car`;
+  @Post('create')
+  async create(@Body() carsData: CarsEntity): Promise<any> {
+    return this.CarsService.create(carsData);
   }
 
-  @Delete()
-  deleteCar(): string {
-    return `This deletes a car`;
+  @Put(':id/update')
+  async update(@Param('id') id, @Body() carsData: CarsEntity): Promise<any> {
+    carsData.id = Number(id);
+    console.log('Update #' + carsData.id)
+    return this.CarsService.update(carsData);
+  }
+
+  @Delete(':id/delete')
+  async delete(@Param('id') id): Promise<any> {
+    return this.CarsService.delete(id);
   }
 
   @Patch()

@@ -1,14 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
 
 @Entity('prices')
 export class PricesEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column('text') name: string;
+    @Column() low: number;
 
-    @Column() lat: number;
+    @Column() average: number;
 
-    @Column() lon: number;
+    @Column() high: number;
 
-    @Column('text') imgURL: string;
+    @CreateDateColumn() lastSearched: Date;
 }

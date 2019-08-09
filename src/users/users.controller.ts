@@ -7,7 +7,7 @@ export class UsersController {
   constructor(private readonly UsersService: UsersService) {}
 
   @Get()
-  getUsers(): Promise<UsersEntity[]> {
+  async findAll(): Promise<UsersEntity[]> {
     return this.UsersService.findAll();
   }
 

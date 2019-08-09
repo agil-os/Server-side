@@ -10,6 +10,9 @@ import { PricesModule } from './prices/prices.module';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
 import { GasModule } from './gas/gas.module';
+import { CategoriesModule } from './categories/categories.module';
+import { QualityController } from './quality/quality.controller';
+import { QualityModule } from './quality/quality.module';
 
 
 @Module({
@@ -29,6 +32,7 @@ import { GasModule } from './gas/gas.module';
       database: 'agilos',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+      logging: true,
     }
 // process.env.DB_USERNAME
 // process.env.DB_PASSWORD
@@ -39,6 +43,8 @@ import { GasModule } from './gas/gas.module';
     UsersModule,
     CarsModule,
     GasModule,
+    CategoriesModule,
+    QualityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

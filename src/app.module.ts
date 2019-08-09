@@ -10,6 +10,7 @@ import { PricesModule } from './prices/prices.module';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
 import { GasModule } from './gas/gas.module';
+import { Connection } from 'typeorm';
 
 
 @Module({
@@ -29,9 +30,7 @@ import { GasModule } from './gas/gas.module';
       database: 'agilos',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
-    }
-
-    ),
+    }),
     CitiesModule,
     TripsModule,
     PricesModule,
@@ -42,4 +41,6 @@ import { GasModule } from './gas/gas.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) { }
+}

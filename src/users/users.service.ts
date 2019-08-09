@@ -5,6 +5,8 @@ import { UsersEntity } from './users.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
+//database functions
+
 
 @Injectable()
 export class UsersService {

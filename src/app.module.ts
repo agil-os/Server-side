@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
 import { GasModule } from './gas/gas.module';
 
+
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -19,7 +20,18 @@ import { GasModule } from './gas/gas.module';
         path: join(process.cwd(), 'src/graphql.ts'),
       },
     }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: 5432,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: 'agilos',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true,
+    }
+
+    ),
     CitiesModule,
     TripsModule,
     PricesModule,

@@ -17,10 +17,10 @@ export class UsersController {
   }
 
   @Put(':id/update')
-  async update(@Param('id') id, @Body() contactData: UsersEntity): Promise<any> {
-    contactData.id = Number(id);
-    console.log('Update #' + contactData.id)
-    return this.UsersService.update(contactData);
+  async update(@Param('id') id, @Body() usersData: UsersEntity): Promise<any> {
+    usersData.id = Number(id);
+    console.log('Update #' + usersData.id)
+    return this.UsersService.update(usersData);
   }
 
   @Delete(':id/delete')

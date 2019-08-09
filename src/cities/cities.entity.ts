@@ -4,6 +4,8 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 export class CitiesEntity {
     @PrimaryGeneratedColumn() id: number; 
 
+    @Column() code: number;
+
     @Column('text') name: string;
 
     @Column() lat: number;

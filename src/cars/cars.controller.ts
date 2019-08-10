@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { CarsEntity } from './cars.entity';
+import { rentalCarData } from '../../sample_data/Kajak/nolaRentalCar.js';
+import { lasVegasData } from '../../sample_data/numbeo/lasVegas.js';
 
 @Controller('cars')
 export class CarsController {
@@ -8,7 +10,11 @@ export class CarsController {
 
   @Get()
   async findAll(): Promise<CarsEntity[]> {
-    return this.CarsService.findAll();
+    // console.log('plz', lasVegasData);
+    // return this.CarsService.findAll();
+    // return rentalCarData; 
+    return lasVegasData; 
+
   }
 
   @Post('create')

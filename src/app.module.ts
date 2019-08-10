@@ -14,6 +14,8 @@ import { CategoriesModule } from './categories/categories.module';
 import { QualityController } from './quality/quality.controller';
 import { QualityModule } from './quality/quality.module';
 import { Connection } from 'typeorm';
+import { APP_FILTER } from '@nestjs/core';
+
 
 @Module({
   imports: [

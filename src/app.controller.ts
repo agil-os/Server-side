@@ -12,10 +12,4 @@ export class AppController {
   root(@Res() res: Response) {
     res.sendFile('index.html', { root: __dirname + '../..agil-client/dist/browser'});
   }
-  
-  // @Get('*')
-  // serveStatic(@Res() res) {
-
-  //   return res.sendFile(join((process.cwd(), 'dist'), 'index.html'));
-  // }
 }

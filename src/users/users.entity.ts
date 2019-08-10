@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { TripsEntity } from "../trips/trips.entity";
 
 @Entity('users')
 export class UsersEntity {
@@ -9,4 +10,6 @@ export class UsersEntity {
     @Column() hometown: number;
 
     @Column('text') email: string;
+
+    @OneToMany(type => TripsEntity, trips => trips.user) trips: TripsEntity[];
 }

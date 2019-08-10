@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn } from "typeorm";
+import { TripsEntity } from "../trips/trips.entity";
+import { UsersEntity } from "../users/users.entity";
 
 @Entity('cities')
 export class CitiesEntity {
@@ -13,4 +15,10 @@ export class CitiesEntity {
     @Column() lon: number;
 
     @Column('text') imgURL: string;
+
+    @ManyToOne(type => TripsEntity, trips => trips.city) trips: TripsEntity;
+
+    @OneToOne(type => UsersEntity) 
+    @JoinColumn()
+    user: UsersEntity; 
 }

@@ -15,10 +15,6 @@ export class CitiesEntity {
     @Column() lon: number;
 
     @Column('text') imgURL: string;
-<<<<<<< HEAD
-}
-
-=======
 
     @ManyToOne(type => TripsEntity, trips => trips.city) trips: TripsEntity;
 
@@ -26,4 +22,3 @@ export class CitiesEntity {
     @JoinColumn()
     user: UsersEntity; 
 }
->>>>>>> 4d9b0771f1dbdaee2cda2083f0cc145a4f365f38

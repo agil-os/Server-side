@@ -6,6 +6,7 @@ import { Response } from 'express';
 export class AppController {
   // constructor(private readonly appService: AppService) {}
 
+  // big boy requests
   @Get()
   root(@Res() res: Response) {
     res.sendFile('index.html', { root: __dirname + '../..agil-client/dist/browser'});
@@ -13,4 +14,5 @@ export class AppController {
   // getHello(): string {
   //   return this.appService.getHello();
   // }
+  
 }

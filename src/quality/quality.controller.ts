@@ -6,20 +6,24 @@ import { QualityEntity } from './quality.entity';
 export class QualityController {
     constructor(private readonly QualityService: QualityService) {}
 
+      //gets all data from the quality table
     @Get()
     async findAll(): Promise<QualityEntity[]> {
         return this.QualityService.findAll();
     }
+      //gets specific quality from table based on id
     @Get(':id')
     async read(@Param('id') id): Promise<QualityEntity> {
         return this.QualityService.read(id);
     }
 
+      //posts data into quality table
     @Post('create')
     async create(@Body() qualityData: QualityEntity): Promise<any> {
         return this.QualityService.create(qualityData);
     }
 
+      //updates data based on quality id
     @Put(':id/update')
     async update(@Param('id') id, @Body() qualityData: QualityEntity): Promise<any> {
         qualityData.id = Number(id);
@@ -27,13 +31,9 @@ export class QualityController {
         return this.QualityService.update(qualityData);
     }
 
+      //deletes data based on quality id
     @Delete(':id/delete')
     async delete(@Param('id') id): Promise<any> {
         return this.QualityService.delete(id);
-    }
-
-    @Patch()
-    updateQuality(): string {
-        return `This updates a Quality`;
     }
 }

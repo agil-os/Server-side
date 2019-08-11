@@ -1,4 +1,4 @@
-const lasVegasData = {
+module.exports.lasVegasData =  {
     "name": "Las Vegas, NV, United States",
     "currency": "USD",
     "monthLastUpdate": 8,

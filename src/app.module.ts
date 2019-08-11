@@ -13,6 +13,7 @@ import { GasModule } from './gas/gas.module';
 import { CategoriesModule } from './categories/categories.module';
 import { QualityController } from './quality/quality.controller';
 import { QualityModule } from './quality/quality.module';
+import { Connection } from 'typeorm';
 
 
 @Module({
@@ -27,8 +28,8 @@ import { QualityModule } from './quality/quality.module';
       type: 'postgres',
       host: process.env.DB_HOST,
       port: 5432,
-      username: 'postgres',
-      password: 'agilos',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
       database: 'agilos',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
@@ -49,4 +50,6 @@ import { QualityModule } from './quality/quality.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) { }
+}

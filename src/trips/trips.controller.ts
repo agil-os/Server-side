@@ -10,6 +10,10 @@ export class TripsController {
   async findAll(): Promise<TripsEntity[]> {
     return this.TripsService.findAll();
   }
+  @Get(':id')
+  async read(@Param('id') id): Promise<TripsEntity> {
+    return this.TripsService.read(id);
+  }
 
   @Post('create')
   async create(@Body() tripsData: TripsEntity): Promise<any> {
@@ -23,14 +27,10 @@ export class TripsController {
     return this.TripsService.update(tripsData);
   }
 
-  @Delete(':id/delete')
+  @Delete(':id/')
   async delete(@Param('id') id): Promise<any> {
     return this.TripsService.delete(id);
   }
 
-  @Patch()
-  updateTrips(): string {
-    return `This updates a Trips`;
-  }
 
 }

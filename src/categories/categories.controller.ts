@@ -11,25 +11,27 @@ export class CategoriesController {
         return this.CategoriesService.findAll();
     }
 
+    @Get(':id')
+    async read(@Param('id') id): Promise<CategoriesEntity> {
+        return this.CategoriesService.read(id);
+    }
+
     @Post('create')
     async create(@Body() categoriesData: CategoriesEntity): Promise<any> {
         return this.CategoriesService.create(categoriesData);
     }
 
-    @Put(':id/update')
+    @Put(':id/')
     async update(@Param('id') id, @Body() categoriesData: CategoriesEntity): Promise<any> {
         categoriesData.id = Number(id);
         console.log('Update #' + categoriesData.id)
         return this.CategoriesService.update(categoriesData);
     }
 
-    @Delete(':id/delete')
+    @Delete(':id/')
     async delete(@Param('id') id): Promise<any> {
         return this.CategoriesService.delete(id);
     }
 
-    @Patch()
-    updateCategories(): string {
-        return `This updates a Categories`;
-    }
+
 }

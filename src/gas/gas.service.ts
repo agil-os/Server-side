@@ -16,6 +16,9 @@ export class GasService {
     async  findAll(): Promise<GasEntity[]> {
         return await this.gasRepository.find();
     }
+    async read(id): Promise<GasEntity> {
+        return await this.gasRepository.findOne({ where: { id } });
+    }
 
     async  create(GasEntity: GasEntity): Promise<GasEntity> {
         return await this.gasRepository.save(GasEntity);

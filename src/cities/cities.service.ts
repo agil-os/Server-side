@@ -16,6 +16,9 @@ export class CitiesService {
     async  findAll(): Promise<CitiesEntity[]> {
         return await this.citiesRepository.find();
     }
+    async read(id): Promise<CitiesEntity> {
+        return await this.citiesRepository.findOne({ where: { id } });
+    }
 
     async  create(CitiesEntity: CitiesEntity): Promise<CitiesEntity> {
         return await this.citiesRepository.save(CitiesEntity);

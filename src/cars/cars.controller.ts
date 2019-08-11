@@ -11,10 +11,14 @@ export class CarsController {
   @Get()
   async findAll(): Promise<CarsEntity[]> {
     // console.log('plz', lasVegasData);
-    // return this.CarsService.findAll();
+    return this.CarsService.findAll();
     // return rentalCarData; 
-    return lasVegasData; 
+    // return lasVegasData; 
+  }
 
+  @Get(':id')
+  async read(@Param('id') id): Promise<CarsEntity> {
+    return this.CarsService.read(id);
   }
 
   @Post('create')
@@ -22,20 +26,17 @@ export class CarsController {
     return this.CarsService.create(carsData);
   }
 
-  @Put(':id/update')
+  @Put(':id/')
   async update(@Param('id') id, @Body() carsData: CarsEntity): Promise<any> {
     carsData.id = Number(id);
     console.log('Update #' + carsData.id)
     return this.CarsService.update(carsData);
   }
 
-  @Delete(':id/delete')
+  @Delete(':id/')
   async delete(@Param('id') id): Promise<any> {
     return this.CarsService.delete(id);
   }
 
-  @Patch()
-  updateCar(): string {
-    return `This updates a car`;
-  }
+
 }

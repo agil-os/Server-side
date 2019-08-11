@@ -11,25 +11,26 @@ export class GasController {
     return this.GasService.findAll();
   }
 
+  @Get(':id')
+  async read(@Param('id') id): Promise<GasEntity> {
+    return this.GasService.read(id);
+  }
+
   @Post('create')
   async create(@Body() gasData: GasEntity): Promise<any> {
     return this.GasService.create(gasData);
   }
 
-  @Put(':id/update')
+  @Put(':id/')
   async update(@Param('id') id, @Body() gasData: GasEntity): Promise<any> {
     gasData.id = Number(id);
     console.log('Update #' + gasData.id)
     return this.GasService.update(gasData);
   }
 
-  @Delete(':id/delete')
+  @Delete(':id/')
   async delete(@Param('id') id): Promise<any> {
     return this.GasService.delete(id);
   }
 
-  @Patch()
-  updateGas(): string {
-    return `This updates a Gas`;
-  }
 }

@@ -17,8 +17,8 @@ export class TripsService {
     async  findAll(): Promise<TripsEntity[]> {
         return await this.tripsRepository.find();
     }
-    async findOne(): Promise<TripsEntity[]> {
-        return await this.tripsRepository.find();
+    async read(id): Promise<TripsEntity> {
+        return await this.tripsRepository.findOne({ where: { id } });
     }
 
     async  create(TripsEntity: TripsEntity): Promise<TripsEntity> {

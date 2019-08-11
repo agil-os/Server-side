@@ -10,6 +10,10 @@ export class QualityController {
     async findAll(): Promise<QualityEntity[]> {
         return this.QualityService.findAll();
     }
+    @Get(':id')
+    async read(@Param('id') id): Promise<QualityEntity> {
+        return this.QualityService.read(id);
+    }
 
     @Post('create')
     async create(@Body() qualityData: QualityEntity): Promise<any> {

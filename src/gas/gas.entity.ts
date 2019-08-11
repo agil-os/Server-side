@@ -4,9 +4,8 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeor
 export class GasEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() pricePerGal: number;
+    @Column() pricePerGal: string;
 
     @CreateDateColumn() lastSearched: Date; 
-
 
 }

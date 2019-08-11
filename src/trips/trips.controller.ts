@@ -16,7 +16,7 @@ export class TripsController {
     return this.TripsService.create(tripsData);
   }
 
-  @Put(':id/update')
+  @Put(':id/')
   async update(@Param('id') id, @Body() tripsData: TripsEntity): Promise<any> {
     tripsData.id = Number(id);
     console.log('Update #' + tripsData.id)

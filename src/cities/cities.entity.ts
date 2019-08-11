@@ -10,13 +10,13 @@ export class CitiesEntity {
 
     @Column('text') name: string;
 
-    @Column() lat: number;
+    @Column('text') lat: string;
 
-    @Column() lon: number;
+    @Column('text') lon: string;
 
     @Column('text') imgURL: string;
 
-    @ManyToOne(type => TripsEntity, trips => trips.city) trips: TripsEntity;
+    // @ManyToOne(type => TripsEntity, trips => trips.city) trips: TripsEntity;
 
     @OneToOne(type => UsersEntity) 
     @JoinColumn()

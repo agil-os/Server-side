@@ -10,13 +10,23 @@ import { CarsEntity } from "../cars/cars.entity";
 export class TripsEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() departureDate: number;
+    @Column() name: string;
 
-    @Column() arrivalDate: number;
+    @Column() departureDate: string;
+
+    @Column() arrivalDate: string;
 
     @ManyToOne(type => UsersEntity, user => user.trips) user: UsersEntity;
 
-    @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
+    // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
+
+    @OneToOne(type => CitiesEntity)
+    @JoinColumn()
+    destination: CitiesEntity;
+
+    @OneToOne(type => CitiesEntity)
+    @JoinColumn()
+    origin: CitiesEntity;
 
     @OneToMany(type => PricesEntity, price => price.trips) price: PricesEntity[];
 
@@ -26,9 +36,10 @@ export class TripsEntity {
 
     @OneToOne(type => CategoriesEntity)
     @JoinColumn()
-    categories: CategoriesEntity;
+    lodging: CategoriesEntity;
 
-    @OneToOne(Type => CarsEntity)
+    @OneToOne(type => CategoriesEntity)
     @JoinColumn()
-    cars: CarsEntity;
+    transportation: CategoriesEntity;
+
 }

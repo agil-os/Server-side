@@ -15,6 +15,15 @@ export class PricesService {
     async  findAll(): Promise<PricesEntity[]> {
         return await this.pricesRepository.find();
     }
+    async findFood(): Promise<PricesEntity[]> {
+        return await this.pricesRepository.find();
+    }
+    async findFlight(): Promise<PricesEntity[]> {
+        return await this.pricesRepository.find();
+    }
+    async findHotel(): Promise<PricesEntity[]> {
+        return await this.pricesRepository.find();
+    }
     async read(id): Promise<PricesEntity> {
         return await this.pricesRepository.findOne({where:{id}});
     }

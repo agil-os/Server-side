@@ -15,6 +15,9 @@ export class PricesService {
     async  findAll(): Promise<PricesEntity[]> {
         return await this.pricesRepository.find();
     }
+    async read(id): Promise<PricesEntity> {
+        return await this.pricesRepository.findOne({where:{id}});
+    }
 
     async  create(PricesEntity: PricesEntity): Promise<PricesEntity> {
         return await this.pricesRepository.save(PricesEntity);

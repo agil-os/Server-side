@@ -9,7 +9,7 @@
 //  "currency": "USD"
 // }
 
-window.rentalCarData = {
+module.exports.rentalCarData = {
   "searchid": "EkGGFK-PlN",
   "morepending": true,
   "resultcount": 12,

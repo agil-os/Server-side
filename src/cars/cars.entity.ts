@@ -10,6 +10,10 @@ export class CarsEntity {
 
     @Column() tripDistance: number;
 
+    @Column({nullable: true}) gasId: number;
+
+    @Column({nullable: true}) tripsId: number;
+
     @OneToOne(type => GasEntity) 
     @JoinColumn()
     gas: GasEntity;

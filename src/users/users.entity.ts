@@ -11,5 +11,7 @@ export class UsersEntity {
 
     @Column('text') email: string;
 
-    @OneToMany(type => TripsEntity, trips => trips.user) trips: TripsEntity[];
+    @OneToMany(type => TripsEntity, trips => trips.user)
+    cascade: true
+    trips: TripsEntity[];
 }

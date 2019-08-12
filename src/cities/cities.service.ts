@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CitiesEntity } from './cities.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
+import { UsersEntity } from '../users/users.entity';
 
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
@@ -14,7 +15,7 @@ export class CitiesService {
         private citiesRepository: Repository<CitiesEntity>,
     ) {}
     async  findAll(): Promise<CitiesEntity[]> {
-        return await this.citiesRepository.find();
+        return await this.citiesRepository.find({relations: ['user']});
     }
     async  findOrigin(): Promise<CitiesEntity[]> {
         return await this.citiesRepository.find();

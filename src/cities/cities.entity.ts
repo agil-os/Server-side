@@ -16,6 +16,8 @@ export class CitiesEntity {
 
     @Column('text') imgURL: string;
 
+    @Column({nullable: true}) userId: number
+
     // @ManyToOne(type => TripsEntity, trips => trips.city) trips: TripsEntity;
 
     @OneToOne(type => UsersEntity) 

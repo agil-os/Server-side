@@ -15,7 +15,7 @@ export class TripsService {
         private userRepository: Repository<UsersEntity>,
     ) { }
     async  findAll(): Promise<TripsEntity[]> {
-        return await this.tripsRepository.find();
+        return await this.tripsRepository.find({ relations: ['user', 'destination', "origin", 'quality', 'lodging', 'transportation']});
     }
     async  findTrip(): Promise<TripsEntity[]> {
         return await this.tripsRepository.find();

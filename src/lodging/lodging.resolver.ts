@@ -8,15 +8,15 @@ export class LodgingResolver {
   //   private readonly postsService: PostsService,
   // ) { }
 
-  @Query(() => String)
-  async hello() {
-    return 'Yoooo';
-  }
+  // @Query(() => String)
+  // async hello() {
+  //   return 'Yoooo';
+  // }
 
-  @Query(() => Object)
-  async hotelSample() {
-    return hotelsData;
-  }
+  // @Query(() => Object)
+  // async hotelSample() {
+  //   return hotelsData;
+  // }
 
   // @ResolveProperty()
   // async posts(@Parent() author) {

@@ -4,7 +4,7 @@
 //  geonameid: 5506956
 // }
 
-window.cityInfo = {
+module.exports.cityInfo = {
   "_links": {
     "city:admin1_division": {
       "href": "https://api.teleport.org/api/countries/iso_alpha2:US/admin1_divisions/geonames:NV/",

@@ -11,7 +11,7 @@
 // }
 
 
-window.hotelsData = {
+module.exports.hotelsData = {
   "sort": [
       {
           "id": "distance",

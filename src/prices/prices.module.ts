@@ -4,9 +4,11 @@ import { PricesService } from './prices.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PricesEntity } from './prices.entity';
 import { TripsEntity } from '../trips/trips.entity';
+import { CategoriesEntity } from '../categories/categories.entity';
+import { QualityEntity } from '../quality/quality.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PricesEntity, TripsEntity])],
+  imports: [TypeOrmModule.forFeature([PricesEntity, TripsEntity, CategoriesEntity, QualityEntity ])],
   controllers: [PricesController],
   providers: [PricesService],
 })

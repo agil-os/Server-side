@@ -14,6 +14,9 @@ export class CategoriesService {
     async  findAll(): Promise<CategoriesEntity[]> {
         return await this.categoriesRepository.find();
     }
+    async read(id): Promise<CategoriesEntity> {
+        return await this.categoriesRepository.findOne({ where: { id } });
+    }
 
     async  create(CategoriesEntity: CategoriesEntity): Promise<CategoriesEntity> {
         return await this.categoriesRepository.save(CategoriesEntity);

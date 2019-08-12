@@ -20,7 +20,7 @@
 */
 
 
-window.flightData = [{
+module.exports.flightData = [{
   "search_id": "abbb4887-b5da-44d4-a4ba-d4e025d13b12",
   "data": [
     {

@@ -4,7 +4,7 @@
 //  "where": "New Orleans"
 // }
 
-window.nolaKajakData = [
+module.exports.nolaKajakData = [
   {
       "loctype": "ap",
       "displayname": "New Orleans, LA - Louis Armstrong (MSY)",

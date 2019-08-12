@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
 import { TripsService } from './trips.service';
 import { TripsEntity } from './trips.entity';
+import { rentalCarData } from '../../sample_data/Kajak/nolaRentalCar.js';
+
 
 @Controller('trips')
 export class TripsController {
@@ -10,6 +12,13 @@ export class TripsController {
   @Get()
   async findAll(): Promise<TripsEntity[]> {
     return this.TripsService.findAll();
+  }
+  @Get('detail')
+  async findTrip(): Promise<TripsEntity[]> {
+    let name = 'Las Vegas Trip'
+    let arrivalDate = rentalCarData.queryinfo.pickupdate
+    let departureDate = rentalCarData.queryinfo.dropoffdate
+    return [name, arrivalDate, departureDate];
   }
     //gets specific trips from table based on id
   @Get(':id')

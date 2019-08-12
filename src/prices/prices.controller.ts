@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Delete, Patch, Body, Param, Put } from '@nestjs/common';
 import { PricesService } from './prices.service';
 import { PricesEntity } from './prices.entity';
-import { foodData } from '../../sample_data/numbeo/lasVegas.js';
+import { lasVegasData } from '../../sample_data/numbeo/lasVegas.js';
 import { flightData } from '../../sample_data/Flights/flightData.js';
 import { hotelsData } from '../../sample_data/Booking/hotelsInfo.js';
 
@@ -18,12 +18,12 @@ export class PricesController {
   //gets food prices from dummy data
   @Get('food')
   async findFood(): Promise<PricesEntity[]> {
-    let low = foodData
+    let low = lasVegasData
     .prices
     .filter((food) => food.item_id === 1)[0]
     .lowest_price
 
-    let high = foodData
+    let high = lasVegasData
       .prices
       .filter((food) => food.item_id === 1)[0]
       .highest_price

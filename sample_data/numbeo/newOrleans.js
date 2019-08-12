@@ -1,4 +1,4 @@
-const newOrleansData = {
+module.exports.newOrleansData = {
   "name": "New Orleans, LA, United States",
   "currency": "USD",
   "monthLastUpdate": 8,

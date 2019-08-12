@@ -9,7 +9,7 @@ export class NotFoundExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse();
     // response.sendFile('../../agil-client/dist');
     response.sendFile(join(__dirname, '/../../', 'agil-client/dist/index.html'));
-    console.log('ctx', ctx);
+    console.log('yurd', ctx);
     console.log('res', response);
   }
 }

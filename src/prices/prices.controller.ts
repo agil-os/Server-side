@@ -18,10 +18,10 @@ export class PricesController {
   //gets food prices from dummy data
   @Get('food')
   async findFood(): Promise<PricesEntity[]> {
-    let low = lasVegasData
+    let low = Number((lasVegasData
     .prices
     .filter((food) => food.item_id === 1)[0]
-    .lowest_price
+      .lowest_price))
 
     let high = lasVegasData
       .prices
@@ -30,7 +30,7 @@ export class PricesController {
 
     let average = (high + low) / 2;
 
-    let food = [low, average, high];
+    let food = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
     return food;
   }
   //gets flight prices from dummy data
@@ -63,7 +63,7 @@ export class PricesController {
         return average;
       }, 0) / flightData[0].data.length
 
-    let flight = [low, average, high];
+    let flight = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
 
     return flight;
   }
@@ -76,13 +76,13 @@ export class PricesController {
       return hotels.min_total_price
     }).filter(price => price < 1000 && price > 0)
 
-    let low = prices
+    let low = (prices
     .reduce((low, hotel) =>{ 
       if(low > hotel){
         low = hotel;
       }
       return low;
-    })
+    }))
 
     let high = prices
     .reduce((low, hotel) =>{ 
@@ -92,13 +92,13 @@ export class PricesController {
       return low;
     })
 
-    let average = prices
+    let average = (prices
     .reduce((low, hotel) =>{ 
       low += hotel;
       return low;
-    }, 0) / prices.length;
+    }, 0) / prices.length);
 
-    let hotel = [low, average, high];
+    let hotel = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
 
     return hotel;
   }

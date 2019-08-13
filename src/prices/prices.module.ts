@@ -6,9 +6,10 @@ import { PricesEntity } from './prices.entity';
 import { TripsEntity } from '../trips/trips.entity';
 import { CategoriesEntity } from '../categories/categories.entity';
 import { QualityEntity } from '../quality/quality.entity';
+import { EnvModule } from '../env.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PricesEntity, TripsEntity, CategoriesEntity, QualityEntity ])],
+  imports: [TypeOrmModule.forFeature([PricesEntity, TripsEntity, CategoriesEntity, QualityEntity ]), EnvModule],
   controllers: [PricesController],
   providers: [PricesService],
 })

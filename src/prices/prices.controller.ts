@@ -4,8 +4,9 @@ import { PricesEntity } from './prices.entity';
 import { lasVegasData } from '../../sample_data/numbeo/lasVegas.js';
 import { flightData } from '../../sample_data/Flights/flightData.js';
 import { hotelsData } from '../../sample_data/Booking/hotelsInfo.js';
+import { EnvService } from 'src/env.service';
 
-
+const config = new EnvService().read();
 @Controller('prices')
 export class PricesController {
   constructor(private readonly PricesService: PricesService) { }

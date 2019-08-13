@@ -34,6 +34,7 @@ export class PricesController {
           low = hotel;
         }
         return low;
+        
       })
       let high = lowQuality.reduce((high, hotel) => {
         if(high < hotel) {

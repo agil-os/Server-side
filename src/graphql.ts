@@ -11,13 +11,7 @@ export interface Cat {
     age?: number;
 }
 
-export interface HotelSample {
-    name?: string;
-    id?: string;
-}
-
 export interface IQuery {
     getCats(): Cat[] | Promise<Cat[]>;
     cat(id: string): Cat | Promise<Cat>;
-    hello(): string | Promise<string>;
 }

@@ -1,8 +1,0 @@
-type Query {
-  hello: String
-}
-
-type hotelSample {
-    name: String
-    id: String
-}

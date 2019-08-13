@@ -48,7 +48,12 @@ export class PricesController {
         return low;
       }, 0) / lowQuality.length);
 
-    let hotel = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
+    // let hotel = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
+    let hotel = {
+      low: low.toFixed(2),
+      average: average.toFixed(2),
+      high: high.toFixed(2)
+    }
 
     
     return hotel;

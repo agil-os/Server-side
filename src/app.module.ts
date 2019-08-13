@@ -14,8 +14,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { QualityController } from './quality/quality.controller';
 import { QualityModule } from './quality/quality.module';
 import { Connection } from 'typeorm';
-import { HttpModule } from '@nestjs/common';
-import { LodgingModule } from './lodging/lodging.module';
+
 
 @Module({
   imports: [
@@ -29,8 +28,8 @@ import { LodgingModule } from './lodging/lodging.module';
       type: 'postgres',
       host: process.env.DB_HOST,
       port: 5432,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
+      username: 'postgres',
+      password: 'agilos',
       database: 'agilos',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
@@ -47,8 +46,6 @@ import { LodgingModule } from './lodging/lodging.module';
     GasModule,
     CategoriesModule,
     QualityModule,
-    HttpModule,
-    LodgingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

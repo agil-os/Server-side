@@ -13,6 +13,9 @@ export interface EnvData {
   DB_USERNAME: string
   DB_PASSWORD: string
   DB_SYNC: boolean
+
+  // Api-key
+  AK_Booking: string
 }
 
 export class EnvService {

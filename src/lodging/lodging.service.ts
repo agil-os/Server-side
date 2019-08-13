@@ -6,7 +6,7 @@ import axios from 'axios';
 
 @Injectable()
 export class LodgingService {
-  // constructor(private http: HttpService) {}
+  constructor(private http: HttpService) {}
 
   getHotels(city, arrival, departure): Promise<any> {
     const options = {
@@ -31,7 +31,7 @@ export class LodgingService {
       };
       return axios(newOption)
       .then(response => {
-        console.log(response.data);
+        return response.data;
       });
     });
   }

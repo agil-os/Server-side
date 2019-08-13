@@ -1,15 +1,115 @@
-import { Controller, Get, Post, Delete, Patch, Body, Param, Put } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body, Param, Put, HttpService } from '@nestjs/common';
 import { PricesService } from './prices.service';
 import { PricesEntity } from './prices.entity';
 import { lasVegasData } from '../../sample_data/numbeo/lasVegas.js';
 import { flightData } from '../../sample_data/Flights/flightData.js';
 import { hotelsData } from '../../sample_data/Booking/hotelsInfo.js';
+import { EnvModule } from '../env.module'
+import { EnvService } from '../env.service'
 
-
+const config = new EnvService().read()
 @Controller('prices')
 export class PricesController {
-  constructor(private readonly PricesService: PricesService) { }
+  constructor(private readonly PricesService: PricesService,
+    private readonly http: HttpService,
+    ) { }
+    
+  @Get('hotel/:qualityId/:city/:arrival/:departure')
+  async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId){
+    const headerRequest = {
+      'x-rapidapi-key': config.AK_Booking,
+    }
+    const response = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?text=${city}`, {headers: headerRequest}).toPromise();
+    const cityId = response.data[0].dest_id
 
+    const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
+    let lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 1500 && price > 0);
+    let midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 1500 && price < 2000);
+    let highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 2000);
+    
+    if(qualityId === '1'){
+
+      let low = lowQuality.reduce((low, hotel) => {
+        if (low > hotel) {
+          low = hotel;
+        }
+        return low;
+      })
+      let high = lowQuality.reduce((high, hotel) => {
+        if(high < hotel) {
+          high = hotel;
+        }
+        return high;
+      })
+      let average = lowQuality.reduce((ave, hotel) =>{
+        ave += hotel
+        return ave;
+      }) / lowQuality.length;
+      
+      
+      let cheapHotel = {
+        low: low.toFixed(2), 
+        average: average.toFixed(2), 
+        high: high.toFixed(2)
+      };
+      
+      return cheapHotel;
+    }
+    if (qualityId === '2') {
+      let low = midQuality.reduce((low, hotel) => {
+          if (low > hotel) {
+            low = hotel;
+          }
+          return low;
+        })
+      let high = midQuality.reduce((high, hotel) => {
+          if (high < hotel) {
+            high = hotel;
+          }
+          return high;
+        })
+      let average = midQuality.reduce((ave, hotel) => {
+          ave += hotel
+          return ave;
+        }) / midQuality.length;
+
+
+      let reasonableHotel = {
+        low: low.toFixed(2),
+        average: average.toFixed(2),
+        high: high.toFixed(2)
+      };
+
+      return reasonableHotel;
+    }
+    if (qualityId === '3') {
+      let low = highQuality.reduce((low, hotel) => {
+          if (low > hotel) {
+            low = hotel;
+          }
+          return low;
+        })
+      let high = highQuality.reduce((high, hotel) => {
+          if (high < hotel) {
+            high = hotel;
+          }
+          return high;
+        })
+      let average = highQuality.reduce((ave, hotel) => {
+          ave += hotel
+          return ave;
+        }) / highQuality.length;
+
+
+      let reasonableHotel = {
+        low: low.toFixed(2),
+        average: average.toFixed(2),
+        high: high.toFixed(2)
+      };
+
+      return reasonableHotel;
+    }
+  }
     //gets all data from the prices table
   @Get()
   async findAll(): Promise<PricesEntity[]> {
@@ -74,7 +174,7 @@ export class PricesController {
     let prices = hotelsData.result
     .map((hotels) =>{
       return hotels.min_total_price
-    }).filter(price => price < 1000 && price > 0)
+    }).filter(price => price < 1500 && price > 0)
 
     let low = (prices
     .reduce((low, hotel) =>{ 

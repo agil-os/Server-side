@@ -201,7 +201,7 @@ export class PricesController {
       return highFood;
     }
   }
-  @Get('cars/:qualityId/:city/:pickup/:dropoff')
+  @Get('cars/:qualityId/:origin/:pickup/:dropoff')
   async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {
     const headerRequest = {
       'x-rapidapi-key': config.AK_Booking,
@@ -226,8 +226,8 @@ export class PricesController {
     // all prices .map(rental => rental.displayFullPrice)
     // all classes .map(rental => rental.car.carclass)
     const carPrices = car.filter(rental => rental.car.carclass === classes).map(rental => Number(rental.displayFullPrice.slice(1, 4)));
-    return city.data;
-    // return cityCode;
+    // return city;
+    return car.map(cars => cars.car.carclass);
     // const low = carPrices.reduce((lowPrice, carRental) => {
     //   if (lowPrice > carRental && lowPrice > 0 && carRental > 0) {
     //     lowPrice = carRental;

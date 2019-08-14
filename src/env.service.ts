@@ -14,7 +14,7 @@ export interface EnvData {
   DB_PASSWORD: string
   DB_SYNC: boolean
 
-  // Api Key
+  // Api-key
   AK_Booking: string
 }
 

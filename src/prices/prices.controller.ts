@@ -164,8 +164,8 @@ export class PricesController {
     return result;
   }
 
-  @Get('cars/:city/:pickup/:dropoff')
-  async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff) {
+  @Get('cars/:qualityId/:city/:pickup/:dropoff')
+  async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {
     const headerRequest = {
       'x-rapidapi-key': config.AK_Booking,
     };
@@ -174,9 +174,45 @@ export class PricesController {
     const cityCode = city.data[0].searchFormPrimary;
     // tslint:disable-next-line:max-line-length
     const rentalCars = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/cars/create-session?originairportcode=${cityCode}&pickupdate=${pickup}&pickuphour=6&dropoffdate=${dropoff}&dropoffhour=6&currency=USD`, { headers: headerRequest }).toPromise();
-    const car = rentalCars.data.carset.map(rental => Number(rental.displayFullPrice.slice(1, 4))).sort((a, b) => a - b);
-    
-    return car;
+    const car = rentalCars.data.carset;
+    let classes = '';
+    if (qualityId === '1') {
+      classes = 'Economy' || 'Compact';
+    }
+    if (qualityId === '2') {
+      classes = 'Commercial';
+    }
+    if (qualityId === '3') {
+      classes = 'Intermediate';
+    }
+    // .filter(rental => rental.car.carclass === carclass)
+    // all prices .map(rental => rental.displayFullPrice)
+    // all classes .map(rental => rental.car.carclass)
+    const carPrices = car.filter(rental => rental.car.carclass === classes).map(rental => Number(rental.displayFullPrice.slice(1, 4)));
+
+    // const low = carPrices.reduce((lowPrice, carRental) => {
+    //   if (lowPrice > carRental && lowPrice > 0 && carRental > 0) {
+    //     lowPrice = carRental;
+    //   }
+    //   return low;
+    // });
+    // const high = carPrices.reduce((highPrice, carRental) => {
+    //   if (highPrice < carRental) {
+    //     highPrice = carRental;
+    //   }
+    //   return high;
+    // });
+    // const average = carPrices.reduce((ave, carRental) => {
+    //   ave += carRental;
+    //   return ave;
+    // }) / carPrices.length;
+    // const result = {
+    //   low: low.toFixed(2),
+    //   average: average.toFixed(2),
+    //   high: high.toFixed(2),
+    // };
+
+    return carPrices;
   }
 
     // gets all data from the prices table
@@ -202,7 +238,6 @@ export class PricesController {
   //   const food = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
   //   return food;
   // }
-
 
   // gets flight prices from dummy data
   // @Get('flight')

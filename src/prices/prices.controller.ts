@@ -113,9 +113,19 @@ export class PricesController {
     }
   }
 
-  @Get('flight/:flyFrom/:flyTo/:dateFrom/')
-  async flightPrices(@Param('flyFrom') flyFrom, @Param('flyTo') flyTo, @Param('dateFrom') dateFrom) {
+  @Get('flight/:qualityId/:flyFrom/:flyTo/:dateFrom/')
+  async flightPrices(@Param('flyFrom') flyFrom, @Param('flyTo') flyTo, @Param('dateFrom') dateFrom, @Param('qualityId') qualityId) {
     // tslint:disable-next-line:max-line-length
+    let classes = '';
+    if(qualityId === '1'){
+      classes = 'e';
+    }
+    if (qualityId === "2") {
+      classes = 'b';
+    }
+    if (qualityId === '3') {
+      classes = 'f';
+    }
     const headerRequest = {
       'x-rapidapi-key': config.AK_Booking,
     };
@@ -126,10 +136,33 @@ export class PricesController {
     const destination = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyTo}`, { headers: headerRequest }).toPromise();
     const destinationCode = destination.data[0].searchFormPrimary;
     // tslint:disable-next-line:max-line-length
-    const response = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=${originCode}&destination1=${destinationCode}&departdate1=${dateFrom}&cabin=b&currency=USD&adults=1&bags=0`, { headers: headerRequest }).toPromise();
+    const response = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=${originCode}&destination1=${destinationCode}&departdate1=${dateFrom}&cabin=${classes}&currency=USD&adults=1&bags=0`, { headers: headerRequest }).toPromise();
     // console.log(response);
     const flights = response.data;
-    return flights.tripset.map(price => price.exactLow);
+    const flightPrices = flights.tripset.map(price => price.exactLow).filter(num => num > 0);
+    let low = flightPrices.reduce((low, flight) =>{
+      if(low > flight && low > 0 && flight > 0){
+        low = flight;
+      }
+      return low;
+    })
+    let high = flightPrices.reduce((high, flight) =>{
+      if(high < flight){
+        high = flight;
+      }
+      return high;
+    })
+    let average = flightPrices.reduce((ave, flight) =>{
+      ave += flight;
+      return ave;
+    }) / flightPrices.length
+    let result = 
+    {
+      low: low.toFixed(2),
+      average: average.toFixed(2),
+      high: high.toFixed(2)
+    }
+    return result;
   }
 
   

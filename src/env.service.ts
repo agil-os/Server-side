@@ -16,6 +16,9 @@ export interface EnvData {
 
   // Api-key
   AK_Booking: string
+
+  // Numbeo Api-key
+  AP_numbeo: string
 }
 
 export class EnvService {

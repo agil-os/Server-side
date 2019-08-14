@@ -164,8 +164,44 @@ export class PricesController {
     }
     return result;
   }
+  @Get('food/:city/:qualityId')
+  async food(@Param('city') city, @Param('qualityId') qualityId){
+    const response = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${city}`).toPromise()
+    if (qualityId === '1'){
+      let low = response.data.prices.filter(price => price.item_id === 1)[0].lowest_price;
+      let mid = response.data.prices.filter(price => price.item_id === 1)[0].average_price;
+      let high = response.data.prices.filter(price => price.item_id === 1)[0].highest_price;
+      let lowFood ={
+        low: low.toFixed(2),
+        average: mid.toFixed(2),
+        high: high.toFixed(2)
+      }
+      return lowFood;
+    }
+    if (qualityId === '2'){
+      let low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price / 2;
+      let mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price / 2;
+      let high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price / 2;
+      let midFood = {
+        low: low.toFixed(2),
+        average: mid.toFixed(2),
+        high: high.toFixed(2)
+      }
+      return midFood;
+    }
+    if (qualityId === '3') {
+      let low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price;
+      let mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price;
+      let high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price;
+      let highFood = {
+        low: low.toFixed(2),
+        average: mid.toFixed(2),
+        high: high.toFixed(2)
+      }
+      return highFood;
+    }
 
-  
+  }
     // gets all data from the prices table
   @Get()
   async findAll(): Promise<PricesEntity[]> {

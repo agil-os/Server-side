@@ -52,9 +52,9 @@ export class PricesController {
       }) / lowQuality.length;
 
       const cheapHotel = {
-        low: low,
-        average: average,
-        high: high,
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
       };
 
       return cheapHotel;
@@ -78,9 +78,9 @@ export class PricesController {
         }) / midQuality.length;
 
       const reasonableHotel = {
-        low: low,
-        average: average,
-        high: high,
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
       };
 
       return reasonableHotel;
@@ -104,9 +104,9 @@ export class PricesController {
         }) / highQuality.length;
 
       const reasonableHotel = {
-        low: low,
-        average: average,
-        high: high,
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
       };
 
       return reasonableHotel;
@@ -158,9 +158,9 @@ export class PricesController {
     }) / flightPrices.length
     let result = 
     {
-      low: low,
-      average: average,
-      high: high
+      low: Number(low.toFixed(2)),
+      average: Number(average.toFixed(2)),
+      high: Number(high.toFixed(2)),
     }
     return result;
   }
@@ -172,9 +172,9 @@ export class PricesController {
       let mid = response.data.prices.filter(price => price.item_id === 1)[0].average_price;
       let high = response.data.prices.filter(price => price.item_id === 1)[0].highest_price;
       let lowFood ={
-        low: low,
-        average: mid,
-        high: high
+        low: Number(low.toFixed(2)),
+        average: Number(mid.toFixed(2)),
+        high: Number(high.toFixed(2)),
       }
       return lowFood;
     }
@@ -183,9 +183,9 @@ export class PricesController {
       let mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price / 2;
       let high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price / 2;
       let midFood = {
-        low: low,
-        average: mid,
-        high: high
+        low: Number(low.toFixed(2)),
+        average: Number(mid.toFixed(2)),
+        high: Number(high.toFixed(2)),
       }
       return midFood;
     }
@@ -194,9 +194,9 @@ export class PricesController {
       let mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price;
       let high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price;
       let highFood = {
-        low: low,
-        average: mid,
-        high: high
+        low: Number(low.toFixed(2)),
+        average: Number(mid.toFixed(2)),
+        high: Number(high.toFixed(2)),
       }
       return highFood;
     }
@@ -214,7 +214,7 @@ export class PricesController {
     const gasPrice ={
       gasPerGallon: gas,
       distance: distance,
-      distancePrice: ((Number(distancePrice)) / 23.6) * gas,
+      distancePrice: Number((((Number(distancePrice)) / 23.6) * gas).toFixed(2)),
       time: time
     }
     return gasPrice;

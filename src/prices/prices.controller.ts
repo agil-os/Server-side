@@ -117,10 +117,10 @@ export class PricesController {
   async flightPrices(@Param('flyFrom') flyFrom, @Param('flyTo') flyTo, @Param('dateFrom') dateFrom, @Param('qualityId') qualityId) {
     // tslint:disable-next-line:max-line-length
     let classes = '';
-    if(qualityId === '1'){
+    if (qualityId === '1') {
       classes = 'e';
     }
-    if (qualityId === "2") {
+    if (qualityId === '2') {
       classes = 'b';
     }
     if (qualityId === '3') {
@@ -140,19 +140,19 @@ export class PricesController {
     // console.log(response);
     const flights = response.data;
     const flightPrices = flights.tripset.map(price => price.exactLow).filter(num => num > 0);
-    let low = flightPrices.reduce((low, flight) =>{
-      if(low > flight && low > 0 && flight > 0){
+    const low = flightPrices.reduce((low, flight) => {
+      if (low > flight && low > 0 && flight > 0) {
         low = flight;
       }
       return low;
-    })
-    let high = flightPrices.reduce((high, flight) =>{
-      if(high < flight){
+    });
+    const high = flightPrices.reduce((high, flight) => {
+      if (high < flight) {
         high = flight;
       }
       return high;
-    })
-    let average = flightPrices.reduce((ave, flight) =>{
+    });
+    const average = flightPrices.reduce((ave, flight) => {
       ave += flight;
       return ave;
     }) / flightPrices.length
@@ -201,142 +201,175 @@ export class PricesController {
       return highFood;
     }
 
-  }
-  @Get('gas/:origin/:destination/')
-  async gas(@Param('origin') origin, @Param('destination') destination){
-    const gasQuery = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${destination}`).toPromise()
-    const gas = gasQuery.data.prices.filter(price => price.item_id === 24)[0].average_price * 3.78541;
-    const distanceQuery = await this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination}&key=${config.AP_google}`).toPromise()
-    const distance = distanceQuery.data.rows[0].elements[0].distance.text
-    const distancePrice = distance.replace(/\D+/g, '')
-    const time = distanceQuery.data.rows[0].elements[0].duration.text
-
-    const gasPrice ={
-      gasPerGallon: gas,
-      distance: distance,
-      distancePrice: Number((((Number(distancePrice)) / 23.6) * gas).toFixed(2)),
-      time: time
+  @Get('cars/:qualityId/:city/:pickup/:dropoff')
+  async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {
+    const headerRequest = {
+      'x-rapidapi-key': config.AK_Booking,
+    };
+    // tslint:disable-next-line:max-line-length
+    const city = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${origin}`, { headers: headerRequest }).toPromise();
+    const cityCode = city.data[0].searchFormPrimary;
+    // tslint:disable-next-line:max-line-length
+    const rentalCars = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/cars/create-session?originairportcode=${cityCode}&pickupdate=${pickup}&pickuphour=6&dropoffdate=${dropoff}&dropoffhour=6&currency=USD`, { headers: headerRequest }).toPromise();
+    const car = rentalCars.data.carset;
+    let classes = '';
+    if (qualityId === '1') {
+      classes = 'Economy' || 'Compact';
     }
-    return gasPrice;
+    if (qualityId === '2') {
+      classes = 'Commercial';
+    }
+    if (qualityId === '3') {
+      classes = 'Intermediate';
+    }
+    // .filter(rental => rental.car.carclass === carclass)
+    // all prices .map(rental => rental.displayFullPrice)
+    // all classes .map(rental => rental.car.carclass)
+    const carPrices = car.filter(rental => rental.car.carclass === classes).map(rental => Number(rental.displayFullPrice.slice(1, 4)));
+
+    // const low = carPrices.reduce((lowPrice, carRental) => {
+    //   if (lowPrice > carRental && lowPrice > 0 && carRental > 0) {
+    //     lowPrice = carRental;
+    //   }
+    //   return low;
+    // });
+    // const high = carPrices.reduce((highPrice, carRental) => {
+    //   if (highPrice < carRental) {
+    //     highPrice = carRental;
+    //   }
+    //   return high;
+    // });
+    // const average = carPrices.reduce((ave, carRental) => {
+    //   ave += carRental;
+    //   return ave;
+    // }) / carPrices.length;
+    // const result = {
+    //   low: low.toFixed(2),
+    //   average: average.toFixed(2),
+    //   high: high.toFixed(2),
+    // };
+
+    return carPrices;
   }
+
     // gets all data from the prices table
-  @Get()
-  async findAll(): Promise<PricesEntity[]> {
-    return this.PricesService.findAll();
-  }
-  
-  // gets food prices from dummy data
-  @Get('food')
-  async findFood(): Promise<PricesEntity[]> {
-    const low = Number((lasVegasData
-    .prices
-    .filter((food) => food.item_id === 1)[0]
-      .lowest_price));
+  // @Get()
+  // async findAll(): Promise<PricesEntity[]> {
+  //   return this.PricesService.findAll();
+  // }
+  // // gets food prices from dummy data
+  // @Get('food')
+  // async findFood(): Promise<PricesEntity[]> {
+  //   const low = Number((lasVegasData
+  //   .prices
+  //   .filter((food) => food.item_id === 1)[0]
+  //     .lowest_price));
 
-    const high = lasVegasData
-      .prices
-      .filter((food) => food.item_id === 1)[0]
-      .highest_price;
+  //   const high = lasVegasData
+  //     .prices
+  //     .filter((food) => food.item_id === 1)[0]
+  //     .highest_price;
 
-    const average = (high + low) / 2;
+  //   const average = (high + low) / 2;
 
-    const food = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
-    return food;
-  }
+  //   const food = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
+  //   return food;
+  // }
+
   // gets flight prices from dummy data
-  @Get('flight')
-  async findFlight(): Promise<PricesEntity[]> {
-    const low = flightData[0]
-    .data
-    .reduce((low, flight) => {
-      low = flight.price;
-      if (low > flight.price) {
-        low = flight.price;
-      }
-      return low;
-    }, 0);
+  // @Get('flight')
+  // async findFlight(): Promise<PricesEntity[]> {
+  //   const low = flightData[0]
+  //   .data
+  //   .reduce((low, flight) => {
+  //     low = flight.price;
+  //     if (low > flight.price) {
+  //       low = flight.price;
+  //     }
+  //     return low;
+  //   }, 0);
 
-    const high = flightData[0]
-      .data
-      .reduce((high, flight) => {
-        if (high <= flight.price) {
-          high = flight.price;
-        }
-        return high;
-      }, 0);
+  //   const high = flightData[0]
+  //     .data
+  //     .reduce((high, flight) => {
+  //       if (high <= flight.price) {
+  //         high = flight.price;
+  //       }
+  //       return high;
+  //     }, 0);
 
-    const average = flightData[0]
-      .data
-      .reduce((average, flight) => {
-        average += flight.price;
+  //   const average = flightData[0]
+  //     .data
+  //     .reduce((average, flight) => {
+  //       average += flight.price;
 
-        return average;
-      }, 0) / flightData[0].data.length;
+  //       return average;
+  //     }, 0) / flightData[0].data.length;
 
-    const flight = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
+  //   const flight = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
 
-    return flight;
-  }
+  //   return flight;
+  // }
 
-  @Get('hotel')
-  async findHotel(): Promise<PricesEntity[]> {
+  // @Get('hotel')
+  // async findHotel(): Promise<PricesEntity[]> {
 
-    const prices = hotelsData.result
-    .map((hotels) => {
-      return hotels.min_total_price;
-    }).filter(price => price < 1500 && price > 0);
+  //   const prices = hotelsData.result
+  //   .map((hotels) => {
+  //     return hotels.min_total_price;
+  //   }).filter(price => price < 1500 && price > 0);
 
-    const low = (prices
-    .reduce((low, hotel) => {
-      if (low > hotel) {
-        low = hotel;
-      }
-      return low;
-    }));
+  //   const low = (prices
+  //   .reduce((low, hotel) => {
+  //     if (low > hotel) {
+  //       low = hotel;
+  //     }
+  //     return low;
+  //   }));
 
-    const high = prices
-    .reduce((low, hotel) => {
-      if (low < hotel) {
-        low = hotel;
-      }
-      return low;
-    });
+  //   const high = prices
+  //   .reduce((low, hotel) => {
+  //     if (low < hotel) {
+  //       low = hotel;
+  //     }
+  //     return low;
+  //   });
 
-    const average = (prices
-    .reduce((low, hotel) => {
-      low += hotel;
-      return low;
-    }, 0) / prices.length);
+  //   const average = (prices
+  //   .reduce((low, hotel) => {
+  //     low += hotel;
+  //     return low;
+  //   }, 0) / prices.length);
 
-    const hotel = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
+  //   const hotel = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
 
-    return hotel;
-  }
+  //   return hotel;
+  // }
 
     // gets specific prices from table based on id
-  @Get(':id')
-  async read(@Param('id') id): Promise<PricesEntity> {
-    return this.PricesService.read(id);
-  }
+  // @Get(':id')
+  // async read(@Param('id') id): Promise<PricesEntity> {
+  //   return this.PricesService.read(id);
+  // }
 
-  // posts data into prices table
-  @Post('create')
-  async create(@Body() pricesData: PricesEntity): Promise<any> {
-    return this.PricesService.create(pricesData);
-  }
+  // // posts data into prices table
+  // @Post('create')
+  // async create(@Body() pricesData: PricesEntity): Promise<any> {
+  //   return this.PricesService.create(pricesData);
+  // }
 
-    // updates data based on prices id
-  @Put(':id/')
-  async update(@Param('id') id, @Body() pricesData: PricesEntity): Promise<any> {
-    pricesData.id = Number(id);
-    console.log('Update #' + pricesData.id);
-    return this.PricesService.update(pricesData);
-  }
+  //   // updates data based on prices id
+  // @Put(':id/')
+  // async update(@Param('id') id, @Body() pricesData: PricesEntity): Promise<any> {
+  //   pricesData.id = Number(id);
+  //   console.log('Update #' + pricesData.id);
+  //   return this.PricesService.update(pricesData);
+  // }
 
-    // deletes data based on prices id
-  @Delete(':id/')
-  async delete(@Param('id') id): Promise<any> {
-    return this.PricesService.delete(id);
-  }
+  //   // deletes data based on prices id
+  // @Delete(':id/')
+  // async delete(@Param('id') id): Promise<any> {
+  //   return this.PricesService.delete(id);
+  // }
 
 }

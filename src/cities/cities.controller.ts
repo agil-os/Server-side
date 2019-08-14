@@ -5,8 +5,10 @@ import { nolaKajakData } from '../../sample_data/Kajak/nolaCode.js';
 import { newOrleansData } from '../../sample_data/numbeo/newOrleans.js';
 import { lasVegasData } from '../../sample_data/numbeo/lasVegas.js';
 import { cityInfo } from '../../sample_data/Teleport/teleportGETcityinfo.js';
+import { EnvModule } from '../env.module';
+import { EnvService } from '../env.service';
 
-
+const config = new EnvService().read();
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly CitiesService: CitiesService) { }

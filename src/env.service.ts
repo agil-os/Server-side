@@ -19,6 +19,9 @@ export interface EnvData {
 
   // Numbeo Api-key
   AP_numbeo: string
+
+  //google distance matrix
+  AP_google: string
 }
 
 export class EnvService {

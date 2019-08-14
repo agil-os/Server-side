@@ -17,6 +17,9 @@ export class CitiesController {
 
   @Get('picture/:city')
   async pic(@Param('city') city){
+    if(city === 'San Francisco'){
+      city = "San Francisco Bay Area";
+    }
     const response = await this.http.get('https://api.teleport.org/api/urban_areas/').toPromise();
     const ref = response.data._links['ua:item'].filter(name => name.name === city)[0].href
     const picQuerry = await this.http.get(`${ref}images/`).toPromise()

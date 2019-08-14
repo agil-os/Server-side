@@ -251,6 +251,7 @@ export class PricesController {
     // };
 
     // return carPrices;
+    
   }
 
     // gets all data from the prices table

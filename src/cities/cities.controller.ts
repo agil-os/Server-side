@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body, Put, Param, HttpService } from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { CitiesEntity } from './cities.entity';
 import { nolaKajakData } from '../../sample_data/Kajak/nolaCode.js';
@@ -11,8 +11,21 @@ import { EnvService } from '../env.service';
 const config = new EnvService().read();
 @Controller('cities')
 export class CitiesController {
-  constructor(private readonly CitiesService: CitiesService) { }
+  constructor(private readonly CitiesService: CitiesService,
+    private readonly http: HttpService,
+    ) { }
 
+  @Get('picture/:city')
+  async pic(@Param('city') city){
+    if(city === 'San Francisco'){
+      city = "San Francisco Bay Area";
+    }
+    const response = await this.http.get('https://api.teleport.org/api/urban_areas/').toPromise();
+    const ref = response.data._links['ua:item'].filter(name => name.name === city)[0].href
+    const picQuerry = await this.http.get(`${ref}images/`).toPromise()
+    // return ref;
+    return picQuerry.data.photos[0].image.web;
+  }
     //gets all data from the cities table
   @Get()
   async findAll(): Promise<CitiesEntity[]> {

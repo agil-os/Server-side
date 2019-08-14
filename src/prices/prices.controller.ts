@@ -222,6 +222,7 @@ export class PricesController {
   async findAll(): Promise<PricesEntity[]> {
     return this.PricesService.findAll();
   }
+  
   // gets food prices from dummy data
   @Get('food')
   async findFood(): Promise<PricesEntity[]> {

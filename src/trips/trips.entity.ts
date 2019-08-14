@@ -16,7 +16,20 @@ export class TripsEntity {
 
     @Column() arrivalDate: string;
 
-    @ManyToOne(type => UsersEntity, user => user.trips) user: UsersEntity;
+    @Column({nullable: true}) userId: number;
+
+    @Column({nullable: true}) destinationId: number;
+
+    @Column({nullable: true}) originId: number;
+
+    @Column({ nullable: true }) qualityId: number;
+
+    @Column({ nullable: true }) lodgingId: number;
+
+    @Column({ nullable: true }) transportationId: number;
+
+    @ManyToOne(type => UsersEntity, user => user.trips) 
+    user: UsersEntity;
 
     // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
 

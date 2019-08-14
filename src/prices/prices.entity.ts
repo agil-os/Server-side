@@ -16,6 +16,12 @@ export class PricesEntity {
 
     @CreateDateColumn() lastSearched: Date;
 
+    @Column({nullable: true}) tripsId: number;
+
+    @Column({ nullable: true }) qualityId: number;
+
+    @Column({ nullable: true }) categoryId: number;
+
     @ManyToOne(type => TripsEntity, trips => trips.price) trips: TripsEntity;
 
     @OneToOne(type => QualityEntity)

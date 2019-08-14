@@ -13,7 +13,7 @@ export class PricesService {
         private pricesRepository: Repository<PricesEntity>,
     ) { }
     async  findAll(): Promise<PricesEntity[]> {
-        return await this.pricesRepository.find();
+        return await this.pricesRepository.find({relations: ['trips', 'quality', 'category']});
     }
     async findFood(): Promise<PricesEntity[]> {
         return await this.pricesRepository.find();

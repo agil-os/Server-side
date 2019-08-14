@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CarsEntity } from './cars.entity';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
+import { TripsEntity } from '../trips/trips.entity';
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
 
@@ -10,9 +11,11 @@ export class CarsService {
     constructor(
         @InjectRepository(CarsEntity)
         private carsRepository: Repository<CarsEntity>,
+        // @InjectRepository(TripsEntity)
+        // private tripsRepository: Repository<TripsEntity>,
     ) {}
     async  findAll(): Promise<CarsEntity[]> {
-        return await this.carsRepository.find();
+        return await this.carsRepository.find({relations: ['gas', 'trips']});
     }
     async read(id): Promise<CarsEntity> {
         return await this.carsRepository.findOne({ where: { id } });

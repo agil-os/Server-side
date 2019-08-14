@@ -52,9 +52,9 @@ export class PricesController {
       }) / lowQuality.length;
 
       const cheapHotel = {
-        low: low.toFixed(2),
-        average: average.toFixed(2),
-        high: high.toFixed(2),
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
       };
 
       return cheapHotel;
@@ -78,9 +78,9 @@ export class PricesController {
         }) / midQuality.length;
 
       const reasonableHotel = {
-        low: low.toFixed(2),
-        average: average.toFixed(2),
-        high: high.toFixed(2),
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
       };
 
       return reasonableHotel;
@@ -104,9 +104,9 @@ export class PricesController {
         }) / highQuality.length;
 
       const reasonableHotel = {
-        low: low.toFixed(2),
-        average: average.toFixed(2),
-        high: high.toFixed(2),
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
       };
 
       return reasonableHotel;
@@ -155,14 +155,51 @@ export class PricesController {
     const average = flightPrices.reduce((ave, flight) => {
       ave += flight;
       return ave;
-    }) / flightPrices.length;
-    const result = {
-      low: low.toFixed(2),
-      average: average.toFixed(2),
-      high: high.toFixed(2),
-    };
+    }) / flightPrices.length
+    let result = 
+    {
+      low: Number(low.toFixed(2)),
+      average: Number(average.toFixed(2)),
+      high: Number(high.toFixed(2)),
+    }
     return result;
   }
+  @Get('food/:city/:qualityId')
+  async food(@Param('city') city, @Param('qualityId') qualityId){
+    const response = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${city}`).toPromise()
+    if (qualityId === '1'){
+      let low = response.data.prices.filter(price => price.item_id === 1)[0].lowest_price;
+      let mid = response.data.prices.filter(price => price.item_id === 1)[0].average_price;
+      let high = response.data.prices.filter(price => price.item_id === 1)[0].highest_price;
+      let lowFood ={
+        low: Number(low.toFixed(2)),
+        average: Number(mid.toFixed(2)),
+        high: Number(high.toFixed(2)),
+      }
+      return lowFood;
+    }
+    if (qualityId === '2'){
+      let low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price / 2;
+      let mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price / 2;
+      let high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price / 2;
+      let midFood = {
+        low: Number(low.toFixed(2)),
+        average: Number(mid.toFixed(2)),
+        high: Number(high.toFixed(2)),
+      }
+      return midFood;
+    }
+    if (qualityId === '3') {
+      let low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price;
+      let mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price;
+      let high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price;
+      let highFood = {
+        low: Number(low.toFixed(2)),
+        average: Number(mid.toFixed(2)),
+        high: Number(high.toFixed(2)),
+      }
+      return highFood;
+    }
 
   @Get('cars/:qualityId/:city/:pickup/:dropoff')
   async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {

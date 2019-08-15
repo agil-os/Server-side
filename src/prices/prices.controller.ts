@@ -27,9 +27,13 @@ export class PricesController {
 
     // tslint:disable-next-line:max-line-length
     const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise();
-    const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 1500 && price > 0);
-    const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 1500 && price < 2000);
-    const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 2000);
+    const date1 = new Date(arrival);
+    const date2 = new Date(departure);
+    const diffTime = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
+    const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
+    const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 143 * diffDays);
 
     if (qualityId === '1') {
 

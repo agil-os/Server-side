@@ -31,90 +31,46 @@ export class PricesController {
     const date2 = new Date(departure);
     const diffTime = Math.abs(date2.getTime() - date1.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    let quality;
     const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
     const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
     const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 143 * diffDays);
 
-    if (qualityId === '1') {
+    if (qualityId === '1'){
+      quality = lowQuality;
+    }
+    if (qualityId === '2') {
+      quality = midQuality;
+    }
+    if (qualityId === '3') {
+      quality = highQuality;
+    }
 
-      const low = lowQuality.reduce((low, hotel) => {
+      const low = quality.reduce((low, hotel) => {
         if (low > hotel) {
           low = hotel;
         }
         return low;
 
       });
-      const high = lowQuality.reduce((high, hotel) => {
+      const high = quality.reduce((high, hotel) => {
         if (high < hotel) {
           high = hotel;
         }
         return high;
       });
-      const average = lowQuality.reduce((ave, hotel) => {
+      const average = quality.reduce((ave, hotel) => {
         ave += hotel;
         return ave;
-      }) / lowQuality.length;
+      }) / quality.length;
 
-      const cheapHotel = {
+      const result = {
         low: Number(low.toFixed(2)),
         average: Number(average.toFixed(2)),
         high: Number(high.toFixed(2)),
       };
 
-      return cheapHotel;
-    }
-    if (qualityId === '2') {
-      const low = midQuality.reduce((low, hotel) => {
-          if (low > hotel) {
-            low = hotel;
-          }
-          return low;
-        });
-      const high = midQuality.reduce((high, hotel) => {
-          if (high < hotel) {
-            high = hotel;
-          }
-          return high;
-        });
-      const average = midQuality.reduce((ave, hotel) => {
-          ave += hotel;
-          return ave;
-        }) / midQuality.length;
-
-      const reasonableHotel = {
-        low: Number(low.toFixed(2)),
-        average: Number(average.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-
-      return reasonableHotel;
-    }
-    if (qualityId === '3') {
-      const low = highQuality.reduce((low, hotel) => {
-          if (low > hotel) {
-            low = hotel;
-          }
-          return low;
-        });
-      const high = highQuality.reduce((high, hotel) => {
-          if (high < hotel) {
-            high = hotel;
-          }
-          return high;
-        });
-      const average = highQuality.reduce((ave, hotel) => {
-          ave += hotel;
-          return ave;
-        }) / highQuality.length;
-
-      const reasonableHotel = {
-        low: Number(low.toFixed(2)),
-        average: Number(average.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-
-      return reasonableHotel;
-    }
+      return result;
   }
 
   @Get('flight/:qualityId/:flyFrom/:flyTo/:dateFrom/')

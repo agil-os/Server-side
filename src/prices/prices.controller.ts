@@ -127,7 +127,7 @@ export class PricesController {
       classes = 'f';
     }
     const headerRequest = {
-      'x-rapidapi-key': config.AK_Booking,
+      'x-rapidapi-key': config.AK_Kayak,
     };
     // tslint:disable-next-line:max-line-length
     const origin = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyFrom}`, { headers: headerRequest }).toPromise();
@@ -204,7 +204,7 @@ export class PricesController {
   @Get('cars/:qualityId/:city/:pickup/:dropoff')
   async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {
     const headerRequest = {
-      'x-rapidapi-key': config.AK_Booking,
+      'x-rapidapi-key': config.AK_Kayak,
     };
     // tslint:disable-next-line:max-line-length
     const city = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${origin}`, { headers: headerRequest }).toPromise();

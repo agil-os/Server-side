@@ -51,14 +51,25 @@ export class PricesController {
           low = hotel;
         }
         return low;
+      }); 
+    const lowName = prices.data.result.filter(name => name.min_total_price === low)[0].hotel_name_trans;
+    const lowAccom = prices.data.result.filter(name => name.min_total_price === low)[0].accommodation_type_name;
+    const lowBusinessScore = prices.data.result.filter(name => name.min_total_price === low)[0].business_review_score_word;
+    const lowUrl = prices.data.result.filter(name => name.min_total_price === low)[0].url;
 
-      });
-      const high = quality.reduce((high, hotel) => {
+
+    const high = quality.reduce((high, hotel) => {
         if (high < hotel) {
           high = hotel;
         }
         return high;
       });
+    
+    const highName = prices.data.result.filter(name => name.min_total_price === high)[0].hotel_name_trans;
+    const highAccom = prices.data.result.filter(name => name.min_total_price === high)[0].accommodation_type_name;
+    const highBusinessScore = prices.data.result.filter(name => name.min_total_price === high)[0].business_review_score_word;
+    const highUrl = prices.data.result.filter(name => name.min_total_price === high)[0].url;
+
       const average = quality.reduce((ave, hotel) => {
         ave += hotel;
         return ave;
@@ -68,8 +79,21 @@ export class PricesController {
         low: Number(low.toFixed(2)),
         average: Number(average.toFixed(2)),
         high: Number(high.toFixed(2)),
+        detail: {
+          lowHotel: {
+            name: lowName,
+            accomodationType: lowAccom,
+            businessScore: lowBusinessScore,
+            URL: lowUrl
+          },
+          highHotel: {
+            name: highName,
+            accomodationType: highAccom,
+            businessScore: highBusinessScore,
+            URL: highUrl
+          }
+        }
       };
-
       return result;
   }
 

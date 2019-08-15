@@ -16,7 +16,6 @@ import { Connection } from 'typeorm';
 import { ConfigModule } from 'nestjs-dotenv';
 import { DatabaseModule } from './database.module'
 
-
 @Module({
   imports: [
     ConfigModule.forRoot('../.env'),

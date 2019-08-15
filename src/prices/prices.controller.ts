@@ -225,9 +225,10 @@ export class PricesController {
     // .filter(rental => rental.car.carclass === carclass)
     // all prices .map(rental => rental.displayFullPrice)
     // all classes .map(rental => rental.car.carclass)
-    const carPrices = car.filter(rental => rental.car.carclass === classes).map(rental => Number(rental.displayFullPrice.slice(1, 4)));
+    // tslint:disable-next-line:max-line-length
+    const carPrices = car.filter(rental => rental.car.carclass === classes).map(rental => Number(rental.displayFullPrice.slice(1, 4))).sort((a, b) => a - b);
     // return city;
-    return car.map(cars => cars.car.carclass);
+    // return car.map(cars => cars.car.carclass);
     // const low = carPrices.reduce((lowPrice, carRental) => {
     //   if (lowPrice > carRental && lowPrice > 0 && carRental > 0) {
     //     lowPrice = carRental;
@@ -250,8 +251,7 @@ export class PricesController {
     //   high: high.toFixed(2),
     // };
 
-    // return carPrices;
-    
+    return carPrices;
   }
   @Get('gas/:origin/:destination/')
   async gas(@Param('origin') origin, @Param('destination') destination) {

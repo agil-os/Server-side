@@ -127,7 +127,7 @@ export class PricesController {
       classes = 'f';
     }
     const headerRequest = {
-      'x-rapidapi-key': config.AK_Booking,
+      'x-rapidapi-key': config.AK_Kayak,
     };
     // tslint:disable-next-line:max-line-length
     const origin = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyFrom}`, { headers: headerRequest }).toPromise();
@@ -204,7 +204,7 @@ export class PricesController {
   @Get('cars/:qualityId/:origin/:pickup/:dropoff')
   async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {
     const headerRequest = {
-      'x-rapidapi-key': config.AK_Booking,
+      'x-rapidapi-key': config.AK_Kayak,
     };
     // tslint:disable-next-line:max-line-length
     const city = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${origin}`, { headers: headerRequest }).toPromise();
@@ -253,7 +253,24 @@ export class PricesController {
     // return carPrices;
     
   }
+  @Get('gas/:origin/:destination/')
+  async gas(@Param('origin') origin, @Param('destination') destination) {
+    const gasQuery = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${destination}`).toPromise();
+    const gas = gasQuery.data.prices.filter(price => price.item_id === 24)[0].average_price * 3.78541;
+    // tslint:disable-next-line:max-line-length
+    const distanceQuery = await this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination}&key=${config.AP_google}`).toPromise();
+    const distance = distanceQuery.data.rows[0].elements[0].distance.text;
+    const distancePrice = distance.replace(/\D+/g, '');
+    const time = distanceQuery.data.rows[0].elements[0].duration.text;
 
+    const gasPrice = {
+      gasPerGallon: gas,
+      distance,
+      distancePrice: Number((((Number(distancePrice)) / 23.6) * gas).toFixed(2)),
+      time,
+    };
+    return gasPrice;
+  }
     // gets all data from the prices table
   // @Get()
   // async findAll(): Promise<PricesEntity[]> {

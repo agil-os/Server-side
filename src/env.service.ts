@@ -17,8 +17,14 @@ export interface EnvData {
   // Api-key
   AK_Booking: string
 
+  //kayak api
+  AK_Kayak: string
+
   // Numbeo Api-key
   AP_numbeo: string
+
+  //google distance matrix
+  AP_google: string
 }
 
 export class EnvService {

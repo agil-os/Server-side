@@ -201,7 +201,7 @@ export class PricesController {
       return highFood;
     }
   }
-  @Get('cars/:qualityId/:origin/:pickup/:dropoff')
+  @Get('cars/:origin/:pickup/:dropoff')
   async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {
     const headerRequest = {
       'x-rapidapi-key': config.AK_Kayak,
@@ -212,21 +212,35 @@ export class PricesController {
     // tslint:disable-next-line:max-line-length
     const rentalCars = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/cars/create-session?originairportcode=${cityCode}&pickupdate=${pickup}&pickuphour=6&dropoffdate=${dropoff}&dropoffhour=6&currency=USD`, { headers: headerRequest }).toPromise();
     const car = rentalCars.data.carset;
-    let classes = '';
-    if (qualityId === '1') {
-      classes = 'Economy' || 'Compact';
-    }
-    if (qualityId === '2') {
-      classes = 'Commercial';
-    }
-    if (qualityId === '3') {
-      classes = 'Intermediate';
-    }
+    // let classes = '';
+    // if (qualityId === '1') {
+    //   classes = 'Economy' || 'Compact';
+    // }
+    // if (qualityId === '2') {
+    //   classes = 'Commercial';
+    // }
+    // if (qualityId === '3') {
+    //   classes = 'Intermediate';
+    // }
     // .filter(rental => rental.car.carclass === carclass)
     // all prices .map(rental => rental.displayFullPrice)
     // all classes .map(rental => rental.car.carclass)
     // tslint:disable-next-line:max-line-length
-    const carPrices = car.filter(rental => rental.car.carclass === classes).map(rental => Number(rental.displayFullPrice.slice(1, 4))).sort((a, b) => a - b);
+    const carPrices = car.map(rental => Number(rental.displayFullPrice.slice(1, 4))).sort((a, b) => a - b);
+    const lowPrice = carPrices[0];
+    const highPrice = carPrices[carPrices.length - 1];
+    const averagePrice = carPrices.reduce((avg, flight) => {
+      avg += flight;
+      return avg;
+    }) / carPrices.length;
+
+    const result = {
+      low: Number(lowPrice.toFixed(2)),
+      average: Number(averagePrice.toFixed(2)),
+      high: Number(highPrice.toFixed(2)),
+    };
+
+    return result;
     // return city;
     // return car.map(cars => cars.car.carclass);
     // const low = carPrices.reduce((lowPrice, carRental) => {
@@ -251,7 +265,7 @@ export class PricesController {
     //   high: high.toFixed(2),
     // };
 
-    return carPrices;
+    // return carPrices;
   }
   @Get('gas/:origin/:destination/')
   async gas(@Param('origin') origin, @Param('destination') destination) {

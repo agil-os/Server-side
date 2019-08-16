@@ -27,90 +27,74 @@ export class PricesController {
 
     // tslint:disable-next-line:max-line-length
     const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise();
-    const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 1500 && price > 0);
-    const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 1500 && price < 2000);
-    const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 2000);
+    const date1 = new Date(arrival);
+    const date2 = new Date(departure);
+    const diffTime = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    let quality;
+    const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
+    const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
+    const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 143 * diffDays);
 
-    if (qualityId === '1') {
+    if (qualityId === '1'){
+      quality = lowQuality;
+    }
+    if (qualityId === '2') {
+      quality = midQuality;
+    }
+    if (qualityId === '3') {
+      quality = highQuality;
+    }
 
-      const low = lowQuality.reduce((low, hotel) => {
+      const low = quality.reduce((low, hotel) => {
         if (low > hotel) {
           low = hotel;
         }
         return low;
+      }); 
+    const lowName = prices.data.result.filter(name => name.min_total_price === low)[0].hotel_name_trans;
+    const lowAccom = prices.data.result.filter(name => name.min_total_price === low)[0].accommodation_type_name;
+    const lowBusinessScore = prices.data.result.filter(name => name.min_total_price === low)[0].business_review_score_word;
+    const lowUrl = prices.data.result.filter(name => name.min_total_price === low)[0].url;
 
-      });
-      const high = lowQuality.reduce((high, hotel) => {
+
+    const high = quality.reduce((high, hotel) => {
         if (high < hotel) {
           high = hotel;
         }
         return high;
       });
-      const average = lowQuality.reduce((ave, hotel) => {
+    
+    const highName = prices.data.result.filter(name => name.min_total_price === high)[0].hotel_name_trans;
+    const highAccom = prices.data.result.filter(name => name.min_total_price === high)[0].accommodation_type_name;
+    const highBusinessScore = prices.data.result.filter(name => name.min_total_price === high)[0].business_review_score_word;
+    const highUrl = prices.data.result.filter(name => name.min_total_price === high)[0].url;
+
+      const average = quality.reduce((ave, hotel) => {
         ave += hotel;
         return ave;
-      }) / lowQuality.length;
+      }) / quality.length;
 
-      const cheapHotel = {
+      const result = {
         low: Number(low.toFixed(2)),
         average: Number(average.toFixed(2)),
         high: Number(high.toFixed(2)),
+        detail: {
+          lowHotel: {
+            name: lowName,
+            accomodationType: lowAccom,
+            businessScore: lowBusinessScore,
+            URL: lowUrl
+          },
+          highHotel: {
+            name: highName,
+            accomodationType: highAccom,
+            businessScore: highBusinessScore,
+            URL: highUrl
+          }
+        }
       };
-
-      return cheapHotel;
-    }
-    if (qualityId === '2') {
-      const low = midQuality.reduce((low, hotel) => {
-          if (low > hotel) {
-            low = hotel;
-          }
-          return low;
-        });
-      const high = midQuality.reduce((high, hotel) => {
-          if (high < hotel) {
-            high = hotel;
-          }
-          return high;
-        });
-      const average = midQuality.reduce((ave, hotel) => {
-          ave += hotel;
-          return ave;
-        }) / midQuality.length;
-
-      const reasonableHotel = {
-        low: Number(low.toFixed(2)),
-        average: Number(average.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-
-      return reasonableHotel;
-    }
-    if (qualityId === '3') {
-      const low = highQuality.reduce((low, hotel) => {
-          if (low > hotel) {
-            low = hotel;
-          }
-          return low;
-        });
-      const high = highQuality.reduce((high, hotel) => {
-          if (high < hotel) {
-            high = hotel;
-          }
-          return high;
-        });
-      const average = highQuality.reduce((ave, hotel) => {
-          ave += hotel;
-          return ave;
-        }) / highQuality.length;
-
-      const reasonableHotel = {
-        low: Number(low.toFixed(2)),
-        average: Number(average.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-
-      return reasonableHotel;
-    }
+      return result;
   }
 
   @Get('flight/:qualityId/:flyFrom/:flyTo/:dateFrom/')

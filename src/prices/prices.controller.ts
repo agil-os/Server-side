@@ -232,19 +232,47 @@ export class PricesController {
     const rentalCars = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/cars/create-session?originairportcode=${cityCode}&pickupdate=${pickup}&pickuphour=6&dropoffdate=${dropoff}&dropoffhour=6&currency=USD`, { headers: headerRequest }).toPromise();
     const car = rentalCars.data.carset;
 
-    const carPrices = car.map(rental => Number(rental.displayFullPrice.slice(1, 4))).sort((a, b) => a - b);
+    const carPrices = car.map(rental => Number(rental.displayFullPrice.replace(/\D+/g, ''))).sort((a, b) => a - b);
     const lowPrice = carPrices[0];
     const highPrice = carPrices[carPrices.length - 1];
     const averagePrice = carPrices.reduce((avg, flight) => {
       avg += flight;
       return avg;
     }) / carPrices.length;
+    const lowBasePrice = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].totalPrice
+    const lowbrand = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.brand
+    const lowCarClass = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.carclass
+    const lowPicture = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.thumbLarge
+    const lowPassenger = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.passengers
+
+    const highBasePrice = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].totalPrice
+    const highbrand = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.brand
+    const highCarClass = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.carclass
+    const highPicture = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.thumbLarge
+    const highPassenger = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.passengers
 
     const result = {
       low: Number(lowPrice.toFixed(2)),
       average: Number(averagePrice.toFixed(2)),
       high: Number(highPrice.toFixed(2)),
+      detail: {
+        lowRental: {
+          pricePerDay: lowBasePrice,
+          brand: lowbrand,
+          carClass: lowCarClass,
+          passengers: lowPassenger,
+          picture: `https://www.kayak.com${lowPicture}`
+        },
+        highRental: {
+          pricePerDay: highBasePrice,
+          brand: highbrand,
+          carClass: highCarClass,
+          passengers: highPassenger,
+          picture: `https://www.kayak.com${highPicture}`
+        }
+      }
     };
+    
 
     return result;
   }

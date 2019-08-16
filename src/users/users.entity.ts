@@ -1,13 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity } from "typeorm";
 import { TripsEntity } from "../trips/trips.entity";
 
 @Entity('users')
-export class UsersEntity {
+export class UsersEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
     @Column('text') username: string;
 
-    @Column() hometown: number;
+    @Column() hometown: string;
 
     @Column('text') email: string;
 

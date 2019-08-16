@@ -16,11 +16,15 @@ export class TripsEntity {
 
     @Column() arrivalDate: string;
 
+    @Column() origin: string;
+
+    @Column() destination: string;
+
     @Column({nullable: true}) userId: number;
 
-    @Column({nullable: true}) destinationId: number;
+    // @Column({nullable: true}) destinationId: number;
 
-    @Column({nullable: true}) originId: number;
+    // @Column({nullable: true}) originId: number;
 
     @Column({ nullable: true }) qualityId: number;
 
@@ -33,13 +37,13 @@ export class TripsEntity {
 
     // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
 
-    @OneToOne(type => CitiesEntity)
-    @JoinColumn()
-    destination: CitiesEntity;
+    // @OneToOne(type => CitiesEntity)
+    // @JoinColumn()
+    // destination: CitiesEntity;
 
-    @OneToOne(type => CitiesEntity)
-    @JoinColumn()
-    origin: CitiesEntity;
+    // @OneToOne(type => CitiesEntity)
+    // @JoinColumn()
+    // origin: CitiesEntity;
 
     @OneToMany(type => PricesEntity, price => price.trips) price: PricesEntity[];
 

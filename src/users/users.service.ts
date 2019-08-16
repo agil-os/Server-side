@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersEntity } from './users.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { TripsEntity } from '../trips/trips.entity';
+import { CreateUserDto } from './users.createuser-dto';
+import { UsersRepository} from './users.repository';
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
 //database functions
@@ -13,7 +15,7 @@ import { TripsEntity } from '../trips/trips.entity';
 export class UsersService {
     constructor(
         @InjectRepository(UsersEntity)
-        private usersRepository: Repository<UsersEntity>,
+        private usersRepository: UsersRepository,
     ) {}
     async  findAll(): Promise<UsersEntity[]> {
         return await this.usersRepository.find();
@@ -22,8 +24,28 @@ export class UsersService {
         return await this.usersRepository.findOne({ where: { id } });
     }
 
-    async  create(UsersEntity: UsersEntity): Promise<UsersEntity> {
-        return await this.usersRepository.save(UsersEntity, TripsEntity);
+    async getUserById(id: number): Promise<UsersEntity> {
+        const found = await this.usersRepository.findOne(id);
+
+        if(!found) {
+            throw new NotFoundException(`User with ID "${id}" not found!`);
+        }
+
+        return found;
+    }
+
+    async create(createUserDto: CreateUserDto): Promise<UsersEntity> {
+        // return await this.usersRepository.save(UsersEntity, TripsEntity);
+        const { id, username, hometown, email } = createUserDto;
+
+        const user = new UsersEntity();
+        user.id = id;
+        user.username = username;
+        user.hometown = hometown;
+        user.email = email;
+        await user.save();
+
+        return user;
     }
 
     async update(UsersEntity: UsersEntity): Promise<UpdateResult> {

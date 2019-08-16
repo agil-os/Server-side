@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn, BaseEntity } from "typeorm";
 import { UsersEntity } from "../users/users.entity";
 import { CitiesEntity } from "../cities/cities.entity";
 import { PricesEntity } from "../prices/prices.entity";
@@ -7,7 +7,7 @@ import { CategoriesEntity } from "../categories/categories.entity";
 import { CarsEntity } from "../cars/cars.entity";
 
 @Entity('trips')
-export class TripsEntity {
+export class TripsEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
     @Column() name: string;

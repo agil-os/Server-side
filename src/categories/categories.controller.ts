@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Patch } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CategoriesEntity } from './categories.entity';
+import { CategoryDto } from './categories.dto';
 
 @Controller('categories')
 export class CategoriesController {
@@ -20,7 +21,7 @@ export class CategoriesController {
 
       //posts data into categories table
     @Post('create')
-    async create(@Body() categoriesData: CategoriesEntity): Promise<any> {
+    async create(@Body() categoriesData: CategoryDto): Promise<any> {
         return this.CategoriesService.create(categoriesData);
     }
 

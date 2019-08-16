@@ -5,11 +5,11 @@ import { TripsEntity } from "../trips/trips.entity";
 export class UsersEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column('text') username: string;
+    @Column({nullable: true}) username: string;
 
-    @Column() hometown: number;
+    @Column({nullable: true}) hometown: number;
 
-    @Column('text') email: string;
+    @Column({nullable: true}) email: string;
 
     @OneToMany(type => TripsEntity, trips => trips.user)
     cascade: true

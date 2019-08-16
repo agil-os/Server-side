@@ -1,20 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToOne, JoinColumn, BaseEntity } from "typeorm";
 import { TripsEntity } from "../trips/trips.entity";
 import { QualityEntity } from "../quality/quality.entity";
 import { CategoriesEntity } from "../categories/categories.entity";
 
 
 @Entity('prices')
-export class PricesEntity {
+export class PricesEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() low: string;
+    @Column() low: number;
 
-    @Column() average: string;
+    @Column() average: number;
 
-    @Column() high: string;
+    @Column() high: number;
 
-    @CreateDateColumn() lastSearched: Date;
+    // @CreateDateColumn() lastSearched: Date;
 
     @Column({nullable: true}) tripsId: number;
 

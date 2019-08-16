@@ -8,6 +8,7 @@ import { EnvModule } from '../env.module';
 import { EnvService } from '../env.service';
 import { findFieldsThatChangedTypeOnInputObjectTypes } from 'graphql/utilities/findBreakingChanges';
 import { CitiesEntity } from 'src/cities/cities.entity';
+import { PricesDto } from './prices.dto';
 
 const config = new EnvService().read();
 @Controller('prices')
@@ -394,11 +395,11 @@ export class PricesController {
   //   return this.PricesService.read(id);
   // }
 
-  // // posts data into prices table
-  // @Post('create')
-  // async create(@Body() pricesData: PricesEntity): Promise<any> {
-  //   return this.PricesService.create(pricesData);
-  // }
+  // posts data into prices table
+  @Post('create')
+  async create(@Body() pricesData: PricesDto): Promise<any> {
+    return this.PricesService.create(pricesData);
+  }
 
   //   // updates data based on prices id
   // @Put(':id/')

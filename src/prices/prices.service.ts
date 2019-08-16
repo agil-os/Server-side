@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UpdateResult, DeleteResult, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PricesEntity } from './prices.entity';
+import { PricesDto } from './prices.dto';
 
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
@@ -28,8 +29,19 @@ export class PricesService {
         return await this.pricesRepository.findOne({where:{id}});
     }
 
-    async  create(PricesEntity: PricesEntity): Promise<PricesEntity> {
-        return await this.pricesRepository.save(PricesEntity);
+    async  create(pricesDto: PricesDto): Promise<PricesEntity> {
+        // return await this.pricesRepository.save(PricesEntity);
+        const {id, low, average, high, tripsId, qualityId, categoryId} = pricesDto
+        const price = new PricesEntity();
+        price.id = id;
+        price.low = low;
+        price.average = average;
+        price.high = high;
+        price.tripsId = tripsId;
+        price.qualityId = qualityId;
+        price.categoryId = categoryId;
+        await price.save()
+        return price;
     }
 
     async update(PricesEntity: PricesEntity): Promise<UpdateResult> {

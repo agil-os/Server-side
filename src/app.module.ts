@@ -15,6 +15,7 @@ import { QualityModule } from './quality/quality.module';
 import { Connection } from 'typeorm';
 import { ConfigModule } from 'nestjs-dotenv';
 import { DatabaseModule } from './database.module'
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 
 @Module({

@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
 import { TripsEntity } from "../trips/trips.entity";
+import { PricesEntity } from "../prices/prices.entity";
 
 @Entity('categories')
 export class CategoriesEntity extends BaseEntity {
@@ -9,6 +10,9 @@ export class CategoriesEntity extends BaseEntity {
 
     @OneToMany(type => TripsEntity, trips => trips.lodging)
     trips: TripsEntity[];
+
+    @OneToMany(type => PricesEntity, price => price.category)
+    price: PricesEntity[];
 
 
 }

@@ -42,13 +42,7 @@ export class TripsService {
         trip.quality = quality;
         trip.lodging = lodging;
         trip.transportation = transportation;
-
-        // trip.userId = userId;
-        // trip.qualityId = qualityId;
-        // trip.lodgingId = lodgingId;
-        // trip.transportationId = transportationId;
         await trip.save();
-
         return trip;
     }
 

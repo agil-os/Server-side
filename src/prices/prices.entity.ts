@@ -16,19 +16,19 @@ export class PricesEntity extends BaseEntity {
 
     // @CreateDateColumn() lastSearched: Date;
 
-    @Column({nullable: true}) tripsId: number;
+    // @Column({nullable: true}) tripsId: number;
 
-    @Column({ nullable: true }) qualityId: number;
+    // @Column({ nullable: true }) qualityId: number;
 
-    @Column({ nullable: true }) categoryId: number;
+    // @Column({ nullable: true }) categoryId: number;
 
     @ManyToOne(type => TripsEntity, trips => trips.price) trips: TripsEntity;
 
-    @OneToOne(type => QualityEntity)
-    @JoinColumn()
+    @ManyToOne(type => QualityEntity, quality => quality.price)
     quality: QualityEntity;
 
-    @OneToOne(type => CategoriesEntity)
-    @JoinColumn()
+    @ManyToOne(type => CategoriesEntity, category => category.price)
     category: CategoriesEntity;
+
+
 }

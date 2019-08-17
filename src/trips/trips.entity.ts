@@ -45,7 +45,8 @@ export class TripsEntity extends BaseEntity {
     // @JoinColumn()
     // origin: CitiesEntity;
 
-    @OneToMany(type => PricesEntity, price => price.trips) price: PricesEntity[];
+    @OneToMany(type => PricesEntity, price => price.trips) 
+    price: PricesEntity[];
 
     @ManyToOne(type => QualityEntity, quality => quality.trips)
     quality: QualityEntity;
@@ -55,5 +56,8 @@ export class TripsEntity extends BaseEntity {
 
     @ManyToOne(type => CategoriesEntity, transportation => transportation.trips)
     transportation: CategoriesEntity;
+
+    @OneToMany(type => CarsEntity, cars => cars.trips)
+    cars: CarsEntity[];
 
 }

@@ -22,7 +22,8 @@ export class PricesEntity extends BaseEntity {
 
     // @Column({ nullable: true }) categoryId: number;
 
-    @ManyToOne(type => TripsEntity, trips => trips.price) trips: TripsEntity;
+    @ManyToOne(type => TripsEntity, trips => trips.price, {onDelete: 'CASCADE'}) 
+    trips: TripsEntity;
 
     @ManyToOne(type => QualityEntity, quality => quality.price)
     quality: QualityEntity;

@@ -15,7 +15,7 @@ export class CarsEntity extends BaseEntity{
     // @Column({nullable: true}) tripsId: number;
 
 
-    @ManyToOne(type => TripsEntity, trips => trips.cars)
+    @ManyToOne(type => TripsEntity, trips => trips.cars, {onDelete: 'CASCADE'})
     trips: TripsEntity;
 
     @OneToMany(type => GasEntity, gas => gas.cars)

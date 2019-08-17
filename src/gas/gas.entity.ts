@@ -7,6 +7,6 @@ export class GasEntity extends BaseEntity {
 
     @Column() pricePerGal: number;
 
-    @ManyToOne(type => CarsEntity, cars => cars.gas)
+    @ManyToOne(type => CarsEntity, cars => cars.gas, {onDelete: 'CASCADE'})
     cars: CarsEntity;
 }

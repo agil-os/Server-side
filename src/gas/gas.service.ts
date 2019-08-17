@@ -15,7 +15,7 @@ export class GasService {
         private gasRepository: Repository<GasEntity>,
     ) { }
     async  findAll(): Promise<GasEntity[]> {
-        return await this.gasRepository.find();
+        return await this.gasRepository.find({relations: ['cars']});
     }
     async read(id): Promise<GasEntity> {
         return await this.gasRepository.findOne({ where: { id } });

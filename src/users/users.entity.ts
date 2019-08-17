@@ -7,11 +7,10 @@ export class UsersEntity extends BaseEntity {
 
     @Column({nullable: true}) username: string;
 
-    @Column({nullable: true}) hometown: string;
+    @Column({type: 'text' ,nullable: true}) hometown: string;
 
     @Column({nullable: true}) email: string;
 
     @OneToMany(type => TripsEntity, trips => trips.user)
-    @JoinColumn({name: "id"})
     trips: TripsEntity[];
 }

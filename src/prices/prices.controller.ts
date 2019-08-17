@@ -296,10 +296,10 @@ export class PricesController {
     return gasPrice;
   }
     // gets all data from the prices table
-  // @Get()
-  // async findAll(): Promise<PricesEntity[]> {
-  //   return this.PricesService.findAll();
-  // }
+  @Get()
+  async findAll(): Promise<PricesEntity[]> {
+    return this.PricesService.findAll();
+  }
     // gets specific prices from table based on id
   // @Get(':id')
   // async read(@Param('id') id): Promise<PricesEntity> {

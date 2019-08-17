@@ -32,7 +32,7 @@ export class TripsEntity extends BaseEntity {
 
     // @Column({ nullable: true }) transportationId: number;
 
-    @ManyToOne(type => UsersEntity, user => user.trips)
+    @ManyToOne(type => UsersEntity, user => user.trips, {onDelete: 'CASCADE'})
     user: UsersEntity;
 
     // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];

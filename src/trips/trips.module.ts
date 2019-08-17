@@ -11,7 +11,7 @@ import { CategoriesEntity } from '../categories/categories.entity';
 import { CarsEntity } from '../cars/cars.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TripsEntity, UsersEntity, CitiesEntity, PricesEntity, QualityEntity, CategoriesEntity, CarsEntity])],
+  imports: [TypeOrmModule.forFeature([TripsEntity, UsersEntity, PricesEntity, QualityEntity, CategoriesEntity, CarsEntity])],
   controllers: [TripsController],
   providers: [TripsService],
 })

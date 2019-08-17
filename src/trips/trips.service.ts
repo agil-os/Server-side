@@ -22,12 +22,14 @@ export class TripsService {
         return await this.tripsRepository.find();
     }
     async read(id): Promise<TripsEntity> {
-        return await this.tripsRepository.findOne({ where: { id } });
+        return await this.tripsRepository.findOne({ where: { id }, relations: ['quality'] });
     }
 
     async  create(tripsDto: TripsDto): Promise<TripsEntity> {
         // return await this.tripsRepository.save(TripsEntity);
-        const {id, name, departureDate, arrivalDate, origin, destination, userId, qualityId, lodgingId, transportationId } = tripsDto;
+        const {id, name, departureDate, arrivalDate, origin, destination, user, quality, lodging, transportation
+            // userId, qualityId, lodgingId, transportationId 
+        } = tripsDto;
 
         const trip = new TripsEntity();
         trip.id = id;
@@ -36,10 +38,15 @@ export class TripsService {
         trip.arrivalDate = arrivalDate;
         trip.origin = origin;
         trip.destination = destination;
-        trip.userId = userId;
-        trip.qualityId = qualityId;
-        trip.lodgingId = lodgingId;
-        trip.transportationId = transportationId;
+        trip.user = user;
+        trip.quality = quality;
+        trip.lodging = lodging;
+        trip.transportation = transportation;
+
+        // trip.userId = userId;
+        // trip.qualityId = qualityId;
+        // trip.lodgingId = lodgingId;
+        // trip.transportationId = transportationId;
         await trip.save();
 
         return trip;

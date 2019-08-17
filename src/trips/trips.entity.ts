@@ -16,23 +16,23 @@ export class TripsEntity extends BaseEntity {
 
     @Column() arrivalDate: string;
 
-    @Column() origin: string;
+    @Column({nullable: true}) origin: string;
 
-    @Column() destination: string;
+    @Column({nullable: true}) destination: string;
 
-    @Column({nullable: true}) userId: number;
+    // @Column({nullable: true}) userId: number;
 
-    // @Column({nullable: true}) destinationId: number;
+    // // @Column({nullable: true}) destinationId: number;
 
-    // @Column({nullable: true}) originId: number;
+    // // @Column({nullable: true}) originId: number;
 
-    @Column({ nullable: true }) qualityId: number;
+    // @Column({ nullable: true }) qualityId: number;
 
-    @Column({ nullable: true }) lodgingId: number;
+    // @Column({ nullable: true }) lodgingId: number;
 
-    @Column({ nullable: true }) transportationId: number;
+    // @Column({ nullable: true }) transportationId: number;
 
-    @ManyToOne(type => UsersEntity, user => user.trips) 
+    @ManyToOne(type => UsersEntity, user => user.trips)
     user: UsersEntity;
 
     // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
@@ -47,16 +47,13 @@ export class TripsEntity extends BaseEntity {
 
     @OneToMany(type => PricesEntity, price => price.trips) price: PricesEntity[];
 
-    @OneToOne(type => QualityEntity)
-    @JoinColumn()
+    @ManyToOne(type => QualityEntity, quality => quality.trips)
     quality: QualityEntity;
 
-    @OneToOne(type => CategoriesEntity)
-    @JoinColumn()
+    @ManyToOne(type => CategoriesEntity, lodging => lodging.trips)
     lodging: CategoriesEntity;
 
-    @OneToOne(type => CategoriesEntity)
-    @JoinColumn()
+    @ManyToOne(type => CategoriesEntity, transportation => transportation.trips)
     transportation: CategoriesEntity;
 
 }

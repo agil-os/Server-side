@@ -32,6 +32,7 @@ export class PricesService {
     async  create(pricesDto: PricesDto): Promise<PricesEntity> {
         // return await this.pricesRepository.save(PricesEntity);
         const {id, low, average, high, tripsId, qualityId, categoryId} = pricesDto
+        
         const price = new PricesEntity();
         price.id = id;
         price.low = low;

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CarsEntity } from './cars.entity';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { TripsEntity } from '../trips/trips.entity';
+import { CarsDto } from './cars.dto';
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
 
@@ -20,8 +21,16 @@ export class CarsService {
     async read(id): Promise<CarsEntity> {
         return await this.carsRepository.findOne({ where: { id } });
     }
-    async  create(CarsEntity: CarsEntity): Promise<CarsEntity> {
-        return await this.carsRepository.save(CarsEntity);
+    async  create(carsDto: CarsDto): Promise<CarsEntity> {
+        // return await this.carsRepository.save(CarsEntity);
+        const {id, isRental, tripDistance, trips} = carsDto;
+        const car = new CarsEntity();
+        car.id = id;
+        car.isRental = isRental;
+        car.tripDistance = tripDistance;
+        car.trips = trips;
+        await car.save();
+        return car;
     }
 
     async update(CarsEntity: CarsEntity): Promise<UpdateResult> {

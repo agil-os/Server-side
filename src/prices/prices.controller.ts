@@ -245,12 +245,16 @@ export class PricesController {
     const lowCarClass = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.carclass
     const lowPicture = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.thumbLarge
     const lowPassenger = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.passengers
+    const lowURL = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].shareURL
+
 
     const highBasePrice = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].totalPrice
     const highbrand = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.brand
     const highCarClass = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.carclass
     const highPicture = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.thumbLarge
     const highPassenger = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.passengers
+    const highURL = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].shareURL
+
 
     const result = {
       low: Number(lowPrice.toFixed(2)),
@@ -262,14 +266,16 @@ export class PricesController {
           brand: lowbrand,
           carClass: lowCarClass,
           passengers: lowPassenger,
-          picture: `https://www.kayak.com${lowPicture}`
+          picture: `https://www.kayak.com${lowPicture}`,
+          url: `https://www.kayak.com${lowURL}`
         },
         highRental: {
           pricePerDay: highBasePrice,
           brand: highbrand,
           carClass: highCarClass,
           passengers: highPassenger,
-          picture: `https://www.kayak.com${highPicture}`
+          picture: `https://www.kayak.com${highPicture}`,
+          url: `https://www.kayak.com${highURL}`
         }
       }
     };

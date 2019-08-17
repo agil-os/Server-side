@@ -2,6 +2,7 @@ import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/
 import { TripsService } from './trips.service';
 import { TripsEntity } from './trips.entity';
 import { rentalCarData } from '../../sample_data/Kajak/nolaRentalCar.js';
+import { TripsDto } from './trips.dto';
 
 
 @Controller('trips')
@@ -28,7 +29,7 @@ export class TripsController {
 
     //posts data into trips table
   @Post('create')
-  async create(@Body() tripsData: TripsEntity): Promise<any> {
+  async create(@Body() tripsData: TripsDto): Promise<any> {
     return this.TripsService.create(tripsData);
   }
 

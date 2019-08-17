@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn, BaseEntity } from "typeorm";
 import { UsersEntity } from "../users/users.entity";
 import { CitiesEntity } from "../cities/cities.entity";
 import { PricesEntity } from "../prices/prices.entity";
@@ -7,7 +7,7 @@ import { CategoriesEntity } from "../categories/categories.entity";
 import { CarsEntity } from "../cars/cars.entity";
 
 @Entity('trips')
-export class TripsEntity {
+export class TripsEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
     @Column() name: string;
@@ -16,11 +16,15 @@ export class TripsEntity {
 
     @Column() arrivalDate: string;
 
+    @Column() origin: string;
+
+    @Column() destination: string;
+
     @Column({nullable: true}) userId: number;
 
-    @Column({nullable: true}) destinationId: number;
+    // @Column({nullable: true}) destinationId: number;
 
-    @Column({nullable: true}) originId: number;
+    // @Column({nullable: true}) originId: number;
 
     @Column({ nullable: true }) qualityId: number;
 
@@ -33,13 +37,13 @@ export class TripsEntity {
 
     // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
 
-    @OneToOne(type => CitiesEntity)
-    @JoinColumn()
-    destination: CitiesEntity;
+    // @OneToOne(type => CitiesEntity)
+    // @JoinColumn()
+    // destination: CitiesEntity;
 
-    @OneToOne(type => CitiesEntity)
-    @JoinColumn()
-    origin: CitiesEntity;
+    // @OneToOne(type => CitiesEntity)
+    // @JoinColumn()
+    // origin: CitiesEntity;
 
     @OneToMany(type => PricesEntity, price => price.trips) price: PricesEntity[];
 

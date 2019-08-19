@@ -25,6 +25,9 @@ export class PricesService {
     async findHotel(): Promise<PricesEntity[]> {
         return await this.pricesRepository.find();
     }
+    async tripPrice(id): Promise<PricesEntity[]> {
+        return await this.pricesRepository.find({ where: { id }, relations: ['trips', 'quality', 'category']})
+    }
     async read(id): Promise<PricesEntity> {
         return await this.pricesRepository.findOne({where:{id}, relations: ['trips', 'quality', 'categories']});
     }

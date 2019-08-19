@@ -16,14 +16,7 @@ export class TripsController {
   async findAll(): Promise<TripsEntity[]> {
     return this.TripsService.findAll();
   }
-  @Get('detail')
-  async findTrip(): Promise<TripsEntity[]> {
-    let name = 'Las Vegas Trip'
-    let arrivalDate = rentalCarData.queryinfo.pickupdate
-    let departureDate = rentalCarData.queryinfo.dropoffdate
-    return [name, arrivalDate, departureDate];
-  }
-
+  
   @Get(':email')
   async findTrips(@Param('email') email: string) {
     const response = await this.http.get('http://localhost:3000/trips/').toPromise()

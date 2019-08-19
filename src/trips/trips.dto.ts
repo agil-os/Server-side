@@ -16,8 +16,4 @@ export class TripsDto {
     readonly quality: QualityEntity;
     readonly lodging: CategoriesEntity;
     readonly transportation: CategoriesEntity;
-
-    // readonly qualityId: number;
-    // readonly lodgingId: number;
-    // readonly transportationId: number;
 }

@@ -10,11 +10,15 @@ export class CarsEntity extends BaseEntity{
 
     @Column({nullable: true}) tripDistance: string;
 
+    @Column("decimal", { precision: 5, scale: 2, nullable: true }) pricePerGal: number;
+
+    @Column("decimal", { precision: 6, scale: 2, nullable: true }) total: number;
+
     @ManyToOne(type => TripsEntity, trips => trips.cars, {onDelete: 'CASCADE'})
     trips: TripsEntity;
 
-    @OneToMany(type => GasEntity, gas => gas.cars)
-    gas: GasEntity[];
+    // @OneToMany(type => GasEntity, gas => gas.cars)
+    // gas: GasEntity[];
 
     
 }

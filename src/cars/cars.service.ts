@@ -23,11 +23,13 @@ export class CarsService {
     }
     async  create(carsDto: CarsDto): Promise<CarsEntity> {
         // return await this.carsRepository.save(CarsEntity);
-        const {id, isRental, tripDistance, trips} = carsDto;
+        const {id, isRental, tripDistance, trips, pricePerGal, total} = carsDto;
         const car = new CarsEntity();
         car.id = id;
         car.isRental = isRental;
-        car.tripDistance = tripDistance
+        car.tripDistance = tripDistance;
+        car.pricePerGal = pricePerGal;
+        car.total = total;
         car.trips = trips;
         await car.save();
         return car;

@@ -7,6 +7,6 @@ export class GasEntity extends BaseEntity {
 
     @Column("decimal", { precision: 5, scale: 2 }) pricePerGal: number;
 
-    @ManyToOne(type => CarsEntity, cars => cars.gas, {onDelete: 'CASCADE'})
-    cars: CarsEntity;
+    // @ManyToOne(type => CarsEntity, cars => cars.gas, {onDelete: 'CASCADE'})
+    // cars: CarsEntity;
 }

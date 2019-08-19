@@ -26,18 +26,6 @@ export class TripsEntity extends BaseEntity {
 
     @Column("decimal", { precision: 7, scale: 2, nullable: true }) total: number;
 
-    // @Column({nullable: true}) userId: number;
-
-    // // @Column({nullable: true}) destinationId: number;
-
-    // // @Column({nullable: true}) originId: number;
-
-    // @Column({ nullable: true }) qualityId: number;
-
-    // @Column({ nullable: true }) lodgingId: number;
-
-    // @Column({ nullable: true }) transportationId: number;
-
     @ManyToOne(type => UsersEntity, user => user.trips, {onDelete: 'CASCADE'})
     user: UsersEntity;
 

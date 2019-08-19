@@ -33,6 +33,16 @@ export class UsersService {
         return found;
     }
 
+    async getUserByEmail(email: string): Promise<UsersEntity> {
+        const found = await this.usersRepository.findOne({ where: {email}});
+
+        if(!found) {
+            throw new NotFoundException(`User with email ${email} not found`);
+        }
+
+        return found;
+    }
+
     async create(userDto: UserDto): Promise<UsersEntity> {
         // return await this.usersRepository.save(UsersEntity, TripsEntity);
         const { id, username, hometown, email, pic } = userDto;
@@ -55,4 +65,6 @@ export class UsersService {
     async delete(id): Promise<DeleteResult> {
         return await this.usersRepository.delete(id);
     }
+
+
 }

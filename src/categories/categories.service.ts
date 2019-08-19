@@ -13,10 +13,10 @@ export class CategoriesService {
         private categoriesRepository: Repository<CategoriesEntity>,
     ) { }
     async  findAll(): Promise<CategoriesEntity[]> {
-        return await this.categoriesRepository.find();
+        return await this.categoriesRepository.find({relations: ['trips', 'prices']});
     }
     async read(id): Promise<CategoriesEntity> {
-        return await this.categoriesRepository.findOne({ where: { id } });
+        return await this.categoriesRepository.findOne({ where: { id }, relations: ['trips', 'prices'] });
     }
 
     async  create(categoryDto: CategoryDto): Promise<CategoriesEntity> {

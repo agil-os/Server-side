@@ -19,7 +19,7 @@ export class CarsService {
         return await this.carsRepository.find({relations: ['trips']});
     }
     async read(id): Promise<CarsEntity> {
-        return await this.carsRepository.findOne({ where: { id } });
+        return await this.carsRepository.findOne({ where: { id }, relations: ['trips']});
     }
     async  create(carsDto: CarsDto): Promise<CarsEntity> {
         // return await this.carsRepository.save(CarsEntity);

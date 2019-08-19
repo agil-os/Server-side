@@ -5,8 +5,8 @@ import { CategoriesEntity } from "src/categories/categories.entity";
 export class TripsDto {
     readonly id: number;
     readonly name: string;
-    readonly departureDate: Date;
-    readonly arrivalDate: Date;
+    readonly departureDate: string;
+    readonly arrivalDate: string;
     readonly origin: string;
     readonly destination: string;
     readonly pic: string;

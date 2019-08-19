@@ -1,13 +1,15 @@
-import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body, Put, Param, HttpService } from '@nestjs/common';
 import { TripsService } from './trips.service';
 import { TripsEntity } from './trips.entity';
 import { rentalCarData } from '../../sample_data/Kajak/nolaRentalCar.js';
 import { TripsDto } from './trips.dto';
+import { getManager } from 'typeorm';
+import { UsersEntity } from '../users/users.entity';
 
 
 @Controller('trips')
 export class TripsController {
-  constructor(private readonly TripsService: TripsService) { }
+  constructor(private readonly TripsService: TripsService, private readonly http: HttpService) { }
 
     //gets all data from the trips table
   @Get()
@@ -20,6 +22,12 @@ export class TripsController {
     let arrivalDate = rentalCarData.queryinfo.pickupdate
     let departureDate = rentalCarData.queryinfo.dropoffdate
     return [name, arrivalDate, departureDate];
+  }
+
+  @Get(':email')
+  async findTrips(@Param('email') email: string) {
+    const response = await this.http.get('http://localhost:3000/trips/').toPromise()
+    return response.data.filter(user => user.user.email === email);
   }
     //gets specific trips from table based on id
   @Get(':id')

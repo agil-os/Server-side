@@ -10,6 +10,7 @@ export class TripsDto {
     readonly origin: string;
     readonly destination: string;
     readonly pic: string;
+    readonly total: number;
     readonly user: UsersEntity;
     readonly quality: QualityEntity;
     readonly lodging: CategoriesEntity;

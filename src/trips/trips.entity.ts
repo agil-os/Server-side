@@ -22,6 +22,8 @@ export class TripsEntity extends BaseEntity {
 
     @Column({ nullable: true }) pic: string;
 
+    @Column("decimal", { precision: 5, scale: 2, nullable: true }) total: number;
+
     // @Column({nullable: true}) userId: number;
 
     // // @Column({nullable: true}) destinationId: number;

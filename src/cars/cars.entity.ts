@@ -8,12 +8,7 @@ export class CarsEntity extends BaseEntity{
 
     @Column() isRental: boolean;
 
-    @Column() tripDistance: number;
-
-    // @Column({nullable: true}) gasId: number;
-
-    // @Column({nullable: true}) tripsId: number;
-
+    @Column({nullable: true}) tripDistance: string;
 
     @ManyToOne(type => TripsEntity, trips => trips.cars, {onDelete: 'CASCADE'})
     trips: TripsEntity;

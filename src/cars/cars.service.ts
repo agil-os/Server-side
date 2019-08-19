@@ -27,7 +27,7 @@ export class CarsService {
         const car = new CarsEntity();
         car.id = id;
         car.isRental = isRental;
-        car.tripDistance = tripDistance;
+        car.tripDistance = tripDistance
         car.trips = trips;
         await car.save();
         return car;

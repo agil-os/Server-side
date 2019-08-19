@@ -6,8 +6,6 @@ import { TripsEntity } from "../trips/trips.entity";
 export class CarsEntity extends BaseEntity{
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() isRental: boolean;
-
     @Column({nullable: true}) tripDistance: string;
 
     @Column("decimal", { precision: 5, scale: 2, nullable: true }) pricePerGal: number;

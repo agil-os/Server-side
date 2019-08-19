@@ -16,17 +16,16 @@ export class CarsService {
         // private tripsRepository: Repository<TripsEntity>,
     ) {}
     async  findAll(): Promise<CarsEntity[]> {
-        return await this.carsRepository.find({relations: ['gas', 'trips']});
+        return await this.carsRepository.find({relations: ['trips']});
     }
     async read(id): Promise<CarsEntity> {
         return await this.carsRepository.findOne({ where: { id } });
     }
     async  create(carsDto: CarsDto): Promise<CarsEntity> {
         // return await this.carsRepository.save(CarsEntity);
-        const {id, isRental, tripDistance, trips, pricePerGal, total} = carsDto;
+        const {id, tripDistance, trips, pricePerGal, total} = carsDto;
         const car = new CarsEntity();
         car.id = id;
-        car.isRental = isRental;
         car.tripDistance = tripDistance;
         car.pricePerGal = pricePerGal;
         car.total = total;

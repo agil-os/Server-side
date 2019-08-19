@@ -12,15 +12,17 @@ export class TripsEntity extends BaseEntity {
 
     @Column() name: string;
 
-    @Column() departureDate: string;
+    @Column({ nullable: true }) departureDate: Date;
 
-    @Column() arrivalDate: string;
+    @Column({ nullable: true }) arrivalDate: Date;
 
     @Column({nullable: true}) origin: string;
 
     @Column({nullable: true}) destination: string;
 
     @Column({ nullable: true }) pic: string;
+
+    @Column({ nullable: true }) isRental: boolean;
 
     @Column("decimal", { precision: 5, scale: 2, nullable: true }) total: number;
 

@@ -14,6 +14,8 @@ export class PricesEntity extends BaseEntity {
 
     @Column("decimal", { precision: 6, scale: 2, nullable: true }) high: number;
 
+    @Column("decimal", { precision: 7, scale: 2, nullable: true }) subTotal: number;
+
     @ManyToOne(type => TripsEntity, trips => trips.price, {onDelete: 'CASCADE'}) 
     trips: TripsEntity;
 

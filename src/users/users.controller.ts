@@ -19,6 +19,11 @@ export class UsersController {
     return this.UsersService.getUserById(id);
   }
 
+  @Get('email/:email')
+  async getUserByEmail(@Param('email') email: string): Promise<UsersEntity> {
+    return this.UsersService.getUserByEmail(email);
+  }
+
   //posts data into user table
   @Post('create')
   async create(@Body() usersData: CreateUserDto): Promise<any> {

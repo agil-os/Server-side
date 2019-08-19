@@ -307,10 +307,10 @@ export class PricesController {
     return this.PricesService.findAll();
   }
     // gets specific prices from table based on id
-  // @Get(':id')
-  // async read(@Param('id') id): Promise<PricesEntity> {
-  //   return this.PricesService.read(id);
-  // }
+  @Get(':id')
+  async read(@Param('id') id): Promise<PricesEntity> {
+    return this.PricesService.read(id);
+  }
 
   // posts data into prices table
   @Post('create')

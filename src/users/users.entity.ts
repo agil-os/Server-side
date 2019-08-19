@@ -9,7 +9,7 @@ export class UsersEntity extends BaseEntity {
 
     @Column({type: 'text' ,nullable: true}) hometown: string;
 
-    @Column({nullable: true}) email: string;
+    @Column({nullable: true, unique: true}) email: string;
 
     @Column({ nullable: true }) pic: string;
 

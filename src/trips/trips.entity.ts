@@ -12,9 +12,9 @@ export class TripsEntity extends BaseEntity {
 
     @Column() name: string;
 
-    @Column({ nullable: true }) departureDate: Date;
+    @Column({ nullable: true }) departureDate: string;
 
-    @Column({ nullable: true }) arrivalDate: Date;
+    @Column({ nullable: true }) arrivalDate: string;
 
     @Column({nullable: true}) origin: string;
 

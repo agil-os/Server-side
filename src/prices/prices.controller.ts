@@ -8,6 +8,7 @@ import { EnvModule } from '../env.module';
 import { EnvService } from '../env.service';
 import { findFieldsThatChangedTypeOnInputObjectTypes } from 'graphql/utilities/findBreakingChanges';
 import { CitiesEntity } from 'src/cities/cities.entity';
+import { PricesDto } from './prices.dto';
 
 const config = new EnvService().read();
 @Controller('prices')
@@ -27,90 +28,74 @@ export class PricesController {
 
     // tslint:disable-next-line:max-line-length
     const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise();
-    const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 1500 && price > 0);
-    const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 1500 && price < 2000);
-    const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 2000);
+    const date1 = new Date(arrival);
+    const date2 = new Date(departure);
+    const diffTime = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    let quality;
+    const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
+    const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
+    const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 143 * diffDays);
 
-    if (qualityId === '1') {
+    if (qualityId === '1'){
+      quality = lowQuality;
+    }
+    if (qualityId === '2') {
+      quality = midQuality;
+    }
+    if (qualityId === '3') {
+      quality = highQuality;
+    }
 
-      const low = lowQuality.reduce((low, hotel) => {
+      const low = quality.reduce((low, hotel) => {
         if (low > hotel) {
           low = hotel;
         }
         return low;
+      }); 
+    const lowName = prices.data.result.filter(name => name.min_total_price === low)[0].hotel_name_trans;
+    const lowAccom = prices.data.result.filter(name => name.min_total_price === low)[0].accommodation_type_name;
+    const lowBusinessScore = prices.data.result.filter(name => name.min_total_price === low)[0].business_review_score_word;
+    const lowUrl = prices.data.result.filter(name => name.min_total_price === low)[0].url;
 
-      });
-      const high = lowQuality.reduce((high, hotel) => {
+
+    const high = quality.reduce((high, hotel) => {
         if (high < hotel) {
           high = hotel;
         }
         return high;
       });
-      const average = lowQuality.reduce((ave, hotel) => {
+    
+    const highName = prices.data.result.filter(name => name.min_total_price === high)[0].hotel_name_trans;
+    const highAccom = prices.data.result.filter(name => name.min_total_price === high)[0].accommodation_type_name;
+    const highBusinessScore = prices.data.result.filter(name => name.min_total_price === high)[0].business_review_score_word;
+    const highUrl = prices.data.result.filter(name => name.min_total_price === high)[0].url;
+
+      const average = quality.reduce((ave, hotel) => {
         ave += hotel;
         return ave;
-      }) / lowQuality.length;
+      }) / quality.length;
 
-      const cheapHotel = {
+      const result = {
         low: Number(low.toFixed(2)),
         average: Number(average.toFixed(2)),
         high: Number(high.toFixed(2)),
+        detail: {
+          lowHotel: {
+            name: lowName,
+            accomodationType: lowAccom,
+            businessScore: lowBusinessScore,
+            URL: lowUrl
+          },
+          highHotel: {
+            name: highName,
+            accomodationType: highAccom,
+            businessScore: highBusinessScore,
+            URL: highUrl
+          }
+        }
       };
-
-      return cheapHotel;
-    }
-    if (qualityId === '2') {
-      const low = midQuality.reduce((low, hotel) => {
-          if (low > hotel) {
-            low = hotel;
-          }
-          return low;
-        });
-      const high = midQuality.reduce((high, hotel) => {
-          if (high < hotel) {
-            high = hotel;
-          }
-          return high;
-        });
-      const average = midQuality.reduce((ave, hotel) => {
-          ave += hotel;
-          return ave;
-        }) / midQuality.length;
-
-      const reasonableHotel = {
-        low: Number(low.toFixed(2)),
-        average: Number(average.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-
-      return reasonableHotel;
-    }
-    if (qualityId === '3') {
-      const low = highQuality.reduce((low, hotel) => {
-          if (low > hotel) {
-            low = hotel;
-          }
-          return low;
-        });
-      const high = highQuality.reduce((high, hotel) => {
-          if (high < hotel) {
-            high = hotel;
-          }
-          return high;
-        });
-      const average = highQuality.reduce((ave, hotel) => {
-          ave += hotel;
-          return ave;
-        }) / highQuality.length;
-
-      const reasonableHotel = {
-        low: Number(low.toFixed(2)),
-        average: Number(average.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-
-      return reasonableHotel;
-    }
+      return result;
   }
 
   @Get('flight/:qualityId/:flyFrom/:flyTo/:dateFrom/')
@@ -248,19 +233,53 @@ export class PricesController {
     const rentalCars = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/cars/create-session?originairportcode=${cityCode}&pickupdate=${pickup}&pickuphour=6&dropoffdate=${dropoff}&dropoffhour=6&currency=USD`, { headers: headerRequest }).toPromise();
     const car = rentalCars.data.carset;
 
-    const carPrices = car.map(rental => Number(rental.displayFullPrice.slice(1, 4))).sort((a, b) => a - b);
+    const carPrices = car.map(rental => Number(rental.displayFullPrice.replace(/\D+/g, ''))).sort((a, b) => a - b);
     const lowPrice = carPrices[0];
     const highPrice = carPrices[carPrices.length - 1];
     const averagePrice = carPrices.reduce((avg, flight) => {
       avg += flight;
       return avg;
     }) / carPrices.length;
+    const lowBasePrice = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].totalPrice
+    const lowbrand = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.brand
+    const lowCarClass = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.carclass
+    const lowPicture = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.thumbLarge
+    const lowPassenger = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].car.passengers
+    const lowURL = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === lowPrice)[0].shareURL
+
+
+    const highBasePrice = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].totalPrice
+    const highbrand = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.brand
+    const highCarClass = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.carclass
+    const highPicture = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.thumbLarge
+    const highPassenger = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].car.passengers
+    const highURL = car.filter(rental => Number(rental.displayFullPrice.replace(/\D+/g, '')) === highPrice)[0].shareURL
+
 
     const result = {
       low: Number(lowPrice.toFixed(2)),
       average: Number(averagePrice.toFixed(2)),
       high: Number(highPrice.toFixed(2)),
+      detail: {
+        lowRental: {
+          pricePerDay: lowBasePrice,
+          brand: lowbrand,
+          carClass: lowCarClass,
+          passengers: lowPassenger,
+          picture: `https://www.kayak.com${lowPicture}`,
+          url: `https://www.kayak.com${lowURL}`
+        },
+        highRental: {
+          pricePerDay: highBasePrice,
+          brand: highbrand,
+          carClass: highCarClass,
+          passengers: highPassenger,
+          picture: `https://www.kayak.com${highPicture}`,
+          url: `https://www.kayak.com${highURL}`
+        }
+      }
     };
+    
 
     return result;
   }
@@ -283,110 +302,21 @@ export class PricesController {
     return gasPrice;
   }
     // gets all data from the prices table
-  // @Get()
-  // async findAll(): Promise<PricesEntity[]> {
-  //   return this.PricesService.findAll();
-  // }
-  // // gets food prices from dummy data
-  // @Get('food')
-  // async findFood(): Promise<PricesEntity[]> {
-  //   const low = Number((lasVegasData
-  //   .prices
-  //   .filter((food) => food.item_id === 1)[0]
-  //     .lowest_price));
-
-  //   const high = lasVegasData
-  //     .prices
-  //     .filter((food) => food.item_id === 1)[0]
-  //     .highest_price;
-
-  //   const average = (high + low) / 2;
-
-  //   const food = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
-  //   return food;
-  // }
-
-  // gets flight prices from dummy data
-  // @Get('flight')
-  // async findFlight(): Promise<PricesEntity[]> {
-  //   const low = flightData[0]
-  //   .data
-  //   .reduce((low, flight) => {
-  //     low = flight.price;
-  //     if (low > flight.price) {
-  //       low = flight.price;
-  //     }
-  //     return low;
-  //   }, 0);
-
-  //   const high = flightData[0]
-  //     .data
-  //     .reduce((high, flight) => {
-  //       if (high <= flight.price) {
-  //         high = flight.price;
-  //       }
-  //       return high;
-  //     }, 0);
-
-  //   const average = flightData[0]
-  //     .data
-  //     .reduce((average, flight) => {
-  //       average += flight.price;
-
-  //       return average;
-  //     }, 0) / flightData[0].data.length;
-
-  //   const flight = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
-
-  //   return flight;
-  // }
-
-  // @Get('hotel')
-  // async findHotel(): Promise<PricesEntity[]> {
-
-  //   const prices = hotelsData.result
-  //   .map((hotels) => {
-  //     return hotels.min_total_price;
-  //   }).filter(price => price < 1500 && price > 0);
-
-  //   const low = (prices
-  //   .reduce((low, hotel) => {
-  //     if (low > hotel) {
-  //       low = hotel;
-  //     }
-  //     return low;
-  //   }));
-
-  //   const high = prices
-  //   .reduce((low, hotel) => {
-  //     if (low < hotel) {
-  //       low = hotel;
-  //     }
-  //     return low;
-  //   });
-
-  //   const average = (prices
-  //   .reduce((low, hotel) => {
-  //     low += hotel;
-  //     return low;
-  //   }, 0) / prices.length);
-
-  //   const hotel = [low.toFixed(2), average.toFixed(2), high.toFixed(2)];
-
-  //   return hotel;
-  // }
-
+  @Get()
+  async findAll(): Promise<PricesEntity[]> {
+    return this.PricesService.findAll();
+  }
     // gets specific prices from table based on id
   // @Get(':id')
   // async read(@Param('id') id): Promise<PricesEntity> {
   //   return this.PricesService.read(id);
   // }
 
-  // // posts data into prices table
-  // @Post('create')
-  // async create(@Body() pricesData: PricesEntity): Promise<any> {
-  //   return this.PricesService.create(pricesData);
-  // }
+  // posts data into prices table
+  @Post('create')
+  async create(@Body() pricesData: PricesDto): Promise<any> {
+    return this.PricesService.create(pricesData);
+  }
 
   //   // updates data based on prices id
   // @Put(':id/')

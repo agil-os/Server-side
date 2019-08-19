@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Patch } from '@nestjs/common';
 import { QualityService } from './quality.service';
 import { QualityEntity } from './quality.entity';
+import { QualityDto } from './quality.dto';
 
 @Controller('quality')
 export class QualityController {
@@ -19,7 +20,7 @@ export class QualityController {
 
       //posts data into quality table
     @Post('create')
-    async create(@Body() qualityData: QualityEntity): Promise<any> {
+    async create(@Body() qualityData: QualityDto): Promise<any> {
         return this.QualityService.create(qualityData);
     }
 

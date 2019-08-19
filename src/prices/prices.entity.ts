@@ -1,34 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToOne, JoinColumn, BaseEntity } from "typeorm";
 import { TripsEntity } from "../trips/trips.entity";
 import { QualityEntity } from "../quality/quality.entity";
 import { CategoriesEntity } from "../categories/categories.entity";
 
 
 @Entity('prices')
-export class PricesEntity {
+export class PricesEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() low: string;
+    @Column("decimal", { precision: 6, scale: 2, nullable: true}) low: number;
 
-    @Column() average: string;
+    @Column("decimal", { precision: 6, scale: 2, nullable: true }) average: number;
 
-    @Column() high: string;
+    @Column("decimal", { precision: 6, scale: 2, nullable: true }) high: number;
 
-    @CreateDateColumn() lastSearched: Date;
+    @ManyToOne(type => TripsEntity, trips => trips.price, {onDelete: 'CASCADE'}) 
+    trips: TripsEntity;
 
-    @Column({nullable: true}) tripsId: number;
-
-    @Column({ nullable: true }) qualityId: number;
-
-    @Column({ nullable: true }) categoryId: number;
-
-    @ManyToOne(type => TripsEntity, trips => trips.price) trips: TripsEntity;
-
-    @OneToOne(type => QualityEntity)
-    @JoinColumn()
+    @ManyToOne(type => QualityEntity, quality => quality.price)
     quality: QualityEntity;
 
-    @OneToOne(type => CategoriesEntity)
-    @JoinColumn()
+    @ManyToOne(type => CategoriesEntity, category => category.price)
     category: CategoriesEntity;
+
+
 }

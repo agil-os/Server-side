@@ -1,17 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity, JoinColumn } from "typeorm";
 import { TripsEntity } from "../trips/trips.entity";
 
 @Entity('users')
-export class UsersEntity {
+export class UsersEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column('text') username: string;
+    @Column({nullable: true}) username: string;
 
-    @Column() hometown: number;
+    @Column({type: 'text' ,nullable: true}) hometown: string;
 
-    @Column('text') email: string;
+    @Column({nullable: true, unique: true}) email: string;
 
-    @OneToMany(type => TripsEntity, trips => trips.user)
-    cascade: true
+    @Column({ nullable: true }) pic: string;
+
+    @OneToMany(type => TripsEntity, trips => trips.user, {cascade: true})
     trips: TripsEntity[];
 }

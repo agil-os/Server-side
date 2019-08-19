@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CarsEntity } from './cars.entity';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { TripsEntity } from '../trips/trips.entity';
+import { CarsDto } from './cars.dto';
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
 
@@ -15,13 +16,22 @@ export class CarsService {
         // private tripsRepository: Repository<TripsEntity>,
     ) {}
     async  findAll(): Promise<CarsEntity[]> {
-        return await this.carsRepository.find({relations: ['gas', 'trips']});
+        return await this.carsRepository.find({relations: ['trips']});
     }
     async read(id): Promise<CarsEntity> {
         return await this.carsRepository.findOne({ where: { id } });
     }
-    async  create(CarsEntity: CarsEntity): Promise<CarsEntity> {
-        return await this.carsRepository.save(CarsEntity);
+    async  create(carsDto: CarsDto): Promise<CarsEntity> {
+        // return await this.carsRepository.save(CarsEntity);
+        const {id, tripDistance, trips, pricePerGal, total} = carsDto;
+        const car = new CarsEntity();
+        car.id = id;
+        car.tripDistance = tripDistance;
+        car.pricePerGal = pricePerGal;
+        car.total = total;
+        car.trips = trips;
+        await car.save();
+        return car;
     }
 
     async update(CarsEntity: CarsEntity): Promise<UpdateResult> {

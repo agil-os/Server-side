@@ -11,6 +11,8 @@ export class UsersEntity extends BaseEntity {
 
     @Column({nullable: true}) email: string;
 
-    @OneToMany(type => TripsEntity, trips => trips.user)
+    @Column({ nullable: true }) pic: string;
+
+    @OneToMany(type => TripsEntity, trips => trips.user, {cascade: true})
     trips: TripsEntity[];
 }

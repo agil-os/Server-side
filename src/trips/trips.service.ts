@@ -16,7 +16,7 @@ export class TripsService {
         private userRepository: Repository<UsersEntity>,
     ) { }
     async  findAll(): Promise<TripsEntity[]> {
-        return await this.tripsRepository.find({ relations: ['user', 'quality', 'lodging', 'transportation']});
+        return await this.tripsRepository.find({ relations: ['user', 'quality', 'lodging', 'transportation', 'price']});
     }
     async  findTrip(): Promise<TripsEntity[]> {
         return await this.tripsRepository.find();
@@ -27,7 +27,7 @@ export class TripsService {
 
     async  create(tripsDto: TripsDto): Promise<TripsEntity> {
         // return await this.tripsRepository.save(TripsEntity);
-        const {id, name, departureDate, arrivalDate, origin, destination, user, quality, lodging, transportation
+        const {id, name, departureDate, arrivalDate, origin, destination, user, quality, lodging, transportation, pic
             // userId, qualityId, lodgingId, transportationId 
         } = tripsDto;
 
@@ -38,6 +38,7 @@ export class TripsService {
         trip.arrivalDate = arrivalDate;
         trip.origin = origin;
         trip.destination = destination;
+        trip.pic = pic;
         trip.user = user;
         trip.quality = quality;
         trip.lodging = lodging;

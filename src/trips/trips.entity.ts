@@ -20,6 +20,8 @@ export class TripsEntity extends BaseEntity {
 
     @Column({nullable: true}) destination: string;
 
+    @Column({ nullable: true }) pic: string;
+
     // @Column({nullable: true}) userId: number;
 
     // // @Column({nullable: true}) destinationId: number;
@@ -34,16 +36,6 @@ export class TripsEntity extends BaseEntity {
 
     @ManyToOne(type => UsersEntity, user => user.trips, {onDelete: 'CASCADE'})
     user: UsersEntity;
-
-    // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
-
-    // @OneToOne(type => CitiesEntity)
-    // @JoinColumn()
-    // destination: CitiesEntity;
-
-    // @OneToOne(type => CitiesEntity)
-    // @JoinColumn()
-    // origin: CitiesEntity;
 
     @OneToMany(type => PricesEntity, price => price.trips) 
     price: PricesEntity[];

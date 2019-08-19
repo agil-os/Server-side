@@ -12,38 +12,22 @@ export class TripsEntity extends BaseEntity {
 
     @Column() name: string;
 
-    @Column() departureDate: string;
+    @Column({ nullable: true }) departureDate: Date;
 
-    @Column() arrivalDate: string;
+    @Column({ nullable: true }) arrivalDate: Date;
 
     @Column({nullable: true}) origin: string;
 
     @Column({nullable: true}) destination: string;
 
-    // @Column({nullable: true}) userId: number;
+    @Column({ nullable: true }) pic: string;
 
-    // // @Column({nullable: true}) destinationId: number;
+    @Column({ nullable: true }) isRental: boolean;
 
-    // // @Column({nullable: true}) originId: number;
-
-    // @Column({ nullable: true }) qualityId: number;
-
-    // @Column({ nullable: true }) lodgingId: number;
-
-    // @Column({ nullable: true }) transportationId: number;
+    @Column("decimal", { precision: 7, scale: 2, nullable: true }) total: number;
 
     @ManyToOne(type => UsersEntity, user => user.trips, {onDelete: 'CASCADE'})
     user: UsersEntity;
-
-    // @OneToMany(type => CitiesEntity, city => city.trips) city: CitiesEntity[];
-
-    // @OneToOne(type => CitiesEntity)
-    // @JoinColumn()
-    // destination: CitiesEntity;
-
-    // @OneToOne(type => CitiesEntity)
-    // @JoinColumn()
-    // origin: CitiesEntity;
 
     @OneToMany(type => PricesEntity, price => price.trips) 
     price: PricesEntity[];

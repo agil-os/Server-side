@@ -4,8 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UsersEntity } from './users.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { TripsEntity } from '../trips/trips.entity';
-import { CreateUserDto } from './users.createuser-dto';
-import { UsersRepository} from './users.repository';
+import { UserDto } from './users.dto';
 // create interface || class || DTO || graphql schema
 // responsible for our business logic to be used in controller
 //database functions
@@ -15,10 +14,10 @@ import { UsersRepository} from './users.repository';
 export class UsersService {
     constructor(
         @InjectRepository(UsersEntity)
-        private usersRepository: UsersRepository,
+        private usersRepository: Repository<UsersEntity>,
     ) {}
     async  findAll(): Promise<UsersEntity[]> {
-        return await this.usersRepository.find();
+        return await this.usersRepository.find({relations: ['trips']});
     }
     async read(id): Promise<UsersEntity> {
         return await this.usersRepository.findOne({ where: { id } });
@@ -44,15 +43,16 @@ export class UsersService {
         return found;
     }
 
-    async create(createUserDto: CreateUserDto): Promise<UsersEntity> {
+    async create(userDto: UserDto): Promise<UsersEntity> {
         // return await this.usersRepository.save(UsersEntity, TripsEntity);
-        const { id, username, hometown, email } = createUserDto;
+        const { id, username, hometown, email, pic } = userDto;
 
         const user = new UsersEntity();
         user.id = id;
         user.username = username;
         user.hometown = hometown;
         user.email = email;
+        user.pic = pic;
         await user.save();
 
         return user;

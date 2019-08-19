@@ -19,10 +19,10 @@ export class GasController {
   }
 
     //posts data into gas table
-  @Post('create')
-  async create(@Body() gasData: GasEntity): Promise<any> {
-    return this.GasService.create(gasData);
-  }
+  // @Post('create')
+  // async create(@Body() gasData: GasEntity): Promise<any> {
+  //   return this.GasService.create(gasData);
+  // }
 
     //updates data based on gas id
   @Put(':id/')

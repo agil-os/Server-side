@@ -8,19 +8,11 @@ import { CategoriesEntity } from "../categories/categories.entity";
 export class PricesEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() low: number;
+    @Column("decimal", { precision: 6, scale: 2, nullable: true}) low: number;
 
-    @Column() average: number;
+    @Column("decimal", { precision: 6, scale: 2, nullable: true }) average: number;
 
-    @Column() high: number;
-
-    // @CreateDateColumn() lastSearched: Date;
-
-    // @Column({nullable: true}) tripsId: number;
-
-    // @Column({ nullable: true }) qualityId: number;
-
-    // @Column({ nullable: true }) categoryId: number;
+    @Column("decimal", { precision: 6, scale: 2, nullable: true }) high: number;
 
     @ManyToOne(type => TripsEntity, trips => trips.price, {onDelete: 'CASCADE'}) 
     trips: TripsEntity;

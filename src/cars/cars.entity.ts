@@ -6,20 +6,17 @@ import { TripsEntity } from "../trips/trips.entity";
 export class CarsEntity extends BaseEntity{
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column() isRental: boolean;
+    @Column({nullable: true}) tripDistance: string;
 
-    @Column() tripDistance: number;
+    @Column("decimal", { precision: 5, scale: 2, nullable: true }) pricePerGal: number;
 
-    // @Column({nullable: true}) gasId: number;
-
-    // @Column({nullable: true}) tripsId: number;
-
+    @Column("decimal", { precision: 6, scale: 2, nullable: true }) total: number;
 
     @ManyToOne(type => TripsEntity, trips => trips.cars, {onDelete: 'CASCADE'})
     trips: TripsEntity;
 
-    @OneToMany(type => GasEntity, gas => gas.cars)
-    gas: GasEntity[];
+    // @OneToMany(type => GasEntity, gas => gas.cars)
+    // gas: GasEntity[];
 
     
 }

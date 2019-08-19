@@ -21,17 +21,17 @@ export class GasService {
         return await this.gasRepository.findOne({ where: { id } });
     }
 
-    async  create(gasDto: GasDto): Promise<GasEntity> {
-        // return await this.gasRepository.save(GasEntity);
-        const {id, pricePerGal, cars} = gasDto;
+    // async  create(gasDto: GasDto): Promise<GasEntity> {
+    //     // return await this.gasRepository.save(GasEntity);
+    //     const {id, pricePerGal, cars} = gasDto;
 
-        const gas = new GasEntity()
-        gas.id = id;
-        gas.pricePerGal = pricePerGal;
-        gas.cars = cars;
-        await gas.save();
-        return gas;
-    }
+    //     const gas = new GasEntity()
+    //     gas.id = id;
+    //     gas.pricePerGal = pricePerGal;
+    //     gas.cars = cars;
+    //     await gas.save();
+    //     return gas;
+    // }
 
     async update(GasEntity: GasEntity): Promise<UpdateResult> {
         return await this.gasRepository.update(GasEntity.id, GasEntity);

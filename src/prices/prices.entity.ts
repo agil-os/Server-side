@@ -8,13 +8,13 @@ import { CategoriesEntity } from "../categories/categories.entity";
 export class PricesEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number; 
 
-    @Column("decimal", { precision: 6, scale: 2, nullable: true}) low: number;
+    @Column({nullable: true}) low: string;
 
-    @Column("decimal", { precision: 6, scale: 2, nullable: true }) average: number;
+    @Column({nullable: true }) average: string;
 
-    @Column("decimal", { precision: 6, scale: 2, nullable: true }) high: number;
+    @Column({nullable: true }) high: string;
 
-    @Column("decimal", { precision: 7, scale: 2, nullable: true }) subTotal: number;
+    @Column({nullable: true }) subTotal: string;
 
     @ManyToOne(type => TripsEntity, trips => trips.price, {onDelete: 'CASCADE'}) 
     trips: TripsEntity;

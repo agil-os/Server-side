@@ -17,6 +17,11 @@ export class PricesController {
               private readonly http: HttpService,
     ) { }
 
+  @Get('trips/:id')
+  async tripPrice(@Param('id') id){
+    const response = await this.http.get('http://localhost:3000/prices/').toPromise();
+    return response.data.filter(price => price.trips.id === Number(id));
+  }
   @Get('hotel/:qualityId/:city/:arrival/:departure')
   async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId) {
     const headerRequest = {
@@ -307,10 +312,10 @@ export class PricesController {
     return this.PricesService.findAll();
   }
     // gets specific prices from table based on id
-  // @Get(':id')
-  // async read(@Param('id') id): Promise<PricesEntity> {
-  //   return this.PricesService.read(id);
-  // }
+  @Get(':id')
+  async read(@Param('id') id): Promise<PricesEntity> {
+    return this.PricesService.read(id);
+  }
 
   // posts data into prices table
   @Post('create')

@@ -12,10 +12,10 @@ export class QualityService {
         private qualityRepository: Repository<QualityEntity>,
     ) { }
     async  findAll(): Promise<QualityEntity[]> {
-        return await this.qualityRepository.find();
+        return await this.qualityRepository.find({relations: ['trips', 'prices']});
     }
     async read(id): Promise<QualityEntity> {
-        return await this.qualityRepository.findOne({ where: { id } });
+        return await this.qualityRepository.findOne({ where: { id }, relations: ['trips', 'prices'] });
     }
 
     async  create(qualityDto: QualityDto): Promise<QualityEntity> {

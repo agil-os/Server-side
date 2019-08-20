@@ -25,19 +25,24 @@ export class PricesService {
     async findHotel(): Promise<PricesEntity[]> {
         return await this.pricesRepository.find();
     }
+    async tripPrice(id): Promise<PricesEntity[]> {
+        return await this.pricesRepository.find({ where: { id }, relations: ['trips', 'quality', 'category']})
+    }
     async read(id): Promise<PricesEntity> {
-        return await this.pricesRepository.findOne({where:{id}});
+        return await this.pricesRepository.findOne({where:{id}, relations: ['trips', 'quality', 'categories']});
     }
 
     async  create(pricesDto: PricesDto): Promise<PricesEntity> {
         // return await this.pricesRepository.save(PricesEntity);
-        const {id, low, average, high, trips, quality, category} = pricesDto
+        const {id, low, average, high, subTotal, categoryNumber, trips, quality, category} = pricesDto
         
         const price = new PricesEntity();
         price.id = id;
         price.low = low;
         price.average = average;
         price.high = high;
+        price.subTotal = subTotal;
+        price.categoryNumber = categoryNumber;
         price.trips = trips;
         price.quality = quality;
         price.category = category;

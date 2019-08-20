@@ -24,7 +24,7 @@ export class TripsEntity extends BaseEntity {
 
     @Column({ nullable: true }) isRental: boolean;
 
-    @Column("decimal", { precision: 7, scale: 2, nullable: true }) total: number;
+    @Column({nullable: true }) total: string;
 
     @ManyToOne(type => UsersEntity, user => user.trips, {onDelete: 'CASCADE'})
     user: UsersEntity;

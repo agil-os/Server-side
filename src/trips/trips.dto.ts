@@ -11,7 +11,7 @@ export class TripsDto {
     readonly destination: string;
     readonly pic: string;
     readonly isRental: boolean;
-    readonly total: number;
+    readonly total: string;
     readonly user: UsersEntity;
     readonly quality: QualityEntity;
     readonly lodging: CategoriesEntity;

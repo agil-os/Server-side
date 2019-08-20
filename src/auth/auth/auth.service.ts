@@ -14,6 +14,7 @@ export class AuthService {
 
   constructor(/*private readonly usersService: UsersService*/) { };
 
+  
   async validateOAuthLogin(thirdPartyId: string, provider: Provider): Promise<string> {
     try {
       // You can add some registration logic here, 

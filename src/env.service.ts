@@ -25,6 +25,11 @@ export interface EnvData {
 
   //google distance matrix
   AP_google: string
+
+  //auth info
+  CLIENT_ID: string;
+  CLIENT_SECRET: string;
+  JWT_SECRET_KEY: string;
 }
 
 export class EnvService {

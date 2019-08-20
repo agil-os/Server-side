@@ -8,6 +8,7 @@ export class PricesDto{
     readonly average: string;
     readonly high: string;
     readonly subTotal: string;
+    readonly categoryNumber: number;
     readonly trips: TripsEntity;
     readonly quality: QualityEntity;
     readonly category: CategoriesEntity;

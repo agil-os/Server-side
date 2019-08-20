@@ -16,6 +16,8 @@ export class PricesEntity extends BaseEntity {
 
     @Column({nullable: true }) subTotal: string;
 
+    @Column({nullable: true}) categoryNumber: number;
+
     @ManyToOne(type => TripsEntity, trips => trips.price, {onDelete: 'CASCADE'}) 
     trips: TripsEntity;
 

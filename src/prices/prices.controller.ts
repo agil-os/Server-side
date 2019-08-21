@@ -320,21 +320,27 @@ export class PricesController {
   }
   @Get('gas/:origin/:destination/')
   async gas(@Param('origin') origin, @Param('destination') destination) {
-    const gasQuery = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${destination}`).toPromise();
-    const gas = gasQuery.data.prices.filter(price => price.item_id === 24)[0].average_price * 3.78541;
-    // tslint:disable-next-line:max-line-length
-    const distanceQuery = await this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination}&key=${config.AP_google}`).toPromise();
-    const distance = distanceQuery.data.rows[0].elements[0].distance.text;
-    const distancePrice = distance.replace(/\D+/g, '');
-    const time = distanceQuery.data.rows[0].elements[0].duration.text;
+    try {
+      const gasQuery = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${destination}`).toPromise();
+      const gas = gasQuery.data.prices.filter(price => price.item_id === 24)[0].average_price * 3.78541;
+      // tslint:disable-next-line:max-line-length
+      const distanceQuery = await this.http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin}&destinations=${destination}&key=${config.AP_google}`).toPromise();
+      const distance = distanceQuery.data.rows[0].elements[0].distance.text;
+      const distancePrice = distance.replace(/\D+/g, '');
+      const time = distanceQuery.data.rows[0].elements[0].duration.text;
+  
+      const gasPrice = {
+        gasPerGallon: gas,
+        distance,
+        distancePrice: Number((((Number(distancePrice)) / 23.6) * gas).toFixed(2)),
+        time,
+      };
+      return gasPrice;
+    }
+    catch (err) {
+      console.log(`Could not find ${origin} to ${destination} gas information`, err);
+    }
 
-    const gasPrice = {
-      gasPerGallon: gas,
-      distance,
-      distancePrice: Number((((Number(distancePrice)) / 23.6) * gas).toFixed(2)),
-      time,
-    };
-    return gasPrice;
   }
     // gets all data from the prices table
   @Get()

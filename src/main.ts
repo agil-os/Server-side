@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';    
+import { join } from 'path';
 import { NotFoundExceptionFilter } from './exceptionFilter';
 
 async function bootstrap() {

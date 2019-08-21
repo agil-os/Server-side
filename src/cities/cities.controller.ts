@@ -24,7 +24,7 @@ export class CitiesController {
     const ref = response.data._links['ua:item'].filter(name => name.name === city)[0].href
     const picQuerry = await this.http.get(`${ref}images/`).toPromise()
     // return ref;
-    return picQuerry.data.photos[0].image.web;
+    return JSON.stringify(picQuerry.data.photos[0].image.web);
   }
     //gets all data from the cities table
   @Get()

@@ -31,7 +31,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt')
       It would be necessary to check whether the user still has the roles the JWT claims to have.However, this is outside the scope of this post.
       The comments provide an idea on how this could be implemented.
       */
-     console.log('payload', payload);
+      console.log('payload', payload);
       done(null, payload);
     }
     catch (err) {

@@ -209,40 +209,46 @@ export class PricesController {
   }
   @Get('food/:city/:qualityId')
   async food(@Param('city') city, @Param('qualityId') qualityId){
-    const response = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${city}`).toPromise()
-    if (qualityId === '1'){
-      const low = response.data.prices.filter(price => price.item_id === 1)[0].lowest_price;
-      const mid = response.data.prices.filter(price => price.item_id === 1)[0].average_price;
-      const high = response.data.prices.filter(price => price.item_id === 1)[0].highest_price;
-      const lowFood ={
-        low: Number(low.toFixed(2)),
-        average: Number(mid.toFixed(2)),
-        high: Number(high.toFixed(2)),
-      };
-      return lowFood;
-    }
-    if (qualityId === '2'){
-      const low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price / 2;
-      const mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price / 2;
-      const high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price / 2;
-      const midFood = {
-        low: Number(low.toFixed(2)),
-        average: Number(mid.toFixed(2)),
-        high: Number(high.toFixed(2)),
+    try {
+      const response = await this.http.get(`http://www.numbeo.com:8008/api/city_prices?api_key=${config.AP_numbeo}&query=${city}`).toPromise()
+      if (qualityId === '1'){
+        const low = response.data.prices.filter(price => price.item_id === 1)[0].lowest_price;
+        const mid = response.data.prices.filter(price => price.item_id === 1)[0].average_price;
+        const high = response.data.prices.filter(price => price.item_id === 1)[0].highest_price;
+        const lowFood ={
+          low: Number(low.toFixed(2)),
+          average: Number(mid.toFixed(2)),
+          high: Number(high.toFixed(2)),
+        };
+        return lowFood;
       }
-      return midFood;
-    }
-    if (qualityId === '3') {
-      const low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price;
-      const mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price;
-      const high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price;
-      const highFood = {
-        low: Number(low.toFixed(2)),
-        average: Number(mid.toFixed(2)),
-        high: Number(high.toFixed(2)),
+      if (qualityId === '2'){
+        const low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price / 2;
+        const mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price / 2;
+        const high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price / 2;
+        const midFood = {
+          low: Number(low.toFixed(2)),
+          average: Number(mid.toFixed(2)),
+          high: Number(high.toFixed(2)),
+        }
+        return midFood;
       }
-      return highFood;
+      if (qualityId === '3') {
+        const low = response.data.prices.filter(price => price.item_id === 2)[0].lowest_price;
+        const mid = response.data.prices.filter(price => price.item_id === 2)[0].average_price;
+        const high = response.data.prices.filter(price => price.item_id === 2)[0].highest_price;
+        const highFood = {
+          low: Number(low.toFixed(2)),
+          average: Number(mid.toFixed(2)),
+          high: Number(high.toFixed(2)),
+        }
+        return highFood;
+      }
     }
+    catch (err) {
+      console.log(`Could not retrieve ${city} food prices`, err);
+    }
+
   }
   @Get('cars/:origin/:pickup/:dropoff')
   async findCarPrices(@Param('origin') origin, @Param('pickup') pickup, @Param('dropoff') dropoff, @Param('qualityId') qualityId) {

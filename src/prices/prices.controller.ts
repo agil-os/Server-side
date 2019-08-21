@@ -136,70 +136,76 @@ export class PricesController {
       'x-rapidapi-key': config.AK_Kayak,
     };
     // tslint:disable-next-line:max-line-length
-    const origin = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyFrom}`, { headers: headerRequest }).toPromise();
-    const originCode = origin.data[0].searchFormPrimary;
+    try {
+      const origin = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyFrom}`, { headers: headerRequest }).toPromise();
+      const originCode = origin.data[0].searchFormPrimary;
+      const destination = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyTo}`, { headers: headerRequest }).toPromise();
+      const destinationCode = destination.data[0].searchFormPrimary;
+      const response = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=${originCode}&destination1=${destinationCode}&departdate1=${dateFrom}&cabin=${classes}&currency=USD&adults=1&bags=0`, { headers: headerRequest }).toPromise();
+      const flights = response.data;
+      const flightPrices = flights.tripset.map(price => price.exactLow).filter(num => num > 0).sort((a, b) => a - b);
+      // const nameAir = response.data.tripset.map(name => name.exactLow).filter(num => num > 0).sort();
+      const low = flightPrices[0];
+      const lowAirline = flights.tripset.filter(num => num.exactLow === low)[0].cheapestProviderName;
+      const lowOrigin = flights.tripset.filter(num => num.exactLow === low)[0].flightRoutes[0].originAirport;
+      const lowDestination = flights.tripset.filter(num => num.exactLow === low)[0].flightRoutes[0].destinationAirport;
+      const lowStops = flights.tripset.filter(num => num.exactLow === low)[0].maxstops;
+      const lowURL = flights.tripset.filter(num => num.exactLow === low)[0].shareURL;
+  
+  
+  
+      // .map(name => name.cheapestProviderName)
+  
+      const high = flightPrices[flightPrices.length - 1];
+      const highAirline = flights.tripset.filter(num => num.exactLow === high)[0].cheapestProviderName;
+      const highOrigin = flights.tripset.filter(num => num.exactLow === high)[0].flightRoutes[0].originAirport;
+      const highDestination = flights.tripset.filter(num => num.exactLow === high)[0].flightRoutes[0].destinationAirport;
+      const highStops = flights.tripset.filter(num => num.exactLow === high)[0].maxstops;
+      const highURL = flights.tripset.filter(num => num.exactLow === high)[0].shareURL;
+  
+      const average = flightPrices.reduce((ave, flight) => {
+        ave += flight;
+        return ave;
+      }) / flightPrices.length
+      let result = 
+      {
+        low: Number(low.toFixed(2)),
+        average: Number(average.toFixed(2)),
+        high: Number(high.toFixed(2)),
+        detail: {
+          lowFlight: {
+            airline: lowAirline,
+            stops: lowStops,
+            cabin: cabinClass,
+            flightPath: {
+              origin: lowOrigin,
+              destination: lowDestination,
+            },
+            URL: `https://www.kayak.com${lowURL}`
+          },
+          highFlight: {
+            airline: highAirline,
+            stops: highStops,
+            cabin: cabinClass,
+            flightPath: {
+              origin: highOrigin,
+              destination: highDestination,
+            },
+            URL: `https://www.kayak.com${highURL}`
+          } 
+      }
+      }
+  
+      return result;
+    }
+    catch (err) {
+      console.log(`Could not retrieve ${flyFrom} to ${flyTo} flight information`, err);
+    }
+
     // tslint:disable-next-line:max-line-length
-    const destination = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=${flyTo}`, { headers: headerRequest }).toPromise();
-    const destinationCode = destination.data[0].searchFormPrimary;
     // tslint:disable-next-line:max-line-length
-    const response = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=${originCode}&destination1=${destinationCode}&departdate1=${dateFrom}&cabin=${classes}&currency=USD&adults=1&bags=0`, { headers: headerRequest }).toPromise();
     // console.log(response);
-    const flights = response.data;
 
-    const flightPrices = flights.tripset.map(price => price.exactLow).filter(num => num > 0).sort((a, b) => a - b);
-    // const nameAir = response.data.tripset.map(name => name.exactLow).filter(num => num > 0).sort();
-    const low = flightPrices[0];
-    const lowAirline = flights.tripset.filter(num => num.exactLow === low)[0].cheapestProviderName;
-    const lowOrigin = flights.tripset.filter(num => num.exactLow === low)[0].flightRoutes[0].originAirport;
-    const lowDestination = flights.tripset.filter(num => num.exactLow === low)[0].flightRoutes[0].destinationAirport;
-    const lowStops = flights.tripset.filter(num => num.exactLow === low)[0].maxstops;
-    const lowURL = flights.tripset.filter(num => num.exactLow === low)[0].shareURL;
-
-
-
-    // .map(name => name.cheapestProviderName)
-
-    const high = flightPrices[flightPrices.length - 1];
-    const highAirline = flights.tripset.filter(num => num.exactLow === high)[0].cheapestProviderName;
-    const highOrigin = flights.tripset.filter(num => num.exactLow === high)[0].flightRoutes[0].originAirport;
-    const highDestination = flights.tripset.filter(num => num.exactLow === high)[0].flightRoutes[0].destinationAirport;
-    const highStops = flights.tripset.filter(num => num.exactLow === high)[0].maxstops;
-    const highURL = flights.tripset.filter(num => num.exactLow === high)[0].shareURL;
-
-    const average = flightPrices.reduce((ave, flight) => {
-      ave += flight;
-      return ave;
-    }) / flightPrices.length
-    let result = 
-    {
-      low: Number(low.toFixed(2)),
-      average: Number(average.toFixed(2)),
-      high: Number(high.toFixed(2)),
-      detail: {
-        lowFlight: {
-          airline: lowAirline,
-          stops: lowStops,
-          cabin: cabinClass,
-          flightPath: {
-            origin: lowOrigin,
-            destination: lowDestination,
-          },
-          URL: `https://www.kayak.com${lowURL}`
-        },
-        highFlight: {
-          airline: highAirline,
-          stops: highStops,
-          cabin: cabinClass,
-          flightPath: {
-            origin: highOrigin,
-            destination: highDestination,
-          },
-          URL: `https://www.kayak.com${highURL}`
-        } 
-    }
-    }
-
-    return result;
   }
   @Get('food/:city/:qualityId')
   async food(@Param('city') city, @Param('qualityId') qualityId){

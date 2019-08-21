@@ -27,7 +27,9 @@ export class TripsService {
 
     async  create(tripsDto: TripsDto): Promise<TripsEntity> {
         // return await this.tripsRepository.save(TripsEntity);
-        const { id, name, departureDate, arrivalDate, origin, destination, user, quality, lodging, transportation, pic, isRental, status, sharedBy, total
+        const { id, name, departureDate, arrivalDate, origin, destination, 
+            user, quality, lodging, transportation, pic, isRental, 
+            status, sharedBy, mealTotal, lodgingTotal, transportationTotal, total
         } = tripsDto;
 
         const trip = new TripsEntity();
@@ -41,6 +43,9 @@ export class TripsService {
         trip.isRental = isRental;
         trip.status = status;
         trip.sharedBy = sharedBy;
+        trip.mealTotal = mealTotal;
+        trip.lodgingTotal = lodgingTotal;
+        trip. transportationTotal = transportationTotal;
         trip.total = total;
         trip.user = user;
         trip.quality = quality;

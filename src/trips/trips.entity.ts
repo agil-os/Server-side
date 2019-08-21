@@ -24,6 +24,10 @@ export class TripsEntity extends BaseEntity {
 
     @Column({ nullable: true }) isRental: boolean;
 
+    @Column({nullable: true}) status: string;
+
+    @Column({nullable: true}) sharedBy: string;
+
     @Column({nullable: true }) total: string;
 
     @ManyToOne(type => UsersEntity, user => user.trips, {onDelete: 'CASCADE'})

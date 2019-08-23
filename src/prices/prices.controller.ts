@@ -35,16 +35,24 @@ export class PricesController {
         console.log(`Able to retrieve ${city} ID for hotels`);
        const cityId = response.data[0].dest_id;
        const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
-      try {
+      //  return prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0);       
+       try {
         console.log(`Able to retrieve ${city} hotel information`);
         const date1 = new Date(arrival);
         const date2 = new Date(departure);
         const diffTime = Math.abs(date2.getTime() - date1.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
         let quality;
-        const lowQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
-        const midQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
-        const highQuality = prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 143 * diffDays);
+         const lowQuality = [prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[0], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[1], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[2]]
+        // prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
+         const midQuality = [prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2)], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2) + 1], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2) + 2]]
+        // prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
+         const highQuality = [
+           prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[(prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)).length - 3], 
+           prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[(prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)).length - 2], 
+           prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[(prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)).length - 1] 
+          ]
+        // prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 143 * diffDays);
         
             if (qualityId === '1'){
               quality = lowQuality;
@@ -56,24 +64,26 @@ export class PricesController {
               quality = highQuality;
             }
         
-              const low = quality.reduce((low, hotel) => {
-                if (low > hotel) {
-                  low = hotel;
-                }
-                return low;
-              }); 
+              const low = quality[0]
+              // .reduce((low, hotel) => {
+              //   if (low > hotel) {
+              //     low = hotel;
+              //   }
+              //   return low;
+              // }); 
             const lowName = prices.data.result.filter(name => name.min_total_price === low)[0].hotel_name_trans;
             const lowAccom = prices.data.result.filter(name => name.min_total_price === low)[0].accommodation_type_name;
             const lowBusinessScore = prices.data.result.filter(name => name.min_total_price === low)[0].business_review_score_word;
             const lowUrl = prices.data.result.filter(name => name.min_total_price === low)[0].url;
         
         
-            const high = quality.reduce((high, hotel) => {
-                if (high < hotel) {
-                  high = hotel;
-                }
-                return high;
-              });
+            const high = quality[quality.length - 1]
+            // .reduce((high, hotel) => {
+            //     if (high < hotel) {
+            //       high = hotel;
+            //     }
+            //     return high;
+            //   });
             
             const highName = prices.data.result.filter(name => name.min_total_price === high)[0].hotel_name_trans;
             const highAccom = prices.data.result.filter(name => name.min_total_price === high)[0].accommodation_type_name;

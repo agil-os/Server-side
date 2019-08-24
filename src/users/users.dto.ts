@@ -4,4 +4,5 @@ export class UserDto {
     readonly hometown: string;
     readonly email: string;
     readonly pic: string;
+    readonly password: string;
 }

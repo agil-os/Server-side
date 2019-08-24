@@ -171,17 +171,18 @@ export class PricesController {
   
       // .map(name => name.cheapestProviderName)
   
-      const high = flightPrices[flightPrices.length - 1];
+      const high = flightPrices[Math.round((flightPrices.length - 1) / 2)];
       const highAirline = flights.tripset.filter(num => num.exactLow === high)[0].cheapestProviderName;
       const highOrigin = flights.tripset.filter(num => num.exactLow === high)[0].flightRoutes[0].originAirport;
       const highDestination = flights.tripset.filter(num => num.exactLow === high)[0].flightRoutes[0].destinationAirport;
       const highStops = flights.tripset.filter(num => num.exactLow === high)[0].maxstops;
       const highURL = flights.tripset.filter(num => num.exactLow === high)[0].shareURL;
   
-      const average = flightPrices.reduce((ave, flight) => {
-        ave += flight;
-        return ave;
-      }) / flightPrices.length
+      const average = (low + high)/2
+      // flightPrices.reduce((ave, flight) => {
+      //   ave += flight;
+      //   return ave;
+      // }) / flightPrices.length
       let result = 
       {
         low: Number(low.toFixed(2)),

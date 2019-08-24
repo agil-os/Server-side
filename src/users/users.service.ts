@@ -45,7 +45,7 @@ export class UsersService {
 
     async create(userDto: UserDto): Promise<UsersEntity> {
         // return await this.usersRepository.save(UsersEntity, TripsEntity);
-        const { id, username, hometown, email, pic } = userDto;
+        const { id, username, hometown, email, pic, password } = userDto;
 
         const user = new UsersEntity();
         user.id = id;
@@ -53,6 +53,7 @@ export class UsersService {
         user.hometown = hometown;
         user.email = email;
         user.pic = pic;
+        user.password = password;
         await user.save();
 
         return user;

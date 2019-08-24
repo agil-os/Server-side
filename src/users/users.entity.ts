@@ -13,6 +13,8 @@ export class UsersEntity extends BaseEntity {
 
     @Column({ nullable: true }) pic: string;
 
+    @Column({nullable: true}) password: string;
+
     @OneToMany(type => TripsEntity, trips => trips.user, {cascade: true})
     trips: TripsEntity[];
 }

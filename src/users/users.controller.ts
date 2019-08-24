@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Delete, Patch, Body, Put, Param } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Patch, Body, Put, Param, HttpService } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersEntity } from './users.entity';
 import { UserDto } from './users.dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly UsersService: UsersService) {}
+  constructor(private readonly UsersService: UsersService, private readonly http: HttpService) {}
 
   //gets all data from the user table
   @Get()
@@ -22,6 +22,11 @@ export class UsersController {
   @Get('email/:email')
   async getUserByEmail(@Param('email') email: string): Promise<UsersEntity> {
     return this.UsersService.getUserByEmail(email);
+  }
+  @Get('password/:email/:password')
+  async password(@Param('email') email: string, @Param('password') password: string): Promise<UsersEntity> {
+    const response = await this.http.get('http://localhost:3000/users/').toPromise()
+    return response.data.filter(user => user.email === email && user.password === password);
   }
 
   //posts data into user table

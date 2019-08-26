@@ -3,6 +3,7 @@ import { UpdateResult, DeleteResult, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QualityEntity } from './quality.entity';
 import { QualityDto } from './quality.dto';
+import { qualityData } from '../../sample_data/data/data.js'
 
 
 @Injectable()
@@ -12,21 +13,22 @@ export class QualityService {
         private qualityRepository: Repository<QualityEntity>,
     ) { }
     async  findAll(): Promise<QualityEntity[]> {
-        return await this.qualityRepository.find({relations: ['trips', 'prices']});
+        return await this.qualityRepository.find();
     }
     async read(id): Promise<QualityEntity> {
-        return await this.qualityRepository.findOne({ where: { id }, relations: ['trips', 'prices'] });
+        return await this.qualityRepository.findOne({ where: { id }});
     }
 
     async  create(qualityDto: QualityDto): Promise<QualityEntity> {
         // return await this.qualityRepository.save(qualityDto);
-        const { id, level } = qualityDto;
-        
-        const quality = new QualityEntity();
-        quality.id = id;
-        quality.level = level;
-        await quality.save();
+        let { id, level } = qualityDto;
 
+            const quality = new QualityEntity();
+            for (let i = 0; i < qualityData.length; i++){
+            quality.id = id;
+            quality.level = qualityData[i];
+            await quality.save();
+        }
         return quality;
         
     }

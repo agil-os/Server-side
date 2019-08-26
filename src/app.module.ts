@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+// import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
@@ -14,19 +14,19 @@ import { QualityController } from './quality/quality.controller';
 import { QualityModule } from './quality/quality.module';
 import { Connection } from 'typeorm';
 import { ConfigModule } from 'nestjs-dotenv';
-import { DatabaseModule } from './database.module'
+import { DatabaseModule } from './database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot('../.env'),
-    GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.ts'),
-      },
-    }),
+    // GraphQLModule.forRoot({
+    //   typePaths: ['./**/*.graphql'],
+    //   definitions: {
+    //     path: join(process.cwd(), 'src/graphql.ts'),
+    //   },
+    // }),
     DatabaseModule,
     CitiesModule,
     TripsModule,

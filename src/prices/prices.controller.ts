@@ -6,7 +6,6 @@ import { flightData } from '../../sample_data/Flights/flightData.js';
 import { hotelsData } from '../../sample_data/Booking/hotelsInfo.js';
 import { EnvModule } from '../env.module';
 import { EnvService } from '../env.service';
-import { findFieldsThatChangedTypeOnInputObjectTypes } from 'graphql/utilities/findBreakingChanges';
 import { CitiesEntity } from 'src/cities/cities.entity';
 import { PricesDto } from './prices.dto';
 import { doesNotReject } from 'assert';

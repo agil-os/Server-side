@@ -4,7 +4,7 @@ module.exports.qualityData = [
     "$$$"
 ];
 
-module.exports.categoryDaya = [
+module.exports.categoryData = [
     "void",
     "Car",
     "Flight",

@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CategoriesEntity } from './categories.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { CategoryDto } from './categories.dto';
+import { categoryData } from '../../sample_data/data/data.js'
 
 
 @Injectable()
@@ -13,10 +14,10 @@ export class CategoriesService {
         private categoriesRepository: Repository<CategoriesEntity>,
     ) { }
     async  findAll(): Promise<CategoriesEntity[]> {
-        return await this.categoriesRepository.find({relations: ['trips', 'prices']});
+        return await this.categoriesRepository.find();
     }
     async read(id): Promise<CategoriesEntity> {
-        return await this.categoriesRepository.findOne({ where: { id }, relations: ['trips', 'prices'] });
+        return await this.categoriesRepository.findOne({ where: { id }});
     }
 
     async  create(categoryDto: CategoryDto): Promise<CategoriesEntity> {
@@ -24,9 +25,11 @@ export class CategoriesService {
         const { id, name } = categoryDto;
 
         const category = new CategoriesEntity();
-        category.id = id;
-        category.name = name;
-        await category.save();
+        for (let i = 0; i < categoryData.length; i++){
+            category.id = id;
+            category.name = categoryData[i];
+            await category.save();
+        }
 
         return category;
     }

@@ -6,7 +6,7 @@ import { PricesEntity } from "../prices/prices.entity";
 export class QualityEntity extends BaseEntity {
     @PrimaryGeneratedColumn() id: number;
 
-    @Column('text') level: string;
+    @Column('text', {nullable: true, unique: true}) level: string;
 
     @OneToMany(type => TripsEntity, trips => trips.quality)
     trips: TripsEntity[];

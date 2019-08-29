@@ -37,30 +37,21 @@ export class PricesController {
       try{
 
         const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
-        const rental = prices.data.result
-        
-        // .filter(type => type.booking_home.group === 'apartment_like')
-        .map(address => address.address)[0]
-        // return rental;
-        // .filter(num => num > 0);
-        // return rental
+        const rental = prices.data.result.map(address => address.address)[0]
         const splitCity = city.split(',')
-        // return rental;
-        // return splitCity[0];
         const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
         const date1 = new Date(arrival);
         const date2 = new Date(departure);
         const diffTime = Math.abs(date2.getTime() - date1.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-        // return diffDays;
-        const price =  rentalPrice.data
-        .listings.map(cost => cost.price).sort((a, b) => a - b);
+
+        const price =  rentalPrice.data.listings.map(cost => cost.price).sort((a, b) => a - b);
         
         const low = price[0];
         const lowType = rentalPrice.data.listings.filter(cost => cost.price === low)[0].propertyType;
         const lowPic = rentalPrice.data.listings.filter(cost => cost.price === low)[0].photo;
         const lowBed = rentalPrice.data.listings.filter(cost => cost.price === low)[0].bedrooms;
-        // return lowType;
+
         const high = price[2];
         const highType = rentalPrice.data.listings.filter(cost => cost.price === high)[0].propertyType;
         const highPic = rentalPrice.data.listings.filter(cost => cost.price === high)[0].photo;

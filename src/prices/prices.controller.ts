@@ -17,10 +17,33 @@ export class PricesController {
               private readonly http: HttpService,
     ) { }
 
+  
   @Get('trips/:id')
   async tripPrice(@Param('id') id){
     const response = await this.http.get('http://localhost:3000/prices/').toPromise();
     return response.data.filter(price => price.trips.id === Number(id));
+  }
+  @Get('rental/:city/:arrival/:departure')
+  async rental(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure){
+    const headerRequest = {
+      'x-rapidapi-key': config.AK_Booking,
+    }; 
+    const response = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?text=${city}`, { headers: headerRequest }).toPromise();
+
+      console.log(`Able to retrieve ${city} ID for hotels`);
+      const cityId = response.data[0].dest_id;
+      const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
+      const rental = prices.data.result
+      
+    // .filter(type => type.booking_home.group === 'apartment_like')
+    .map(address => address.address)[0]
+    // .filter(num => num > 0);
+      // return rental
+    const splitCity = city.split(',')
+    // return rental;
+    // return splitCity[0];
+    const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
+    return rentalPrice.data;
   }
   @Get('hotel/:qualityId/:city/:arrival/:departure')
   async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId) {
@@ -34,7 +57,8 @@ export class PricesController {
         console.log(`Able to retrieve ${city} ID for hotels`);
        const cityId = response.data[0].dest_id;
        const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
-      //  return prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0);       
+      //  return prices.data.result
+      //  .filter(type => type.booking_home.group === 'apartment_like');       
        try {
         console.log(`Able to retrieve ${city} hotel information`);
         const date1 = new Date(arrival);
@@ -42,9 +66,13 @@ export class PricesController {
         const diffTime = Math.abs(date2.getTime() - date1.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
         let quality;
-         const lowQuality = [prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[0], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[1], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[2]]
+         const lowQuality = [prices.data.result.filter(type => type.booking_home.group === 'hotels_and_others').map(hotel => hotel.min_total_price).sort((a, b) => a - b).filter(num => num > 0)[0], 
+           prices.data.result.filter(type => type.booking_home.group === 'hotels_and_others').map(hotel => hotel.min_total_price).sort((a, b) => a - b).filter(num => num > 0)[1], 
+           prices.data.result.filter(type => type.booking_home.group === 'hotels_and_others').map(hotel => hotel.min_total_price).sort((a, b) => a - b).filter(num => num > 0)[2]]
         // prices.data.result.map(hotel => hotel.min_total_price).filter(price => price < 107 * diffDays && price > 0);
-         const midQuality = [prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2)], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2) + 1], prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2) + 2]]
+         const midQuality = [prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2)], 
+         prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2) + 1],
+         prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[Math.round((prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0).length - 1) / 2) + 2]]
         // prices.data.result.map(hotel => hotel.min_total_price).filter(price => price > 107 * diffDays && price < 143 * diffDays);
          const highQuality = [
            prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)[(prices.data.result.map(hotel => hotel.min_total_price).sort((a,b) => a - b).filter(num => num > 0)).length - 3], 

@@ -44,7 +44,6 @@ export class PricesController {
     // return splitCity[0];
     const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
     return rentalPrice.data;
-    return `${rental},${splitCity[0]},${splitCity[1]}`;
   }
   @Get('hotel/:qualityId/:city/:arrival/:departure')
   async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId) {

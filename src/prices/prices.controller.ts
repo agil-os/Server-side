@@ -28,23 +28,70 @@ export class PricesController {
     const headerRequest = {
       'x-rapidapi-key': config.AK_Booking,
     }; 
-    const response = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?text=${city}`, { headers: headerRequest }).toPromise();
+    try {
 
+      const response = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?text=${city}`, { headers: headerRequest }).toPromise();
+      
       console.log(`Able to retrieve ${city} ID for hotels`);
       const cityId = response.data[0].dest_id;
-      const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
-      const rental = prices.data.result
-      
-    // .filter(type => type.booking_home.group === 'apartment_like')
-    .map(address => address.address)[0]
-    // .filter(num => num > 0);
-      // return rental
-    const splitCity = city.split(',')
-    // return rental;
-    // return splitCity[0];
-    const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
-    return rentalPrice.data;
-  }
+      try{
+
+        const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
+        const rental = prices.data.result
+        
+        // .filter(type => type.booking_home.group === 'apartment_like')
+        .map(address => address.address)[0]
+        // return rental;
+        // .filter(num => num > 0);
+        // return rental
+        const splitCity = city.split(',')
+        // return rental;
+        // return splitCity[0];
+        const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
+        const date1 = new Date(arrival);
+        const date2 = new Date(departure);
+        const diffTime = Math.abs(date2.getTime() - date1.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        // return diffDays;
+        const price =  rentalPrice.data
+        .listings.map(cost => cost.price).sort((a, b) => a - b);
+        
+        const low = price[0];
+        const lowType = rentalPrice.data.listings.filter(cost => cost.price === low)[0].propertyType;
+        const lowPic = rentalPrice.data.listings.filter(cost => cost.price === low)[0].photo;
+        const lowBed = rentalPrice.data.listings.filter(cost => cost.price === low)[0].bedrooms;
+        // return lowType;
+        const high = price[2];
+        const highType = rentalPrice.data.listings.filter(cost => cost.price === high)[0].propertyType;
+        const highPic = rentalPrice.data.listings.filter(cost => cost.price === high)[0].photo;
+        const highBed = rentalPrice.data.listings.filter(cost => cost.price === high)[0].bedrooms;
+        
+        const average = (low + high) / 2;
+        const result = {
+          low: Number(((low / 30) * diffDays).toFixed(2)),
+          average: Number(((average / 30) * diffDays).toFixed(2)),
+          high: Number(((high / 30) * diffDays).toFixed(2)),
+          detail: {
+            lowShortRental: {
+              type: lowType,
+              picture: lowPic,
+              bedrooms: lowBed,
+            },
+            highShortRental: {
+              type: highType,
+              picture: highPic,
+              bedrooms: highBed
+            }
+          }
+        };
+        return result;
+      } catch(err){
+      console.log(`Could not retrieve ${city} hotel information`, err);
+      }
+      } catch(err){
+      console.log(`Could not retrieve ${city} ID`, err);
+      }
+    }
   @Get('hotel/:qualityId/:city/:arrival/:departure')
   async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId) {
     const headerRequest = {

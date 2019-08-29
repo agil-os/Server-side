@@ -23,6 +23,12 @@ export class UsersController {
   async getUserByEmail(@Param('email') email: string): Promise<UsersEntity> {
     return this.UsersService.getUserByEmail(email);
   }
+
+  @Get('username/:username')
+  async getUserByName(@Param('username') username: string): Promise<UsersEntity> {
+    return this.UsersService.getUserByName(username);
+  }
+
   @Get('password/:email/:password')
   async password(@Param('email') email: string, @Param('password') password: string): Promise<UsersEntity> {
     const response = await this.http.get('http://localhost:3000/users/').toPromise()

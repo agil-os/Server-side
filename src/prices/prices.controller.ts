@@ -34,9 +34,17 @@ export class PricesController {
       const cityId = response.data[0].dest_id;
       const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
       const rental = prices.data.result
+      
     // .filter(type => type.booking_home.group === 'apartment_like')
     .map(address => address.address)[0]
     // .filter(num => num > 0);
+      // return rental
+    const splitCity = city.split(',')
+    // return rental;
+    // return splitCity[0];
+    const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
+    return rentalPrice.data;
+    return `${rental},${splitCity[0]},${splitCity[1]}`;
   }
   @Get('hotel/:qualityId/:city/:arrival/:departure')
   async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId) {

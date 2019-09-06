@@ -20,7 +20,7 @@ export class PricesController {
   
   @Get('trips/:id')
   async tripPrice(@Param('id') id){
-    const response = await this.http.get('http://localhost:3000/prices/').toPromise();
+    const response = await this.http.get('http://3.85.122.97:3000/prices/').toPromise();
     return response.data.filter(price => price.trips.id === Number(id));
   }
   @Get('rental/:city/:arrival/:departure')

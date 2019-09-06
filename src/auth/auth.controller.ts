@@ -17,9 +17,9 @@ export class AuthController {
     console.log('User', req.user);
     const jwt: string = req.user.jwt;
     if (jwt) {
-      res.redirect('http://localhost:3000/login/succes/' + jwt);
+      res.redirect('http://3.85.122.97:3000/login/succes/' + jwt);
     } else {
-      res.redirect('http://localhost:3000/login/failure');
+      res.redirect('http://3.85.122.97:3000/login/failure');
     }
   }
 

@@ -5,8 +5,9 @@ import { rentalCarData } from '../../sample_data/Kajak/nolaRentalCar.js';
 import { TripsDto } from './trips.dto';
 import { getManager } from 'typeorm';
 import { UsersEntity } from '../users/users.entity';
+import { EnvService } from '../env.service';
 
-
+const config = new EnvService().read()
 @Controller('trips')
 export class TripsController {
   constructor(private readonly TripsService: TripsService, private readonly http: HttpService) { }
@@ -16,7 +17,12 @@ export class TripsController {
   async findAll(): Promise<TripsEntity[]> {
     return this.TripsService.findAll();
   }
-  
+  @Get('event/:country/:city/:startDate/:endDate')
+  async findEvents(@Param('country') country: string, @Param('city') city: string, @Param('startDate') startDate: string, @Param('endDate') endDate: string) {
+    const response = await this.http.get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${country}&city=${city}&startDateTime=${startDate}T14:00:00Z&endDateTime=${endDate}T14:00:00Z&apikey=${config.TM_api_key}`).toPromise()
+    return response.data._embedded.events.map(name => name.name)
+  }
+
   @Get(':email')
   async findTrips(@Param('email') email: string) {
     const response = await this.http.get('http://localhost:3000/trips/').toPromise()

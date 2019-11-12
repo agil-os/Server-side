@@ -17,6 +17,7 @@ import { ConfigModule } from 'nestjs-dotenv';
 import { DatabaseModule } from './database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AuthModule } from './auth/auth.module';
     CategoriesModule,
     QualityModule,
     AuthModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService],

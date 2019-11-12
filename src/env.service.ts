@@ -33,6 +33,9 @@ export interface EnvData {
   CLIENT_ID: string;
   CLIENT_SECRET: string;
   JWT_SECRET_KEY: string;
+
+  // ticketmaster
+  TM_api_key: string;
 }
 
 export class EnvService {

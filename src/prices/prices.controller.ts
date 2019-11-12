@@ -23,28 +23,7 @@ export class PricesController {
     const response = await this.http.get('http://3.85.122.97:3000/prices/').toPromise();
     return response.data.filter(price => price.trips.id === Number(id));
   }
-  @Get('rental/:city/:arrival/:departure')
-  async rental(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure){
-    const headerRequest = {
-      'x-rapidapi-key': config.AK_Booking,
-    }; 
-    const response = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete?text=${city}`, { headers: headerRequest }).toPromise();
-
-      console.log(`Able to retrieve ${city} ID for hotels`);
-      const cityId = response.data[0].dest_id;
-      const prices = await this.http.get(`https://apidojo-booking-v1.p.rapidapi.com/properties/list?search_type=city&offset=0&dest_ids=${cityId}&guest_qty=1&arrival_date=${arrival}&departure_date=${departure}&room_qty=1`, { headers: headerRequest }).toPromise()
-      const rental = prices.data.result
-      
-    // .filter(type => type.booking_home.group === 'apartment_like')
-    .map(address => address.address)[0]
-    // .filter(num => num > 0);
-      // return rental
-    const splitCity = city.split(',')
-    // return rental;
-    // return splitCity[0];
-    const rentalPrice = await this.http.get(`https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address=${rental},${splitCity[0]},${splitCity[1]}`, {headers: headerRequest}).toPromise();
-    return rentalPrice.data;
-  }
+  
   @Get('hotel/:qualityId/:city/:arrival/:departure')
   async root(@Param('city') city, @Param('arrival') arrival, @Param('departure') departure, @Param('qualityId') qualityId) {
     const headerRequest = {
@@ -185,6 +164,7 @@ export class PricesController {
       const destinationCode = destination.data[0].searchFormPrimary;
       const response = await this.http.get(`https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=${originCode}&destination1=${destinationCode}&departdate1=${dateFrom}&cabin=${classes}&currency=USD&adults=1&bags=0`, { headers: headerRequest }).toPromise();
       const flights = response.data;
+      // return flights
       const flightPrices = flights.tripset.map(price => price.exactLow).filter(num => num > 0).sort((a, b) => a - b);
       // const nameAir = response.data.tripset.map(name => name.exactLow).filter(num => num > 0).sort();
       const low = flightPrices[0];

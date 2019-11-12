@@ -25,7 +25,7 @@ export class TripsController {
 
   @Get(':email')
   async findTrips(@Param('email') email: string) {
-    const response = await this.http.get('http://3.85.122.97:3000/trips/').toPromise()
+    const response = await this.http.get('http://127.0.0.1:3000/trips/').toPromise()
     return response.data.filter(user => user.user.email === email);
   }
     //gets specific trips from table based on id

@@ -31,7 +31,7 @@ export class UsersController {
 
   @Get('password/:email/:password')
   async password(@Param('email') email: string, @Param('password') password: string): Promise<UsersEntity> {
-    const response = await this.http.get('http://3.85.122.97:3000/users/').toPromise()
+    const response = await this.http.get('http://127.0.0.1:3000/users/').toPromise()
     return response.data.filter(user => user.email === email && user.password === password);
   }
 

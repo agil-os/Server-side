@@ -36,6 +36,12 @@ export interface EnvData {
 
   // ticketmaster
   TM_api_key: string;
+
+  // darksky
+  DARKSKY_API_KEY: string;
+
+  // mapbox
+  MAPBOX_API_KEY: string;
 }
 
 export class EnvService {
@@ -57,10 +63,10 @@ export class EnvService {
   }
 
   isDev(): boolean {
-    return (this.vars.APP_ENV === 'development');
+    return this.vars.APP_ENV === 'development';
   }
 
   isProd(): boolean {
-    return (this.vars.APP_ENV === 'production');
+    return this.vars.APP_ENV === 'production';
   }
 }

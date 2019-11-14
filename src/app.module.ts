@@ -18,6 +18,7 @@ import { DatabaseModule } from './database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { EventModule } from './event/event.module';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { EventModule } from './event/event.module';
     QualityModule,
     AuthModule,
     EventModule,
+    WeatherModule,
   ],
   controllers: [AppController],
   providers: [AppService],

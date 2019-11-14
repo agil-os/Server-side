@@ -6,24 +6,24 @@ import { EventDto } from './event.dto';
 
 @Injectable()
 export class EventService {
-    constructor(
-        @InjectRepository(EventEntity)
-        private eventRepository: Repository<EventEntity>,
-    ) {}
+  constructor(
+    @InjectRepository(EventEntity)
+    private eventRepository: Repository<EventEntity>,
+  ) {}
 
-    async findEvent(): Promise<EventEntity[]> {
-        return await this.eventRepository.find();
-    }
+  async findEvent(): Promise<EventEntity[]> {
+    return await this.eventRepository.find();
+  }
 
-    async create(eventDto: EventDto): Promise<EventEntity> {
-        const {id, name, price, picture, link} = eventDto
-        const event = new EventEntity();
-        event.id = id;
-        event.name = name;
-        event.price = price;
-        event.picture = picture;
-        event.link = link;
-        await event.save()
-        return event;
-    }
+  async create(eventDto: EventDto): Promise<EventEntity> {
+    const { id, name, price, picture, link } = eventDto;
+    const event = new EventEntity();
+    event.id = id;
+    event.name = name;
+    event.price = price;
+    event.picture = picture;
+    event.link = link;
+    await event.save();
+    return event;
+  }
 }
